@@ -5,23 +5,22 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
+
     <title> FlipIFC </title>
 
     <style>
-        /* frame 1 */
-
         body {
-            background-color: #F4EFE9;
+            position: absolute;
+            background: #F4EFE9;
         }
-
-        /* F */
 
         div.F1 {
             position: absolute;
             width: 41.27px;
             height: 11.99px;
             left: 540px;
-            top: 120.87px;
+            top: 56px;
 
             background: #767EC9;
             box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
@@ -35,7 +34,7 @@
             width: 13px;
             height: 58.65px;
             left: 545px;
-            top: 118.89px;
+            top: 55px;
 
             background: #767EC9;
             border-radius: 90px;
@@ -47,8 +46,7 @@
             width: 41.27px;
             height: 11.99px;
             left: 540px;
-            top: 143.87px;
-
+            top: 80px;
             background: #767EC9;
             box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
             border-radius: 90px;
@@ -62,7 +60,7 @@
             width: 63.26px;
             height: 11.99px;
             left: 570px;
-            top: 160px;
+            top: 95px;
 
             background: #C97676;
             box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
@@ -77,7 +75,7 @@
             width: 10.46px;
             height: 45.81px;
             left: 620px;
-            top: 133.73px;
+            top: 80px;
 
             background: #767EC9;
             box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
@@ -90,7 +88,7 @@
             width: 13px;
             height: 12px;
             left: 617px;
-            top: 118px;
+            top: 63px;
 
             background: #767EC9;
             box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
@@ -104,7 +102,7 @@
             width: 9.77px;
             height: 61.1px;
             left: 645px;
-            top: 110px;
+            top: 60px;
 
             background: #C97676;
             box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
@@ -117,7 +115,7 @@
             width: 41.27px;
             height: 11.99px;
             left: 650px;
-            top: 115px;
+            top: 64px;
 
             background: #C97676;
             box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
@@ -130,7 +128,7 @@
             width: 41.27px;
             height: 11.99px;
             left: 650px;
-            top: 133px;
+            top: 80px;
 
             background: #C97676;
             box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
@@ -146,7 +144,7 @@
             width: 124px;
             height: 14px;
             left: 700px;
-            top: 130px;
+            top: 80px;
 
             font-family: 'Honey and Raspberries';
             font-style: normal;
@@ -160,15 +158,69 @@
             text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
         }
 
+        h3 {
+            font-family: 'Poppins';
+            font-style: normal;
+            font-weight: 600;
+            font-size: 15px;
+            line-height: 22px;
+            text-align: center;
+            letter-spacing: 0.1em;
+            margin-top: -5px;
 
-        /* pressione */
+            color: #000000;
 
-        .btn {
+            mix-blend-mode: normal;
+            text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+
+        }
+
+        form.conta {
             position: absolute;
-            width: 300px;
+            left: 400px;
+            top: 180px;
+            width: 500px;
+            margin: 0 auto;
+            background-color: #f7f7f7;
+            border-radius: 5px;
+            padding: 20px;
+            font-family: 'Poppins';
+
+        }
+
+        label {
+            font-weight: bold;
+            display: block;
+            margin-bottom: 10px;
+            text-align: center;
+            color: black;
+            font-size: 15px;
+        }
+
+        input[type="text"],
+        input[type="password"] {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            margin-bottom: 20px;
+            box-sizing: border-box;
+            font-size: 16px;
+            background: #F7F3F3;
+            mix-blend-mode: multiply;
+            box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+            border-radius: 30px;
+            text-align: center;
+            font-family: 'Poppins';
+            margin-bottom: -10px;
+        }
+
+        button.jogo {
+            position: absolute;
+            width: 150px;
             height: 39px;
-            left: 510px;
-            top: 244px;
+            left: 190px;
+            bottom: -50px;
             background-color: rgba(118, 126, 201, 0.43);
             border: none;
             font-family: cursive;
@@ -186,65 +238,54 @@
 
         }
 
-        .btn:hover {
+        button.jogo:hover{
             background-color: rgba(8, 16, 88, 0.43);
-            ;
         }
 
-        .sobre {
-            position: absolute;
-            width: 300px;
-            height: 39px;
-            left: 510px;
-            top: 48%;
-            background-color: rgba(118, 126, 201, 0.43);
-            border: none;
-            font-family: cursive;
-            font-style: normal;
-
-            font-size: 12px;
-            letter-spacing: 0.065em;
-            text-align: center;
-            margin: 4px 2px;
-            border-radius: 90px;
-
-            opacity: 1;
-            transition: 0.3s;
-        }
-
-        .sobre:hover {
-            background-color: rgba(8, 16, 88, 0.43);
-            ;
-        }
     </style>
 </head>
 
 <body>
-    <div class="F1"></div>
-    <div class="F2"></div>
-    <div class="F3"></div>
+    <div class="logo">
+        <div class="F1"></div>
+        <div class="F2"></div>
+        <div class="F3"></div>
 
-    <div class="L"></div>
+        <div class="L"></div>
 
-    <div class="I1"></div>
-    <div class="I2"></div>
+        <div class="I1"></div>
+        <div class="I2"></div>
 
-    <div class="P1"></div>
-    <div class="P2"></div>
-    <div class="P3"></div>
+        <div class="P1"></div>
+        <div class="P2"></div>
+        <div class="P3"></div>
 
-    <h1> IFC </h1>
+        <h1> IFC </h1>
+    </div>
+    <div class="formulario">
+        <form class="conta">
+            <h3> login </h3>
+            <label for="usuário"> usuário: </label>
+            <input type="text" id="usuário" name="usuário">
+            <br>
+            </br>
 
-        <button class="btn">
-            <a href="cadastro.html" target="_blank" style="text-decoration: none;"> Pressione qualquer botão para iniciar </a>
-        </button>
+            <label for="senha"> senha:</label>
+            <input type="password" id="senha" name="senha">
+            <br> <!-- tirar -->
+            </br>
 
+            <div class="jogo">
+                <button class="jogo">
+                    <a href="index.html" target="_blank" style="text-decoration: none;"> entrar na conta </a>
+                </button>
+            </div>
+        </form>
+    </div>
 
-        <button class="sobre">
-            <a href="sobre.html" target="_blank" style="text-decoration: none;"> Sobre o projeto </a>
-        </button>
-
-
+    <script>
+        window.alert
+    </script>
 
 </body>
 
