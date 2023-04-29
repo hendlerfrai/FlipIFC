@@ -1,0 +1,2 @@
+alter table usuario add foreign key (`codTurma`) references turma (`codTurma`);
+mudar todos esse codigos para pk em cada uma de suas tabelas e mudar na aba sql
