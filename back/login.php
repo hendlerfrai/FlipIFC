@@ -31,17 +31,6 @@
         <h1> IFC </h1>
     </div>
     <div class="formulario">
-    <?php
-                    if(isset($_SESSION['nao_autenticado'])):
-                    ?>
-                    <div class="notification is-danger">
-                      <p>ERRO: código inválidos.</p>
-                    </div>
-                    <?php
-                    endif;
-                    unset($_SESSION['nao_autenticado']);
-                    ?>
-
     <form method="POST" action="loginBack.php" class="conta">
             <h3> login </h3>
             <label for="cod"> código: </label>
@@ -50,6 +39,7 @@
             </br>
 
             <div class="botao">
+                <input type="submit" name="entrar">
                 <button class="entrar">
                     <a href="index.php" target="_blank" style="text-decoration: none;"> entrar na conta </a>
                 </button>
@@ -57,9 +47,6 @@
         </form>
     </div>
 
-    <script>
-        window.alert
-    </script>
 
 </body>
 

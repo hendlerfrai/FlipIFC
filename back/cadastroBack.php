@@ -10,7 +10,7 @@ if(isset($_POST['submit']) && !empty($_POST['nome']) && !empty($_POST['cod']) &&
     $escola = $_POST['escola'];
     $turma = $_POST['turma'];
     $cidade = $_POST['cidade'];
-    
+
 
     $sql_cod = "SELECT * FROM cadastro WHERE codAcesso = '$cod'";
 
@@ -18,7 +18,7 @@ if(isset($_POST['submit']) && !empty($_POST['nome']) && !empty($_POST['cod']) &&
     if(mysqli_num_rows($result) < 1)
     {
 
-        $sql_dados = "INSERT INTO cadastro (nomeAluno, codAcesso, codTurma, codEscola, codCidade) VALUES ('$nome', '$cod', '$turma', '$instituicao','$cidade')";
+        $sql_dados = "INSERT INTO cadastro (nomeAluno, codAcesso, codTurma, codEscola, codCidade) VALUES ('$nome', '$cod', '$turma', '$escola','$cidade')";
         mysqli_query($conn, $sql_dados);
         if(mysqli_affected_rows($conn) > 0) {
             echo '<script type="text/javascript">';
