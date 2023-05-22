@@ -14,21 +14,9 @@
 </head>
 
 <body>
-    <div class="F1"></div>
-    <div class="F2"></div>
-    <div class="F3"></div>
 
-    <div class="L"></div>
+    <h1> FlipIFC </h1>
 
-    <div class="I1"></div>
-    <div class="I2"></div>
-
-    <div class="P1"></div>
-    <div class="P2"></div>
-    <div class="P3"></div>
-
-    <h1> IFC </h1>
-   
 
         <button class="btn">
             <a href="" target="_blank" style="text-decoration: none;"> Pressione qualquer botão para iniciar </a>

@@ -10,27 +10,12 @@
     <link rel="stylesheet" type="text/css" href="css/stylelogin.css">
     <title> FlipIFC </title>
 
-   
+
 </head>
 
 <body>
-    <div class="logo">
-        <div class="F1"></div>
-        <div class="F2"></div>
-        <div class="F3"></div>
-
-        <div class="L"></div>
-
-        <div class="I1"></div>
-        <div class="I2"></div>
-
-        <div class="P1"></div>
-        <div class="P2"></div>
-        <div class="P3"></div>
-
-        <h1> IFC </h1>
-    </div>
-    <div class="formulario">
+        <h1> FlipIFC </h1>
+        <div class="formulario">
     <form method="POST" action="loginBack.php" class="conta">
             <h3> login </h3>
             <label for="cod"> código: </label>
@@ -40,9 +25,7 @@
 
             <div class="botao">
                 <input type="submit" name="entrar">
-                <button class="entrar">
-                    <a href="index.php" target="_blank" style="text-decoration: none;"> entrar na conta </a>
-                </button>
+
             </div>
         </form>
     </div>

@@ -40,8 +40,8 @@
 
                 text-shadow: 0px 2px 4px rgba(0, 0, 0, 0.447);
             }
-
-            #question {
+            
+            #question1 {
                 left: 39%;
                 padding-top: 100px;
                 font-size: 20px;
@@ -50,7 +50,7 @@
                 color: white;
                 text-shadow: 0px 2px 4px rgba(0, 0, 0, 0.447);
             }
-
+            
 
             .container {
                 text-align: center;
@@ -88,8 +88,9 @@
 <body>
     <h1>Ciências Humanas</h1>
     <br>
+    <form method="POST" action="perguntas.php" class="conta">
     <div class="perg">
-    <p id="question">pergunta 01: qual a capital da França? </p>
+    <p id="questao1">pergunta 01: qual a capital da França? </p>
     </div>
     <br>
     <p id="timer">Tempo restante: <span id="countdown">120</span> segundos</p>
@@ -100,40 +101,9 @@
         <button onclick="checkAnswer('Roma')">Roma</button>
         <button onclick="checkAnswer('Madri')">Madri</button>
     </div>
-
+  </form>
     <script>
         // Definir as perguntas e respostas corretas
-        const questions = [
-            {
-                question: 'Qual é a capital da França?',
-                answer: 'Paris'
-            }
-        ];
-
-        let currentQuestion = 0;
-        let score = 0;
-        let countdown;
-
-        // Função para verificar a resposta selecionada
-        function checkAnswer(answer) {
-            if (answer === questions[currentQuestion].answer) {
-                score++;
-            }
-
-            currentQuestion++;
-            showNextQuestion();
-        }
-
-        // Função para exibir a próxima pergunta ou resultado final
-        function showNextQuestion() {
-            if (currentQuestion < questions.length) {
-                document.getElementById('question').textContent = questions[currentQuestion].question;
-            } else {
-                clearInterval(countdown);
-                document.getElementById('question').textContent = 'Quiz concluído! Sua pontuação final é: ' + score;
-                document.getElementById('options').innerHTML = '';
-            }
-        }
 
         // Função para atualizar o cronômetro
         function updateTimer() {

@@ -1,8 +1,10 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-<?php
-include "conexao.php";
-?>
+    
+        <?php
+        include "conexao.php";
+        ?>
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -14,22 +16,7 @@ include "conexao.php";
 </head>
 
 <body>
-    <div class="logo">
-        <div class="F1"></div>
-        <div class="F2"></div>
-        <div class="F3"></div>
-
-        <div class="L"></div>
-
-        <div class="I1"></div>
-        <div class="I2"></div>
-
-        <div class="P1"></div>
-        <div class="P2"></div>
-        <div class="P3"></div>
-
-        <h1> IFC </h1>
-    </div>
+        <h1> FlipIFC </h1>
     <div class="formulario">
 
     <form method="POST" action="cadastroBack.php" class="conta">
@@ -65,7 +52,7 @@ include "conexao.php";
                 $query = "SELECT * FROM turma";
                 $result = $conn->query($query);
                 while ($row = $result->fetch_array()) {
-                    echo '<option value="'. $row['turma']. '">'. $row['turma']. '</option>';
+                    echo '<option value="'. $row['codTurma']. '">'. $row['turma']. '</option>';
                 }
                 ?>
             </select>
@@ -80,7 +67,7 @@ include "conexao.php";
                 $query = "SELECT * FROM cidade";
                 $result = $conn->query($query);
                 while ($row = $result->fetch_array()) {
-                    echo '<option value="'. $row['nomeCidade']. '">'. $row['nomeCidade']. '</option>';
+                    echo '<option value="'. $row['codCidade']. '">'. $row['nomeCidade']. '</option>';
                 }
                 ?>
             </select>

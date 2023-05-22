@@ -6,8 +6,14 @@ $cod = $_POST['cod'];
 $sql = "SELECT * FROM cadastro WHERE codAcesso ='$cod'";
 $result = $conn->query($sql);
 if ($result ->num_rows > 0) {
-echo "usuário logado";
+   header("Location: index.php");
+        exit();
+
 } else {
-   echo "usuário não encontrado";
+   echo '<script type="text/javascript">';
+   echo 'alert("Usuário não encontrado. Tente novamente");';
+   echo 'window.location.href = "login.php";';
+   echo '</script>';
+
 }
 ?>
