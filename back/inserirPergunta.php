@@ -14,10 +14,12 @@ elseif {
   $erros += 1;
 }
 
-
-// Insere o resultado do quiz no banco de dados
-$nome = $_POST['nome'];
 $data_hora = date("Y-m-d H:i:s");
+
+ // Consulta para obter o nome do aluno com base no codUser
+ $query = "SELECT nomeAluno FROM cadastro WHERE codUser = '$codUser'";
+ $result = mysqli_query($conn, $query);
+ $aluno = mysqli_fetch_assoc($result);
 
 $stmt = $mysqli->prepare("INSERT INTO resultado (pontuacao, data_hora) VALUES ($pontuacao, $data_hora)");
 $stmt->execute();
@@ -26,6 +28,6 @@ $sql = "UPDATE pontuacao SET acertos='$acertos', erros='$erros'";
 
 
 // Exibe os resultados para o usuário
-echo "Parabéns, $nome! Sua pontuação foi de $pontuacao pontos.";
+echo "Parabéns, $aluno! Sua pontuação foi de $pontuacao pontos.";
 
 ?>
