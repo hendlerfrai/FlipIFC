@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-    
+
         <?php
         include "conexao.php";
         ?>

@@ -10,6 +10,12 @@
 
     <title> FlipIFC </title>
 
+    <script>
+    $(document).keydown(function() {
+        var tecla = event.keyCode;
+        if (tecla == 13 ) 
+    })
+</script>
 
 </head>
 
@@ -21,12 +27,6 @@
         <button class="btn">
             <a href="" target="_blank" style="text-decoration: none;"> Pressione qualquer botão para iniciar </a>
         </button>
-
-
-        <button class="sobre">
-            <a href="sobre.php" target="_blank" style="text-decoration: none;"> Sobre o projeto </a>
-        </button>
-
 
 
 </body>
