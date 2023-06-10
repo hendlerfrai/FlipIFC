@@ -1,11 +1,11 @@
 @font-face {
     font-family: '0';
-    src: url('04B_30__.TTF') format('TrueType');
+    src: url('04B_30__.TTF') format('truetype');
 }
 
 @font-face {
     font-family: 'dogica';
-    src: url('dogicapixelbold.ttf') format('TrueType');
+    src: url('dogicapixelbold.ttf') format('truetype');
 }
 
 /* frame 1 */

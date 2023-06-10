@@ -5,94 +5,34 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script src="cronometro.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/telainicial.css">
+
     <title> FlipIFC </title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500&display=swap" rel="stylesheet">
+
 
     <head>
         <style>
-            body {
-                font-family: Arial, sans-serif, poppins;
-                position: relative;
-                height: 100%;
-                background: linear-gradient(#6084d7 25%, #a2cef4 50%, #a2cef4 50%, #6084d7 100%);
-            }
 
-            @font-face {
-                font-family: 'dogica';
-                src: url('dogicapixelbold.ttf') format('truetype');
-            }
-
-            h1 {
-                position: absolute;
-                text-align: center;
-                left: 39%;
-                padding-top: 50px;
-
-                color: #ffffff;
-
-                font-family: 'dogica';
-                font-style: normal;
-                font-weight: normal;
-                font-size: 18px;
-                line-height: 46px;
-
-                text-shadow: 0px 2px 4px rgba(0, 0, 0, 0.447);
-            }
-
-            #question {
-                left: 39%;
-                padding-top: 100px;
-                font-size: 20px;
-                font-family: dogica;
-                text-align: center;
-                color: white;
-                text-shadow: 0px 2px 4px rgba(0, 0, 0, 0.447);
-            }
-
-
-            .container {
-                text-align: center;
-                display: flex;
-                justify-content: center;
-            }
-
-            #options {
-                width: 200px;
-                font-size: 12px;
-                display: flex;
-                flex-direction: column;
-                margin-left: 558px;
-
-            }
-
-            button {
-                margin: 5px;
-                padding: 10px;
-                font-size: 16px;
-                background-color: #cea590;
-                font-family: dogica;
-            }
-
-            #timer {
-                text-align: center;
-                font-family: dogica;
-                color: rgb(255, 0, 0);
-                text-shadow: 0px 2px 4px rgba(0, 0, 0, 0.447);
-
-            }
         </style>
     </head>
 
 <body>
-    <h1>Ciências Humanas</h1>
+    <div class='parent'><div class="magicpattern">
+    <div class="contagem">
+        <h1 id="timer"></h1>
+    </diV>
+  <div>  
+    <h1 id="titulo">ciências humanas</h1>
+  </div>  
     <br>
     <div class="perg">
-    <p id="question">pergunta 01: qual a capital da França? </p>
+        <p id="question">pergunta 01: qual a capital da França? </p>
     </div>
     <br>
-    <p id="timer">Tempo restante: <span id="countdown">120</span> segundos</p>
+
     <br>
     <div class="container" id="options">
         <button onclick="checkAnswer('Paris')">Paris</button>
@@ -100,6 +40,7 @@
         <button onclick="checkAnswer('Roma')">Roma</button>
         <button onclick="checkAnswer('Madri')">Madri</button>
     </div>
+</div>
 
     <script>
         // Definir as perguntas e respostas corretas
@@ -132,29 +73,11 @@
                 clearInterval(countdown);
                 document.getElementById('question').textContent = 'Quiz concluído! Sua pontuação final é: ' + score;
                 document.getElementById('options').innerHTML = '';
+                
             }
         }
-
-        // Função para atualizar o cronômetro
-        function updateTimer() {
-            const countdownElement = document.getElementById('countdown');
-            let seconds = parseInt(countdownElement.textContent);
-            seconds--;
-
-            if (seconds >= 0) {
-                countdownElement.textContent = seconds;
-            } else {
-                clearInterval(countdown);
-                document.getElementById('question').textContent = 'Tempo esgotado! Sua pontuação final é: ' + score;
-                document.getElementById('options').innerHTML = '';
-            }
-        }
-
-        // Iniciar o quiz
-        showNextQuestion();
-        countdown = setInterval(updateTimer, 1000);
-
     </script>
+    
 </body>
 
 </html>

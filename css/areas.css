@@ -506,10 +506,10 @@ html {
 body {
     position: relative;
     height: 100%;
-    background-color: #decfaf;
+    background-color: #e4e0d7;
     opacity: 1;
     background-size: 18px 18px;
-    background-image: repeating-linear-gradient(0deg, #6084d7, #6084d7 0.9px, #e1d8c3 0.9px, #e1d8c3);
+    background-image: repeating-linear-gradient(0deg, #6084d7, #6084d7 0.9px, #e4e0d7 0.9px, #e4e0d7);
 }
 
 .wrap {
