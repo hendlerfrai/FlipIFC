@@ -8,7 +8,7 @@
     <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" />
     <link rel="stylesheet" type="text/css" href="css/stylelogin.css">
-    <title> FlipIFC </title>
+    <title> login </title>
 
 
 </head>
@@ -24,7 +24,7 @@
             </br>
 
             <div class="botao">
-                <input type="submit" name="entrar">
+               <input type="submit" name="entrar"> 
 
             </div>
         </form>

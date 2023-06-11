@@ -8,14 +8,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" />
     <link rel="stylesheet" type="text/css" href="css/styleindex.css">
 
-    <title> FlipIFC </title>
-
-    <script>
-    $(document).keydown(function() {
-        var tecla = event.keyCode;
-        if (tecla == 13 ) 
-    })
-</script>
+    <title> tela inicial </title>
 
 </head>
 
@@ -24,10 +17,19 @@
     <h1> FlipIFC </h1>
 
 
-        <button class="btn">
-            <a href="" target="_blank" style="text-decoration: none;"> Pressione qualquer botão para iniciar </a>
+        <button class="btn" type="submit">
+            <a href="questao.php" target="_blank" style="text-decoration: none;"> Pressione qualquer botão para iniciar </a>
         </button>
 
+
+        <script>
+        $(document).keydown(function(event) {
+            var tecla = event.keyCode;
+            if (tecla == 13) {
+                $('form').submit();
+            }
+        });
+    </script>
 
 </body>
 

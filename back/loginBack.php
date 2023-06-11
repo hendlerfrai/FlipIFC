@@ -6,7 +6,7 @@ $cod = $_POST['cod'];
 $sql = "SELECT * FROM cadastro WHERE codAcesso ='$cod'";
 $result = $conn->query($sql);
 if ($result ->num_rows > 0) {
-   header("Location: index.php");
+   header("Location: questao.php");
         exit();
 
 } else {

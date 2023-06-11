@@ -1,12 +1,12 @@
 <?php
-
+/*
 include('conexao.php');
 
 $pontuacao = 0;
 $acertos = 0;
 $erros = 0;
 
-if ($_POST['questao1'] == 'Paris') {
+if ($) {
   $pontuacao += 10;
   $acertos += 1;
 }
@@ -30,4 +30,5 @@ $sql = "UPDATE pontuacao SET acertos='$acertos', erros='$erros'";
 // Exibe os resultados para o usuário
 echo "Parabéns, $aluno! Sua pontuação foi de $pontuacao pontos.";
 
+*/
 ?>
