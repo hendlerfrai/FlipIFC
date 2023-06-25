@@ -1,6 +1,6 @@
 <?php
 include('conexao.php');
-require 'verifica.php';
+require('verifica.php');
 
 $query = "SELECT nomeAluno FROM cadastro WHERE codUser = '$codUser'";
 $result = mysqli_query($conn, $query);
@@ -59,7 +59,7 @@ $rt = mysqli_fetch_assoc($rs);
 
     <form method="POST" action="">
         <div id="alta" style="background-color: green">
-            <input type="radio" name="alternativa" id="altA"> 
+            <input type="radio" name="alternativa" id="altA">
             <label for="altA"><?php echo strip_tags($rt['altA']); ?> </label>
         </div>
         <div id="altb" style="background-color: yellow">

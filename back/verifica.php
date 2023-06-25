@@ -1,9 +1,9 @@
 <?php
-require 'verifica.php';
 
-if (isset($_SESSION['codUser'])) {
-    $codUser = $_SESSION['codUser'];
-} else {
+$codUser = $_SESSION['codUser'];
+
+if (!isset($_SESSION['codUser']) == true) {
+    unset($_SESSION['codUser']);
     header("Location: login.php");
     exit();
 }
