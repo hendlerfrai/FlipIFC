@@ -8,7 +8,7 @@ function startTimer(duration, display) {
         display.textContent = minutes + ":" + seconds;
         if (timer == 0) {
             alert('encerrou o tempo')
-            window.location.href="index.html";
+            window.location.href="index.php";
         }
                 if (--timer < 0) {
             timer = duration;

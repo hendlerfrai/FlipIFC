@@ -35,7 +35,7 @@
         <h1 id="ifc"> IFC </h1>
     </div>
     <button class="btn">
-        <a href="areas.html" target="_self" style="text-decoration: none; color: #3604b5; padding: 5px;"> Pressione qualquer <br> botão para iniciar </a>
+        <a href="telaloginUsuario.php" target="_self" style="text-decoration: none; color: #3604b5; padding: 5px;"> Pressione qualquer <br> botão para iniciar </a>
     </button>
 
 </body>
