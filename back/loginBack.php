@@ -9,7 +9,6 @@ $result = $conn->query($sql);
 if ($result ->num_rows > 0) {
    $_SESSION['codUser'] = $cod;
    header("Location: questao.php");
-   exit();
 
 } else {
    unset($_SESSION['codUser']);

@@ -2,9 +2,9 @@
 include('conexao.php');
 require('verifica.php');
 
-$query = "SELECT nomeAluno FROM cadastro WHERE codUser = '$codUser'";
+$query = "SELECT nomeAluno FROM cadastro WHERE codAcesso = '$codUser'";
 $result = mysqli_query($conn, $query);
-$aluno = mysqli_fetch_assoc($result);
+$aluno = mysqli_fetch_array($result);
 
 $data_hora = date("Y-m-d H:i:s");
 $score = 0;
