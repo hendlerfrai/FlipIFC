@@ -29,7 +29,7 @@
         <button class="cienciash">
             <div class="button__line"></div>
             <div class="button__line"></div>
-            <span class="button__text"> <a href="telaperguntas.php" target="_self"
+            <span class="button__text"> <a href="questao.php" target="_self"
                     style="text-decoration: none; color: #00135C;;">Ciências Humanas</a> </span>
             <div class="button__drow1"></div>
             <div class="button__drow2"></div>
