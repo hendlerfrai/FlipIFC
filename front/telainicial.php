@@ -8,7 +8,6 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" />
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
     <script src="cronometro.js"></script>
-    <link rel="stylesheet" type="text/css" href="css/telainicial.css">
 
     <title> FlipIFC </title>
 
@@ -26,7 +25,7 @@
                 <h1 id="timer"></h1>
             </diV>
             <div>
-                <h1 id="titulo">ciências humanas</h1>
+                <h1 id="">ciências humanas</h1>
             </div>
             <br>
             <div class="perg">
