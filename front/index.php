@@ -12,7 +12,14 @@
 
 
 </head>
-
+<script>
+        $(document).keydown(function () {
+            var tecla = event.keyCode;
+            if (tecla == 13) {
+                window.location.href = 'telaloginUsuario.php'
+            }
+        })    
+    </script>
 <body>
         <div class='wrap'>
           <div class='top-plane'></div>
@@ -39,5 +46,6 @@
     </button>
 
 </body>
+
 
 </html>

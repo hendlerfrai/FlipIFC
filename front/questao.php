@@ -50,36 +50,52 @@ $rt = mysqli_fetch_assoc($rs);
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <script src="cronometro.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/questao.css">
+
     <title>pergunta</title>
 </head>
 <body>
-    <div id="enunciado" style="background-color: gray">
-        <?php echo $rt['enunciado']; ?>
-    </div>
+<div class='parent'>
+    <div class="magicpattern">
+        <div class="contagem">
+            <h1 id="timer"></h1>
+        </div>    
+        <div>
+            <h1 id="titulo" style="padding-top: -30px">ciências humanas</h1>
+        </div>
 
-    <form method="POST" action="">
-        <div id="alta" style="background-color: green">
-            <input type="radio" name="alternativa" id="altA">
-            <label for="altA"><?php echo strip_tags($rt['altA']); ?> </label>
+        <div id="enunciado">
+        <?php echo $rt['enunciado']; ?>
         </div>
-        <div id="altb" style="background-color: yellow">
-            <input type="radio" name="alternativa" id="altB">
-            <label for="altB"><?php echo strip_tags($rt['altB']); ?> </label>
-        </div>
-        <div id="altc" style="background-color: purple">
-            <input type="radio" name="alternativa" id="altC">
-            <label for="altC"><?php echo strip_tags($rt['altC']); ?> </label>
-        </div>
-        <div id="altd" style="background-color: blue">
-            <input type="radio" name="alternativa" id="altD">
-            <label for="altD"><?php echo strip_tags($rt['altD']); ?></label>
-        </div>
-        <div id="alte" style="background-color: red">
-            <input type="radio" name="alternativa" id="altE">
-            <label for="altE"><?php echo strip_tags($rt['altE']); ?> </label>
-        </div>
-        <button type="submit">Enviar</button>
+
+    <div class="container">    
+        <form method="POST" action="">
+            <div id="alta">
+                <input type="radio" name="alternativa" id="altA">
+                <label for="altA"><?php echo strip_tags($rt['altA']); ?> </label>
+            </div>
+            <div id="altb">
+                <input type="radio" name="alternativa" id="altB">
+                <label for="altB"><?php echo strip_tags($rt['altB']); ?> </label>
+            </div>
+            <div id="altc">
+                <input type="radio" name="alternativa" id="altC">
+                <label for="altC"><?php echo strip_tags($rt['altC']); ?> </label>
+            </div>
+            <div id="altd">
+                <input type="radio" name="alternativa" id="altD">
+                <label for="altD"><?php echo strip_tags($rt['altD']); ?></label>
+            </div>
+            <div id="alte">
+                <input type="radio" name="alternativa" id="altE">
+                <label for="altE"><?php echo strip_tags($rt['altE']); ?> </label>
+            </div>
+            <button type="submit">Enviar</button>
     </form>
+    </div>
+   </div>
+   </div> 
 
     <script>
         $(document).keydown(function(event) {
