@@ -16,11 +16,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     $stmt = $conn->prepare("SELECT resposta FROM questao");
     $stmt->execute();
-    $stmt->bind_result($altCorreta);
+    $stmt->bind_result($rt);
     $stmt->fetch();
     $stmt->close();
 
-    if ($pontuacao == 'alt' . $altCorreta) {
+    if ($pontuacao == $rt) {
         $score += 10;
         $acertos += 1;
 
@@ -31,7 +31,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         echo "Você acertou, " . $aluno['nomeAluno'] . "! Sua pontuação foi de " . $score . " pontos.";
     } else {
         $erros += 1;
-        echo "Você errou, " . $aluno['nomeAluno'] . ":( Sua pontuação foi de " . $score . " pontos.";
+        echo "Você errou, " . $aluno['nomeAluno'] . " :( Sua pontuação foi de " . $score . " pontos. A resposta correta era alt". $rt;
     }
 
     $sql = "UPDATE pontuacao SET acertos='$acertos', erros='$erros'";
