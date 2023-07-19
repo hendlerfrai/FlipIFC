@@ -53,9 +53,9 @@ $rt = mysqli_fetch_assoc($rs);
     <script src="cronometro.js"></script>
     <link rel="stylesheet" type="text/css" href="css/questao.css">
 
-    <title>pergunta</title>
+    <title>FlipIFC</title>
 </head>
-<body>
+<body style="position: relative">
 <div class='parent'>
     <div class="magicpattern">
         <div class="contagem">

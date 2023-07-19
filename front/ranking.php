@@ -26,3 +26,20 @@ if (mysqli_num_rows($resultado) > 0) {
 
 mysqli_close($conn);
 ?>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="css/estiloRanking.php" />
+    
+    <title>FlipIFC</title>
+</head>
+<body>
+<div class='parent'>
+    <div class="magicpattern">
+</div>
+</div>    
+</body>
+</html>
