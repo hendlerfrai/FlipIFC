@@ -60,8 +60,28 @@ if (mysqli_num_rows($resultado) > 0) {
 
 mysqli_close($conn);
 ?>
+<<<<<<< HEAD
             </tbody>
 </table>  
 </div>  
 </body>
 </html>
+=======
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="css/estiloRanking.php" />
+    
+    <title>FlipIFC</title>
+</head>
+<body>
+<div class='parent'>
+    <div class="magicpattern">
+</div>
+</div>    
+</body>
+</html>
+>>>>>>> 23b9f8e1dd9f2f9d8463c4a0b9e1b72954e499cf

@@ -11,7 +11,7 @@ $dbname = "meubanco";
 
 
 /* banco raissa */
-$conn = mysqli_connect('localhost', 'root', '', 'flipifc') ;
+$conn = mysqli_connect('localhost', 'root', '', 'meubanco') ;
 
 if(mysqli_connect_errno()) {
     echo "Erro na conexão com o banco de dados";
