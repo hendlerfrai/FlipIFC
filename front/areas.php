@@ -13,10 +13,19 @@
 </head>
 
 <script language="javascript">
+    $(document).ready(function() {
+        $('.cienciash').focus();
+    });
     $(document).keydown(function () {
         var tecla = event.keyCode;
+        console.log(tecla);
         if (tecla == 13) {
             alert("você pressionou enter");
+        }
+        if (tecla == 40) {
+            $('.matematica').focus();
+            $('.matematica').hover();
+            
         }
     });
 </script>
