@@ -2,7 +2,7 @@
 include('conexao.php');
 require('verifica.php');
 
-print_r($_SESSION);
+//print_r($_SESSION);
 
 $dataAtual = date("Y-m-d");
 $data_hora = date("Y-m-d H:i:s");
@@ -81,11 +81,7 @@ header('Refresh: 2 url= index.php');
     <script src="cronometro.js"></script>
     <link rel="stylesheet" type="text/css" href="css/questao.css">
 
-<<<<<<< HEAD
     <title> pergunta </title>
-=======
-    <title>FlipIFC</title>
->>>>>>> 23b9f8e1dd9f2f9d8463c4a0b9e1b72954e499cf
 </head>
 <body style="position: relative">
 <div class='parent'>

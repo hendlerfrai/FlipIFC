@@ -2,18 +2,6 @@
 session_start();
 include('conexao.php');
 
-
-// Verifica se o usuário já respondeu duas questões hoje
-$queryContagem = "SELECT COUNT(*) AS total FROM resultado WHERE codUser = '$aluno[codUser]' AND DATE(data_hora) = '$dataAtual'";
-$resultContagem = mysqli_query($conn, $queryContagem);
-$rowContagem = mysqli_fetch_assoc($resultContagem);
-$totalQuestoesRespondidas = $rowContagem['total'];
-
-if ($totalQuestoesRespondidas >= 2) {
-    header("Location: logout.php");
-    exit;
-}
-
 $cod = $_POST['valor1'].$_POST['valor2'].$_POST['valor3'].$_POST['valor4'].$_POST['valor5'];
 
 $sql = "SELECT * FROM cadastro WHERE codAcesso ='$cod'";
