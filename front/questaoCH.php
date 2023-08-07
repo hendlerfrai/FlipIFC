@@ -6,9 +6,10 @@ require('verifica.php');
 
 $dataAtual = date("Y-m-d");
 $data_hora = date("Y-m-d H:i:s");
+$area = 1;
 
 
-$sql = "SELECT * FROM questao ORDER BY RAND() LIMIT 1";
+$sql = "SELECT * FROM questao WHERE codArea = 1 ORDER BY RAND() LIMIT 1";
 $rs = mysqli_query($conn, $sql);
 $rt = mysqli_fetch_assoc($rs);
 
@@ -40,7 +41,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 //        $stmt = $conn->prepare("UPDATE resultado SET resultado = ?, data_hora = ? WHERE codUser = ?");
 
-$stmt = "INSERT INTO resultado (codUser, codQuestao, resultado, data_hora) VALUES ($codUser,$idQ,1,'$dataAtual');";
+$stmt = "INSERT INTO resultado (codUser, codQuestao, resultado, data_hora, codArea) VALUES ($codUser,$idQ,1,'$dataAtual','$area');";
 $result = mysqli_query($conn, $stmt);
 
 
@@ -51,7 +52,7 @@ $result = mysqli_query($conn, $stmt);
         $acertos += 0;
         $erros +=1;
 
-        $stmt = "INSERT INTO resultado (codUser, codQuestao, resultado, data_hora) VALUES ($codUser,$idQ,0,'$dataAtual');";
+        $stmt = "INSERT INTO resultado (codUser, codQuestao, resultado, data_hora, codArea) VALUES ($codUser,$idQ,0,'$dataAtual','$area');";
         $result = mysqli_query($conn, $stmt);
 
 
@@ -99,7 +100,7 @@ header('Refresh: 2 url= index.php');
 
 
     <div class="container">
-        <form method="POST" action="questao.php">
+        <form method="POST" action="questaoCH.php">
             <div id="alta">
                 <input type="radio" value="A" name="alternativa" id="altA">
                 <label for="altA"><?php echo strip_tags($rt['altA']); ?> </label>

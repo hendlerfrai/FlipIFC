@@ -38,7 +38,7 @@
         <button class="cienciash">
             <div class="button__line"></div>
             <div class="button__line"></div>
-            <span class="button__text"> <a href="questao.php" target="_self"
+            <span class="button__text"> <a href="questaoCH.php" target="_self"
                     style="text-decoration: none; color: #00135C;;">Ciências Humanas</a> </span>
             <div class="button__drow1"></div>
             <div class="button__drow2"></div>
@@ -47,7 +47,7 @@
         <button class="cienciasn">
             <div class="button__line"></div>
             <div class="button__line"></div>
-            <span class="button__text"><a href="questao.php" target="_self"
+            <span class="button__text"><a href="questaoCN.php" target="_self"
                     style="text-decoration: none; color: #00135C;;">Ciências da Natureza </a> </span>
             <div class="button__drow1"></div>
             <div class="button__drow2"></div>
@@ -56,7 +56,7 @@
         <button class="linguaport">
             <div class="button__line"></div>
             <div class="button__line"></div>
-            <span class="button__text"><a href="questao.php" target="_self"
+            <span class="button__text"><a href="questaoLP.php" target="_self"
                     style="text-decoration: none; color: #00135C;;">Língua Portuguesa</a> </span>
             <div class="button__drow1"></div>
             <div class="button__drow2"></div>
@@ -65,7 +65,7 @@
         <button class="matematica">
             <div class="button__line"></div>
             <div class="button__line"></div>
-            <span class="button__text"><a href="questao.php" target="_self"
+            <span class="button__text"><a href="questaoM.php" target="_self"
                     style="text-decoration: none; color: #00135C;;">Matemática</a> </span>
             <div class="button__drow1"></div>
             <div class="button__drow2"></div>
