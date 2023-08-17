@@ -6,9 +6,15 @@ $resultado = mysqli_query($conn, $sql);
 
 $stmt = "SELECT *, SUM(resultado.resultado) AS acertos FROM `resultado` 
             INNER JOIN cadastro ON cadastro.codUser = `resultado`.codUser 
+<<<<<<< HEAD
             WHERE /*
             DATE(data_hora)>='2023-07-23' AND
             DATE(data_hora)<='2023-07-29' AND */
+=======
+            WHERE 
+            DATE(data_hora)>='2023-07-23' AND
+            DATE(data_hora)<='2023-07-29' AND 
+>>>>>>> 0b1f174ce1ca5f4d1d4bca8d5b322d08d00b800f
             resultado=1 
             GROUP BY resultado.codUser 
             DESC";
@@ -24,6 +30,7 @@ $retorno = mysqli_query($conn, $stmt);
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+<<<<<<< HEAD
     <link rel="stylesheet" type="text/css" href="css/estiloRanking.css">
 
 
@@ -32,6 +39,12 @@ $retorno = mysqli_query($conn, $stmt);
 <body>
 <div class='parent'>
     <div class="magicpattern">
+=======
+
+    <title>Document</title>
+</head>
+<body>
+>>>>>>> 0b1f174ce1ca5f4d1d4bca8d5b322d08d00b800f
     <div class="container">
     <table class="table">
         <thead>
