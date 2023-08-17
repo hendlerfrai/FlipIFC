@@ -1,43 +1,43 @@
 @font-face {
-    font-family: '0';
-    src: url('04B_30__.TTF') format('truetype');
-}
-
-@font-face {
-    font-family: 'dogica';
-    src: url('dogicapixelbold.ttf') format('truetype');
-}
-
-body {
+    font-family: "0";
+    src: url("04B_30__.TTF") format("truetype");
+  }
+  
+  @font-face {
+    font-family: "dogica";
+    src: url("dogicapixelbold.ttf") format("truetype");
+  }
+  
+  body {
     position: absolute;
-}
-
-h1 {
+  }
+  
+  h1 {
     position: absolute;
     text-align: center;
     left: 37%;
     padding-top: 185px;
-
-    color: #00135C;
-
-    font-family: 'dogica';
+  
+    color: #00135c;
+  
+    font-family: "dogica";
     font-style: normal;
     font-weight: normal;
     font-size: 18px;
     line-height: 46px;
-
+  
     text-shadow: 0px 3px 4px rgba(0, 0, 0, 0.447);
-}
-
-div.botao {
+  }
+  
+  div.botao {
     display: inline-block;
     top: 120px;
-}
-
-.cienciasn,
-.cienciash,
-.linguaport,
-.matematica {
+  }
+  
+  .cienciasn,
+  .cienciash,
+  .linguaport,
+  .matematica {
     position: absolute;
     z-index: 0;
     width: 240px;
@@ -45,35 +45,35 @@ div.botao {
     text-decoration: none;
     font-size: 14px;
     font-weight: bold;
-    color: #00135C;
+    color: #00135c;
     letter-spacing: 2px;
-    -webkit-transition: all .3s ease;
-    transition: all .3s ease;
+    -webkit-transition: all 0.3s ease;
+    transition: all 0.3s ease;
     border: none;
     background: transparent;
-}
-
-.cienciasn {
+  }
+  
+  .cienciasn {
     left: 520px;
     top: 270px;
-}
-
-.cienciash {
+  }
+  
+  .cienciash {
     left: 740px;
     top: 270px;
-}
-
-.linguaport {
+  }
+  
+  .linguaport {
     left: 520px;
     top: 395px;
-}
-
-.matematica {
+  }
+  
+  .matematica {
     left: 740px;
     top: 395px;
-}
-
-.button__text {
+  }
+  
+  .button__text {
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
@@ -85,69 +85,67 @@ div.botao {
     align-items: center;
     width: 100%;
     height: 100%;
-}
-
-.cienciash::before,
-.cienciash::after,
-.button__text::before,
-.button__text::before,
-.cienciasn::before,
-.cienciasn::after,
-.linguaport::before,
-.linguaport::after,
-.matematica::before,
-.matematica::after {
-
-    content: '';
+  }
+  
+  .cienciash::before,
+  .cienciash::after,
+  .button__text::before,
+  .button__text::before,
+  .cienciasn::before,
+  .cienciasn::after,
+  .linguaport::before,
+  .linguaport::after,
+  .matematica::before,
+  .matematica::after {
+    content: "";
     position: absolute;
     height: 3px;
     border-radius: 2px;
-    background: #00135C;
-    -webkit-transition: all .5s ease;
-    transition: all .5s ease;
-}
-
-.cienciash::before,
-.cienciasn::before,
-.linguaport::before,
-.matematica::before {
+    background: #00135c;
+    -webkit-transition: all 0.5s ease;
+    transition: all 0.5s ease;
+  }
+  
+  .cienciash::before,
+  .cienciasn::before,
+  .linguaport::before,
+  .matematica::before {
     top: 0;
     left: 54px;
     width: calc(100% - 56px * 2 - 16px);
-}
-
-.cienciash::after,
-.cienciasn::after,
-.linguaport::after,
-.matematica::after {
-
+  }
+  
+  .cienciash::after,
+  .cienciasn::after,
+  .linguaport::after,
+  .matematica::after {
     top: 0;
     right: 54px;
     width: 8px;
-}
-
-.button__text::before {
+  }
+  
+  .button__text::before {
     bottom: 0;
     right: 54px;
     width: calc(100% - 56px * 2 - 16px);
-}
-
-.button__text::after {
+  }
+  
+  .button__text::after {
     top: 0;
     right: 54px;
     width: 8px;
-}
-
-.button__line {
+  }
+  
+  .button__line {
     position: absolute;
     top: 0;
     width: 56px;
     height: 100%;
     overflow: hidden;
-}
-
-.button__line::before {
-    content: '';
+  }
+  
+  .button__line::before {
+    content: "";
     position: absolute;
     top: 0;
     width: 150%;
@@ -155,60 +153,59 @@ div.botao {
     -webkit-box-sizing: border-box;
     box-sizing: border-box;
     border-radius: 300px;
-    border: #00135C;
-}
-
-.button__line:nth-child(1),
-.button__line:nth-child(1)::before {
+    border: #00135c;
+  }
+  
+  .button__line:nth-child(1),
+  .button__line:nth-child(1)::before {
     left: 0;
-}
-
-.button__line:nth-child(2),
-.button__line:nth-child(2)::before {
+  }
+  
+  .button__line:nth-child(2),
+  .button__line:nth-child(2)::before {
     right: 0;
-}
-
-.cienciash:hover,
-.cienciasn:hover,
-.linguaport:hover,
-.matematica:hover {
+  }
+  
+  .cienciash:hover,
+  .cienciasn:hover,
+  .linguaport:hover,
+  .matematica:hover {
     letter-spacing: 6px;
-}
-
-.cienciash:hover::before,
-.cienciash:hover .button__text::before,
-.cienciasn:hover::before,
-.cienciasn:hover .button__text::before,
-.linguaport:hover::before,
-.linguaport:hover .button__text::before,
-.matematica:hover::before,
-.matematica:hover .button__text::before {
-
+  }
+  
+  .cienciash:hover::before,
+  .cienciash:hover .button__text::before,
+  .cienciasn:hover::before,
+  .cienciasn:hover .button__text::before,
+  .linguaport:hover::before,
+  .linguaport:hover .button__text::before,
+  .matematica:hover::before,
+  .matematica:hover .button__text::before {
     width: 8px;
-}
-
-.cienciash:hover::after,
-.cienciash:hover .button__text::after,
-.cienciasn:hover::after,
-.cienciasn:hover .button__text::after,
-.linguaport:hover::after,
-.linguaport:hover .button__text::after,
-.matematica:hover::after,
-.matematica:hover .button__text::after {
+  }
+  
+  .cienciash:hover::after,
+  .cienciash:hover .button__text::after,
+  .cienciasn:hover::after,
+  .cienciasn:hover .button__text::after,
+  .linguaport:hover::after,
+  .linguaport:hover .button__text::after,
+  .matematica:hover::after,
+  .matematica:hover .button__text::after {
     width: calc(100% - 56px * 2 - 16px);
-}
-
-.button__drow1,
-.button__drow2 {
+  }
+  
+  .button__drow1,
+  .button__drow2 {
     position: absolute;
     z-index: -1;
     border: 1rem;
     -webkit-transform-origin: 1rem 1rem;
     -ms-transform-origin: 1rem 1rem;
     transform-origin: 1rem 1rem;
-}
-
-.button__drow1 {
+  }
+  
+  .button__drow1 {
     top: -1rem;
     left: 40px;
     width: 2rem;
@@ -216,9 +213,9 @@ div.botao {
     -webkit-transform: rotate(30deg);
     -ms-transform: rotate(30deg);
     transform: rotate(30deg);
-}
-
-.button__drow2 {
+  }
+  
+  .button__drow2 {
     top: 44px;
     left: 77px;
     width: 2rem;
@@ -226,17 +223,17 @@ div.botao {
     -webkit-transform: rotate(-127deg);
     -ms-transform: rotate(-127deg);
     transform: rotate(-127deg);
-}
-
-.button__drow1::before,
-.button__drow1::after,
-.button__drow2::before,
-.button__drow2::after {
-    content: '';
+  }
+  
+  .button__drow1::before,
+  .button__drow1::after,
+  .button__drow2::before,
+  .button__drow2::after {
+    content: "";
     position: absolute;
-}
-
-.button__drow1::before {
+  }
+  
+  .button__drow1::before {
     bottom: 0;
     left: 0;
     width: 0;
@@ -248,9 +245,9 @@ div.botao {
     -webkit-transform: rotate(-60deg);
     -ms-transform: rotate(-60deg);
     transform: rotate(-60deg);
-}
-
-.button__drow1::after {
+  }
+  
+  .button__drow1::after {
     top: -10px;
     left: 45px;
     width: 0;
@@ -262,9 +259,9 @@ div.botao {
     -webkit-transform: rotate(-69deg);
     -ms-transform: rotate(-69deg);
     transform: rotate(-69deg);
-}
-
-.button__drow2::before {
+  }
+  
+  .button__drow2::before {
     bottom: 0;
     left: 0;
     width: 0;
@@ -276,9 +273,9 @@ div.botao {
     -webkit-transform: rotate(-146deg);
     -ms-transform: rotate(-146deg);
     transform: rotate(-146deg);
-}
-
-.button__drow1::after {
+  }
+  
+  .button__drow1::after {
     bottom: 26px;
     left: -40px;
     width: 0;
@@ -290,196 +287,196 @@ div.botao {
     -webkit-transform: rotate(-262deg);
     -ms-transform: rotate(-262deg);
     transform: rotate(-262deg);
-}
-
-.button__drow1,
-.button__drow1::before,
-.button__drow1::after,
-.button__drow2,
-.button__drow2::before,
-.button__drow2::after {
+  }
+  
+  .button__drow1,
+  .button__drow1::before,
+  .button__drow1::after,
+  .button__drow2,
+  .button__drow2::before,
+  .button__drow2::after {
     background: #c111236d;
-}
-
-.cienciash:hover .button__drow1,
-.cienciasn:hover .button__drow1,
-.linguaport:hover .button__drow1,
-.matematica:hover .button__drow1 {
-    -webkit-animation: drow1 ease-in .06s;
-    animation: drow1 ease-in .06s;
+  }
+  
+  .cienciash:hover .button__drow1,
+  .cienciasn:hover .button__drow1,
+  .linguaport:hover .button__drow1,
+  .matematica:hover .button__drow1 {
+    -webkit-animation: drow1 ease-in 0.06s;
+    animation: drow1 ease-in 0.06s;
     -webkit-animation-fill-mode: forwards;
     animation-fill-mode: forwards;
-}
-
-.cienciash:hover .button__drow1::before,
-.cienciasn:hover .button__drow1::before,
-.linguaport:hover .button__drow1::before,
-.matematica:hover .button__drow1::before {
-    -webkit-animation: drow2 linear .08s .06s;
-    animation: drow2 linear .08s .06s;
+  }
+  
+  .cienciash:hover .button__drow1::before,
+  .cienciasn:hover .button__drow1::before,
+  .linguaport:hover .button__drow1::before,
+  .matematica:hover .button__drow1::before {
+    -webkit-animation: drow2 linear 0.08s 0.06s;
+    animation: drow2 linear 0.08s 0.06s;
     -webkit-animation-fill-mode: forwards;
     animation-fill-mode: forwards;
-}
-
-.cienciash:hover .button__drow1::after,
-.cienciasn:hover .button__drow1::after,
-.linguaport:hover .button__drow1::after,
-.matematica:hover .button__drow1::after {
-    -webkit-animation: drow3 linear .03s .14s;
-    animation: drow3 linear .03s .14s;
+  }
+  
+  .cienciash:hover .button__drow1::after,
+  .cienciasn:hover .button__drow1::after,
+  .linguaport:hover .button__drow1::after,
+  .matematica:hover .button__drow1::after {
+    -webkit-animation: drow3 linear 0.03s 0.14s;
+    animation: drow3 linear 0.03s 0.14s;
     -webkit-animation-fill-mode: forwards;
     animation-fill-mode: forwards;
-}
-
-.cienciash:hover .button__drow2,
-.cienciasn:hover .button__drow2,
-.linguaport:hover .button__drow2,
-.matematica:hover .button__drow2 {
-    -webkit-animation: drow4 linear .06s .2s;
-    animation: drow4 linear .06s .2s;
+  }
+  
+  .cienciash:hover .button__drow2,
+  .cienciasn:hover .button__drow2,
+  .linguaport:hover .button__drow2,
+  .matematica:hover .button__drow2 {
+    -webkit-animation: drow4 linear 0.06s 0.2s;
+    animation: drow4 linear 0.06s 0.2s;
     -webkit-animation-fill-mode: forwards;
     animation-fill-mode: forwards;
-}
-
-.cienciash:hover .button__drow2::before,
-.cienciasn:hover .button__drow2::before,
-.linguaport:hover .button__drow2::before,
-.matematica:hover .button__drow2::before {
-    -webkit-animation: drow3 linear .03s .26s;
-    animation: drow3 linear .03s .26s;
+  }
+  
+  .cienciash:hover .button__drow2::before,
+  .cienciasn:hover .button__drow2::before,
+  .linguaport:hover .button__drow2::before,
+  .matematica:hover .button__drow2::before {
+    -webkit-animation: drow3 linear 0.03s 0.26s;
+    animation: drow3 linear 0.03s 0.26s;
     -webkit-animation-fill-mode: forwards;
     animation-fill-mode: forwards;
-}
-
-.cienciash:hover .button__drow2::after,
-.cienciasn:hover .button__drow2::after,
-.linguaport:hover .button__drow2::after,
-.matematica:hover .button__drow1::after {
-    -webkit-animation: drow5 linear .06s .32s;
-    animation: drow5 linear .06s .32s;
+  }
+  
+  .cienciash:hover .button__drow2::after,
+  .cienciasn:hover .button__drow2::after,
+  .linguaport:hover .button__drow2::after,
+  .matematica:hover .button__drow1::after {
+    -webkit-animation: drow5 linear 0.06s 0.32s;
+    animation: drow5 linear 0.06s 0.32s;
     -webkit-animation-fill-mode: forwards;
     animation-fill-mode: forwards;
-}
-
-@-webkit-keyframes drow1 {
+  }
+  
+  @-webkit-keyframes drow1 {
     0% {
-        height: 0;
+      height: 0;
     }
-
+  
     100% {
-        height: 100px;
+      height: 100px;
     }
-}
-
-@keyframes drow1 {
+  }
+  
+  @keyframes drow1 {
     0% {
-        height: 0;
+      height: 0;
     }
-
+  
     100% {
-        height: 100px;
+      height: 100px;
     }
-}
-
-@-webkit-keyframes drow2 {
+  }
+  
+  @-webkit-keyframes drow2 {
     0% {
-        width: 0;
-        opacity: 0;
+      width: 0;
+      opacity: 0;
     }
-
+  
     10% {
-        opacity: 0;
+      opacity: 0;
     }
-
+  
     11% {
-        opacity: 1;
+      opacity: 1;
     }
-
+  
     100% {
-        height: 120px;
+      height: 120px;
     }
-}
-
-@keyframes drow2 {
+  }
+  
+  @keyframes drow2 {
     0% {
-        width: 0;
-        opacity: 0;
+      width: 0;
+      opacity: 0;
     }
-
+  
     10% {
-        opacity: 0;
+      opacity: 0;
     }
-
+  
     11% {
-        opacity: 1;
+      opacity: 1;
     }
-
+  
     100% {
-        height: 120px;
+      height: 120px;
     }
-}
-
-@-webkit-keyframes drow3 {
+  }
+  
+  @-webkit-keyframes drow3 {
     0% {
-        height: 0;
+      height: 0;
     }
-
+  
     100% {
-        height: 80px;
+      height: 80px;
     }
-}
-
-@keyframes drow3 {
+  }
+  
+  @keyframes drow3 {
     0% {
-        height: 0;
+      height: 0;
     }
-
+  
     100% {
-        height: 80px;
+      height: 80px;
     }
-}
-
-@-webkit-keyframes drow4 {
+  }
+  
+  @-webkit-keyframes drow4 {
     0% {
-        height: 0;
+      height: 0;
     }
-
+  
     100% {
-        height: 120px;
+      height: 120px;
     }
-}
-
-@keyframes drow4 {
+  }
+  
+  @keyframes drow4 {
     0% {
-        height: 0;
+      height: 0;
     }
-
+  
     100% {
-        height: 120px;
+      height: 120px;
     }
-}
-
-@-webkit-keyframes drow5 {
+  }
+  
+  @-webkit-keyframes drow5 {
     0% {
-        height: 0;
+      height: 0;
     }
-
+  
     100% {
-        height: 124px;
+      height: 124px;
     }
-}
-
-@keyframes drow5 {
+  }
+  
+  @keyframes drow5 {
     0% {
-        height: 0;
+      height: 0;
     }
-
+  
     100% {
-        height: 124px;
+      height: 124px;
     }
-}
-
-.container {
+  }
+  
+  .container {
     width: 100%;
     height: 300px;
     display: -webkit-box;
@@ -495,29 +492,33 @@ div.botao {
     -webkit-box-align: center;
     -ms-flex-align: center;
     align-items: center;
-}
-
-
-html {
+  }
+  
+  html {
     height: 100%;
     overflow: hidden;
-}
-
-body {
+  }
+  
+  body {
     position: relative;
     height: 100%;
     background-color: #e4e0d7;
     opacity: 1;
     background-size: 18px 18px;
-    background-image: repeating-linear-gradient(0deg, #6084d7, #6084d7 0.9px, #e4e0d7 0.9px, #e4e0d7);
-}
-
-.wrap {
+    background-image: repeating-linear-gradient(
+      0deg,
+      #6084d7,
+      #6084d7 0.9px,
+      #e4e0d7 0.9px,
+      #e4e0d7
+    );
+  }
+  
+  .wrap {
     width: 100%;
     height: 100%;
     position: absolute;
     margin: 0 auto;
     perspective: 360px;
     perspective-origin: 50% 50%;
-}
-
+  }

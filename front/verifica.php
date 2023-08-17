@@ -5,7 +5,7 @@ include('conexao.php');
 
 $codUser = $_SESSION['codUser'];
 
-$sql = "SELECT * FROM cadastro WHERE codAcesso ='$codUser'";
+$sql = "SELECT * FROM cadastro WHERE codUser ='$codUser'";
 $result = $conn->query($sql);
 if ($result->num_rows > 0) {
 

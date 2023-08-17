@@ -2,45 +2,73 @@
 include('conexao.php');
 require('verifica.php');
 
-$query = "SELECT nomeAluno FROM cadastro WHERE codAcesso = '$codUser'";
+//print_r($_SESSION);
+
+$dataAtual = date("Y-m-d");
+$data_hora = date("Y-m-d H:i:s");
+
+
+$sql = "SELECT * FROM questao ORDER BY RAND() LIMIT 1";
+$rs = mysqli_query($conn, $sql);
+$rt = mysqli_fetch_assoc($rs);
+
+$query = "SELECT nomeAluno, codUser FROM cadastro WHERE codUser = '$codUser'";
 $result = mysqli_query($conn, $query);
 $aluno = mysqli_fetch_array($result);
 
-$data_hora = date("Y-m-d H:i:s");
 $score = 0;
 $acertos = 0;
 $erros = 0;
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $pontuacao = $_POST['alternativa'];
+    $idQ = $rt['codQuestao'];
+    echo "id da questao: " . $idQ;
+    echo "<br>";
 
-    $stmt = $conn->prepare("SELECT resposta FROM questao");
+    $stmt = $conn->prepare("SELECT resposta FROM questao WHERE codQuestao = ?");
+    $stmt->bind_param("s", $idQ);
     $stmt->execute();
-    $stmt->bind_result($rt);
+    $stmt->bind_result($altCorreta);
     $stmt->fetch();
     $stmt->close();
 
-    if ($pontuacao == $rt) {
+    if ($pontuacao == $altCorreta){ // ACERTOU
         $score += 10;
         $acertos += 1;
+        $erros += 0;
 
-        $stmt = $conn->prepare("INSERT INTO resultado (pontuacao, data_hora) VALUES ($score, $data_hora)");
-        $stmt->execute();
-        $stmt->close();
+//        $stmt = $conn->prepare("UPDATE resultado SET resultado = ?, data_hora = ? WHERE codUser = ?");
+
+$stmt = "INSERT INTO resultado (codUser, codQuestao, resultado, data_hora) VALUES ($codUser,$idQ,1,'$dataAtual');";
+$result = mysqli_query($conn, $stmt);
+
 
         echo "Você acertou, " . $aluno['nomeAluno'] . "! Sua pontuação foi de " . $score . " pontos.";
+
     } else {
-        $erros += 1;
-        echo "Você errou, " . $aluno['nomeAluno'] . " :( Sua pontuação foi de " . $score . " pontos. A resposta correta era alt". $rt;
+        $score += 0;
+        $acertos += 0;
+        $erros +=1;
+
+        $stmt = "INSERT INTO resultado (codUser, codQuestao, resultado, data_hora) VALUES ($codUser,$idQ,0,'$dataAtual');";
+        $result = mysqli_query($conn, $stmt);
+
+
+        echo "Você errou, " . $aluno['nomeAluno'] . " :( Sua pontuação foi de " . $score . " pontos. A resposta correta era alt". $altCorreta;
     }
 
-    $sql = "UPDATE pontuacao SET acertos='$acertos', erros='$erros'";
-
+    $sql = "UPDATE pontuacao SET acertos='$acertos', erros='$erros' WHERE codUser IN (SELECT codUser FROM cadastro)";
+    mysqli_query($conn, $sql);
 }
 
-$sql = "SELECT * FROM questao ORDER BY RAND() LIMIT 1";
-$rs = mysqli_query($conn, $sql);
-$rt = mysqli_fetch_assoc($rs);
+$sql1 = "SELECT * FROM `resultado` WHERE data_hora='$dataAtual' AND codUser=$codUser";
+$rs1 = $conn->query($sql1);
+if ($rs1->num_rows >= 2) {
+echo "Já jogou duas vezes ";
+header('Refresh: 2 url= ppoP.php');
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -53,57 +81,58 @@ $rt = mysqli_fetch_assoc($rs);
     <script src="cronometro.js"></script>
     <link rel="stylesheet" type="text/css" href="css/questao.css">
 
-    <title>FlipIFC</title>
+    <title> pergunta </title>
 </head>
 <body style="position: relative">
 <div class='parent'>
     <div class="magicpattern">
         <div class="contagem">
             <h1 id="timer"></h1>
-        </div>    
+        </div>
         <div>
-            <h1 id="titulo" style="padding-top: -30px">ciências humanas</h1>
+            <h1 id="titulo" style="padding-top: -30px"> ciências humanas </h1>
         </div>
 
         <div id="enunciado">
         <?php echo $rt['enunciado']; ?>
         </div>
 
-    <div class="container">    
-        <form method="POST" action="">
+
+    <div class="container">
+        <form method="POST" action="questao.php">
             <div id="alta">
-                <input type="radio" name="alternativa" id="altA">
+                <input type="radio" value="A" name="alternativa" id="altA">
                 <label for="altA"><?php echo strip_tags($rt['altA']); ?> </label>
             </div>
             <div id="altb">
-                <input type="radio" name="alternativa" id="altB">
+                <input type="radio" value="B" name="alternativa" id="altB">
                 <label for="altB"><?php echo strip_tags($rt['altB']); ?> </label>
             </div>
             <div id="altc">
-                <input type="radio" name="alternativa" id="altC">
+                <input type="radio" value="C" name="alternativa" id="altC">
                 <label for="altC"><?php echo strip_tags($rt['altC']); ?> </label>
             </div>
             <div id="altd">
-                <input type="radio" name="alternativa" id="altD">
+                <input type="radio" value="D" name="alternativa" id="altD">
                 <label for="altD"><?php echo strip_tags($rt['altD']); ?></label>
             </div>
             <div id="alte">
-                <input type="radio" name="alternativa" id="altE">
+                <input type="radio" value="E" name="alternativa" id="altE">
                 <label for="altE"><?php echo strip_tags($rt['altE']); ?> </label>
             </div>
-            <button type="submit">Enviar</button>
-    </form>
+            <button type="submit"> Enviar </button>
+        </form>
     </div>
    </div>
-   </div> 
+</div>
 
-    <script>
-        $(document).keydown(function(event) {
-            var tecla = event.keyCode;
-            if (tecla == 13) {
-                $('form').submit();
-            }
-        });
-    </script>
+<script>
+    $(document).keydown(function(event) {
+        var tecla = event.keyCode;
+        if (tecla == 13) {
+            $('form').submit();
+        }
+    });
+</script>
 </body>
 </html>
