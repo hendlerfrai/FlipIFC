@@ -35,10 +35,6 @@ function enviarEmail($assunto, $mensagem) {
 function obterNomeDaAreaPeloCodigo($codigo) {
     include('conexao.php');
 
-    if ($conn->connect_error) {
-        die("Falha na conexão: " . $conn->connect_error);
-    }
-
     $sql = "SELECT nome_area FROM area WHERE codArea = $codigo";
     $result = $conn->query($sql);
 

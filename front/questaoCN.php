@@ -24,8 +24,6 @@ $erros = 0;
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $pontuacao = $_POST['alternativa'];
     $idQ = $rt['codQuestao'];
-    echo "id da questao: " . $idQ;
-    echo "<br>";
 
     $stmt = $conn->prepare("SELECT resposta FROM questao WHERE codQuestao = ?");
     $stmt->bind_param("s", $idQ);
@@ -34,34 +32,39 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $stmt->fetch();
     $stmt->close();
 
-    if ($pontuacao == $altCorreta){ // ACERTOU
+    if ($pontuacao == $altCorreta) {
         $score += 10;
         $acertos += 1;
         $erros += 0;
 
-//        $stmt = $conn->prepare("UPDATE resultado SET resultado = ?, data_hora = ? WHERE codUser = ?");
-
-$stmt = "INSERT INTO resultado (codUser, codQuestao, resultado, data_hora, codArea) VALUES ($codUser,$idQ,1,'$dataAtual','$area');";
-$result = mysqli_query($conn, $stmt);
-
-
-        echo "Você acertou, " . $aluno['nomeAluno'] . "! Sua pontuação foi de " . $score . " pontos.";
-
+        $stmt = "INSERT INTO resultado (codUser, codQuestao, resultado, data_hora, codArea) VALUES ($codUser, $idQ, 1, '$dataAtual', '$area');";
+        $result = mysqli_query($conn, $stmt);
+        if ($acertos == 1) {
+            $_SESSION['acertos'] = 1;
+        } elseif ($acertos == 2) {
+            $_SESSION['acertos'] = 2;
+        }
     } else {
         $score += 0;
         $acertos += 0;
-        $erros +=1;
+        $erros += 1;
+       
+                $stmt = "INSERT INTO resultado (codUser, codQuestao, resultado, data_hora, codArea) VALUES ($codUser, $idQ, 0, '$dataAtual', '$area');";
+                $result = mysqli_query($conn, $stmt);
 
-        $stmt = "INSERT INTO resultado (codUser, codQuestao, resultado, data_hora, codArea) VALUES ($codUser,$idQ,0,'$dataAtual','$area');";
-        $result = mysqli_query($conn, $stmt);
-
-
-        echo "Você errou, " . $aluno['nomeAluno'] . " :( Sua pontuação foi de " . $score . " pontos. A resposta correta era alt". $altCorreta;
+        if ($erros == 1) {
+            $_SESSION['erros'] = 1;
+            $_SESSION['altCorreta'] = $rt['alt' . $altCorreta]; // Armazena a alternativa completa
+        } elseif ($erros == 2) {
+            $_SESSION['erros'] = 2;
+            $_SESSION['altCorreta'] = $rt['alt' . $altCorreta]; // Armazena a alternativa completa
+        }
     }
 
-    $sql = "UPDATE pontuacao SET acertos='$acertos', erros='$erros' WHERE codUser IN (SELECT codUser FROM cadastro)";
-    mysqli_query($conn, $sql);
+    header('Location: resultado.php'); 
+    exit(); 
 }
+
 
 $sql1 = "SELECT * FROM `resultado` WHERE data_hora='$dataAtual' AND codUser=$codUser";
 $rs1 = $conn->query($sql1);
