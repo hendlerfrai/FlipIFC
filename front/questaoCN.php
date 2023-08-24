@@ -2,12 +2,9 @@
 include('conexao.php');
 require('verifica.php');
 
-//print_r($_SESSION);
-
 $dataAtual = date("Y-m-d");
 $data_hora = date("Y-m-d H:i:s");
 $area = 2;
-
 
 $sql = "SELECT * FROM questao WHERE codArea = 2 ORDER BY RAND() LIMIT 1";
 $rs = mysqli_query($conn, $sql);
@@ -32,46 +29,44 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $stmt->fetch();
     $stmt->close();
 
-    if ($pontuacao == $altCorreta) {
+    if ($pontuacao == $altCorreta) { // ACERTOU
         $score += 10;
         $acertos += 1;
         $erros += 0;
 
-        $stmt = "INSERT INTO resultado (codUser, codQuestao, resultado, data_hora, codArea) VALUES ($codUser, $idQ, 1, '$dataAtual', '$area');";
-        $result = mysqli_query($conn, $stmt);
         if ($acertos == 1) {
             $_SESSION['acertos'] = 1;
         } elseif ($acertos == 2) {
             $_SESSION['acertos'] = 2;
         }
-    } else {
+
+    $stmt = "INSERT INTO resultado (codUser, codQuestao, resultado, data_hora, codArea) VALUES ($codUser, $idQ, 1, '$dataAtual', '$area');";
+    $result = mysqli_query($conn, $stmt);
+
+    } else { // ERROU
         $score += 0;
         $acertos += 0;
         $erros += 1;
-       
-                $stmt = "INSERT INTO resultado (codUser, codQuestao, resultado, data_hora, codArea) VALUES ($codUser, $idQ, 0, '$dataAtual', '$area');";
-                $result = mysqli_query($conn, $stmt);
 
         if ($erros == 1) {
             $_SESSION['erros'] = 1;
-            $_SESSION['altCorreta'] = $rt['alt' . $altCorreta]; // Armazena a alternativa completa
+            $_SESSION['altCorretaCompleta'] = $rt['alt' . $altCorreta]; // Armazena a alternativa completa
+
+            $stmt = "INSERT INTO resultado (codUser, codQuestao, resultado, data_hora, codArea) VALUES ($codUser, $idQ, 0, '$dataAtual', '$area');";
+            $result = mysqli_query($conn, $stmt);
         } elseif ($erros == 2) {
             $_SESSION['erros'] = 2;
-            $_SESSION['altCorreta'] = $rt['alt' . $altCorreta]; // Armazena a alternativa completa
+            $_SESSION['altCorretaCompleta'] = $rt['alt' . $altCorreta]; // Armazena a alternativa completa
+
+            $stmt = "INSERT INTO resultado (codUser, codQuestao, resultado, data_hora, codArea) VALUES ($codUser, $idQ, 0, '$dataAtual', '$area');";
+            $result = mysqli_query($conn, $stmt);
         }
     }
 
-    header('Location: resultado.php'); 
+    header('Location: resultadoCN.php'); // Redirecionamento para a página de resultado
     exit(); 
 }
 
-
-$sql1 = "SELECT * FROM `resultado` WHERE data_hora='$dataAtual' AND codUser=$codUser";
-$rs1 = $conn->query($sql1);
-if ($rs1->num_rows >= 2) {
-echo "Já jogou duas vezes ";
-header('Refresh: 2 url= index.php');
-}
 
 ?>
 

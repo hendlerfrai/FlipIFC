@@ -10,6 +10,7 @@ $stmt = "SELECT *, SUM(resultado.resultado) AS acertos FROM `resultado`
             WHERE /*
             DATE(data_hora)>='2023-07-23' AND
             DATE(data_hora)<='2023-07-29' AND */
+        
 =======
             WHERE 
             DATE(data_hora)>='2023-07-23' AND
