@@ -17,17 +17,17 @@ $botao = "";
 if ($acertos == $rs1->num_rows <= 1) {
     $mensagem = "Parabéns! Você acertou! Pronto para a próxima pergunta?";
     $botao = '<a href="questaoCN.php" class="btn-next">Próxima Pergunta</a>';
-    echo 'teste';
+    echo 'teste1';
 } elseif ($acertos >= 2) {
     $mensagem = "Parabéns! Você acertou!";
     $mensagem2 = "Suas tentativas diárias terminaram. Deseja acessar o ranking? Até amanhã!";
     $botao = '<a href="ranking.php" class="btn-next">Acessar Ranking</a>';
-    echo 'teste';
+    echo 'teste2';
 } elseif ($erros == $rs1->num_rows <= 1) {
     $altCorretaCompleta = isset($_SESSION['altCorretaCompleta']) ? $_SESSION['altCorretaCompleta'] : "alternativa desconhecida";
     $mensagem = "Você errou :( A resposta correta era: " . $altCorretaCompleta;
     $botao = '<a href="questaoCN.php" class="btn-next">Próxima Pergunta</a>';
-    echo 'teste';
+    echo 'teste3';
 } elseif ($erros >= 2) {
     $altCorretaCompleta = isset($_SESSION['altCorretaCompleta']) ? $_SESSION['altCorretaCompleta'] : "alternativa desconhecida";
     $mensagem = "Você errou :( A resposta correta era: " . $altCorretaCompleta . ". Suas tentativas diárias terminaram, descanse e tente novamente amanhã ;) Deseja acessar o ranking?";
