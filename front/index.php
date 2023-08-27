@@ -13,12 +13,13 @@
 
 </head>
 <script>
-        $(document).keydown(function () {
-            var tecla = event.keyCode;
-            if (tecla == 13) {
-                window.location.href = 'telaloginUsuario.php'
-            }
-        })    
+       document.addEventListener("keypress", function (e) {
+       if (e.key === "Enter") {
+        const btn = document.querySelector("#send");
+        btn.click();
+        window.location.href="telaloginUsuario.php";
+       }
+    }); 
     </script>
 <body>
         <div class='wrap'>
@@ -41,8 +42,8 @@
         </h1>
         <h1 id="ifc"> IFC </h1>
     </div>
-    <button class="btn">
-        <a href="telaloginUsuario.php" target="_self" style="text-decoration: none; color: #3604b5; padding: 5px;"> Pressione qualquer <br> botão para iniciar </a>
+    <button class="btn" id="send">
+        <a href="telaloginUsuario.php" target="_self" style="text-decoration: none; color: #3604b5; padding: 5px;"> Pressione enter <br> para iniciar </a>
     </button>
 
 </body>

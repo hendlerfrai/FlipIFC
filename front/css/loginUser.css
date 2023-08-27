@@ -77,5 +77,6 @@
 }
 
 body {
-  background: radial-gradient(circle at 50% 50%,#e4e0d7, #cf3e6f, #5a54c5)
+  background: radial-gradient(circle at 50% 50%,#e4e0d7, #cf3e6f, #5a54c5);
+  background-size: cover;
 }

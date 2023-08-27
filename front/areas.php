@@ -27,12 +27,16 @@
 		  if ($( this ).prop('class') == "cienciasn") {
 	 	       window.location.href = "questaoCN.php";
 		  }
+          if ($( this ).prop('class') == "cienciash") {
+	 	       window.location.href = "questaoCH.php";
+		  }
+          if ($( this ).prop('class') == "linguaport") {
+	 	       window.location.href = "questaoLP.php";
+		  }
 		});
 		
         }
-        if (tecla == 40) {
-            $('.matematica').focus();
-        }
+        
         if (tecla == 37) {
             $('.cienciasn').focus();
         }
