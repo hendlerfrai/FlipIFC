@@ -10,6 +10,14 @@ $stmt = "SELECT *, SUM(resultado.resultado) AS acertos FROM `resultado`
             DATE(data_hora)>='2023-07-23' AND
             DATE(data_hora)<='2023-07-29' AND */
         
+<<<<<<< HEAD
+=======
+=======
+            WHERE 
+            DATE(data_hora)>='2023-07-23' AND
+            DATE(data_hora)<='2023-07-29' AND 
+>>>>>>> 0b1f174ce1ca5f4d1d4bca8d5b322d08d00b800f
+>>>>>>> db01d6b224da5ab859cd2eafceab59f6386cd93a
             resultado=1 
             GROUP BY resultado.codUser 
             DESC";
