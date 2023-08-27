@@ -13,43 +13,31 @@
 </head>
 
 <script language="javascript">
-    $(document).ready(function() {
-        $('.cienciasn').focus();
-    });
-    $(document).keydown(function () {
-        var tecla = event.keyCode;
-        console.log(tecla);
-        if (tecla == 13) {
-		$( "button" ).on( "click", function() {
-		  if ($( this ).prop('class') == "matematica") {
-	 	       window.location.href = "questaoM.php";
-		  }
-		  if ($( this ).prop('class') == "cienciasn") {
-	 	       window.location.href = "questaoCN.php";
-		  }
-		});
-		
-        }
-        if (tecla == 40) {
-            $('.matematica').focus();
-        }
-        if (tecla == 37) {
-            $('.cienciasn').focus();
-        }
-    });
+  /* let botao1 = document.getElementByClassName ("cienciash"); 
+
+   window.addEventListener ('keydown', (e) => {
+    if (e.key=="ArrowUp") {
+        botao1.style.transform= 'translateX(200px)';
+   }
+})*/
+const cienciashElement = document.querySelector('cienciash');
+
+cienciashElement.addEventListener('focus', () => {
+    cienciash.style = 'padding-top:200px';
+});
+
+
 </script>
  
 
 <body>
-
     <h1>Áreas do Conhecimento</h1>
     <div class="container">
-
 
         <button class="cienciash">
             <div class="button__line"></div>
             <div class="button__line"></div>
-            <span class="button__text"> <a id="a1" href="questaoCH.php" target="_self"
+            <span class="button__text"> <a href="questaoCH.php" target="_self"
                     style="text-decoration: none; color: #00135C;;">Ciências Humanas</a> </span>
             <div class="button__drow1"></div>
             <div class="button__drow2"></div>
@@ -58,7 +46,7 @@
         <button class="cienciasn">
             <div class="button__line"></div>
             <div class="button__line"></div>
-            <span class="button__text"><a id="a2" href="questaoCN.php" target="_self"
+            <span class="button__text"><a href="questaoCN.php" target="_self"
                     style="text-decoration: none; color: #00135C;;">Ciências da Natureza </a> </span>
             <div class="button__drow1"></div>
             <div class="button__drow2"></div>
@@ -67,7 +55,7 @@
         <button class="linguaport">
             <div class="button__line"></div>
             <div class="button__line"></div>
-            <span class="button__text"><a id="a3" href="questaoLP.php" target="_self"
+            <span class="button__text"><a href="questaoLP.php" target="_self"
                     style="text-decoration: none; color: #00135C;;">Língua Portuguesa</a> </span>
             <div class="button__drow1"></div>
             <div class="button__drow2"></div>
@@ -76,7 +64,7 @@
         <button class="matematica">
             <div class="button__line"></div>
             <div class="button__line"></div>
-            <span class="button__text"><a id="a4" href="questaoM.php" target="_self"
+            <span class="button__text"><a href="questaoM.php" target="_self"
                     style="text-decoration: none; color: #00135C;;">Matemática</a> </span>
             <div class="button__drow1"></div>
             <div class="button__drow2"></div>

@@ -80,10 +80,27 @@ header('Refresh: 2 url= index.php');
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
     <script src="cronometro.js"></script>
-    <link rel="stylesheet" type="text/css" href="css/questao.css">
+    <link rel="stylesheet" type="text/css" href="css/questoes.css">
 
     <title> pergunta </title>
 </head>
+
+<script language="javascript">
+    $(document).ready(function() {
+        $('alta').focus();
+    });
+    $(document).keydown(function () {
+        var tecla = event.keyCode;
+        console.log(tecla);
+        if (tecla == 13) {
+            alert("você pressionou enter");
+        }
+        if (tecla == 40) {
+            $('altb').focus();               
+        }
+    });
+</script>
+
 <body style="position: relative">
 <div class='parent'>
     <div class="magicpattern">

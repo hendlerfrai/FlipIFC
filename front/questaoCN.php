@@ -2,12 +2,9 @@
 include('conexao.php');
 require('verifica.php');
 
-//print_r($_SESSION);
-
 $dataAtual = date("Y-m-d");
 $data_hora = date("Y-m-d H:i:s");
 $area = 2;
-
 
 $sql = "SELECT * FROM questao WHERE codArea = 2 ORDER BY RAND() LIMIT 1";
 $rs = mysqli_query($conn, $sql);
@@ -24,8 +21,6 @@ $erros = 0;
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $pontuacao = $_POST['alternativa'];
     $idQ = $rt['codQuestao'];
-    echo "id da questao: " . $idQ;
-    echo "<br>";
 
     $stmt = $conn->prepare("SELECT resposta FROM questao WHERE codQuestao = ?");
     $stmt->bind_param("s", $idQ);
@@ -34,41 +29,44 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $stmt->fetch();
     $stmt->close();
 
-    if ($pontuacao == $altCorreta){ // ACERTOU
+    if ($pontuacao == $altCorreta) { // ACERTOU
         $score += 10;
         $acertos += 1;
         $erros += 0;
 
-//        $stmt = $conn->prepare("UPDATE resultado SET resultado = ?, data_hora = ? WHERE codUser = ?");
+        if ($acertos == 1) {
+            $_SESSION['acertos'] = 1;
+        } elseif ($acertos == 2) {
+            $_SESSION['acertos'] = 2;
+        }
 
-$stmt = "INSERT INTO resultado (codUser, codQuestao, resultado, data_hora, codArea) VALUES ($codUser,$idQ,1,'$dataAtual','$area');";
-$result = mysqli_query($conn, $stmt);
+    $stmt = "INSERT INTO resultado (codUser, codQuestao, resultado, data_hora, codArea) VALUES ($codUser, $idQ, 1, '$dataAtual', '$area');";
+    $result = mysqli_query($conn, $stmt);
 
-
-        echo "Você acertou, " . $aluno['nomeAluno'] . "! Sua pontuação foi de " . $score . " pontos.";
-
-    } else {
+    } else { // ERROU
         $score += 0;
         $acertos += 0;
-        $erros +=1;
+        $erros += 1;
 
-        $stmt = "INSERT INTO resultado (codUser, codQuestao, resultado, data_hora, codArea) VALUES ($codUser,$idQ,0,'$dataAtual','$area');";
-        $result = mysqli_query($conn, $stmt);
+        if ($erros == 1) {
+            $_SESSION['erros'] = 1;
+            $_SESSION['altCorretaCompleta'] = $rt['alt' . $altCorreta]; // Armazena a alternativa completa
 
+            $stmt = "INSERT INTO resultado (codUser, codQuestao, resultado, data_hora, codArea) VALUES ($codUser, $idQ, 0, '$dataAtual', '$area');";
+            $result = mysqli_query($conn, $stmt);
+        } elseif ($erros == 2) {
+            $_SESSION['erros'] = 2;
+            $_SESSION['altCorretaCompleta'] = $rt['alt' . $altCorreta]; // Armazena a alternativa completa
 
-        echo "Você errou, " . $aluno['nomeAluno'] . " :( Sua pontuação foi de " . $score . " pontos. A resposta correta era alt". $altCorreta;
+            $stmt = "INSERT INTO resultado (codUser, codQuestao, resultado, data_hora, codArea) VALUES ($codUser, $idQ, 0, '$dataAtual', '$area');";
+            $result = mysqli_query($conn, $stmt);
+        }
     }
 
-    $sql = "UPDATE pontuacao SET acertos='$acertos', erros='$erros' WHERE codUser IN (SELECT codUser FROM cadastro)";
-    mysqli_query($conn, $sql);
+    header('Location: resultadoCN.php'); // Redirecionamento para a página de resultado
+    exit(); 
 }
 
-$sql1 = "SELECT * FROM `resultado` WHERE data_hora='$dataAtual' AND codUser=$codUser";
-$rs1 = $conn->query($sql1);
-if ($rs1->num_rows >= 2) {
-echo "Já jogou duas vezes ";
-header('Refresh: 2 url= index.php');
-}
 
 ?>
 
@@ -80,7 +78,7 @@ header('Refresh: 2 url= index.php');
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
     <script src="cronometro.js"></script>
-    <link rel="stylesheet" type="text/css" href="css/questao.css">
+    <link rel="stylesheet" type="text/css" href="css/questoes.css">
 
     <title> pergunta </title>
 </head>

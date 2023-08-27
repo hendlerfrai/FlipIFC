@@ -1,0 +1,89 @@
+
+@font-face {
+    font-family: '0';
+    src: url('04B_30__.TTF') format('truetype');
+}
+
+@font-face {
+    font-family: 'dogica';
+    src: url('dogicapixelbold.ttf') format('truetype');
+}
+@font-face {
+    font-family: 'silk';
+    src: url('slkscr.ttf') format('truetype');
+  }
+  @font-face {
+    font-family: 'dream';
+    src: url('Daydream.ttf') format('truetype');
+}
+  
+  @font-face {
+    font-family: 'letters';
+    src: url('Letters\ for\ Learners.ttf') format('truetype');
+}
+
+html {
+    height: 100%;
+    overflow: hidden;
+}
+
+body {
+    position: absolute;
+    background-color: #e4e0d7;
+    opacity: 0.8;
+    background-image:  repeating-radial-gradient( circle at 0 0, transparent 0, #e4e0d7 10px ), repeating-linear-gradient( #a0b6e855, #a0b6e8 );
+    }
+
+h1 {
+    text-align: center;
+    margin-left: 380px;
+    padding-top: 265px;
+
+    color: #00135C;
+
+    font-family: 'dogica';
+    font-style: normal;
+    font-weight: normal;
+    font-size: 18px;
+    line-height: 30px;
+    width: 700px;
+
+    text-shadow: 0px 3px 4px rgba(0, 0, 0, 0.447);
+}
+
+.botao1,
+.botao2 {
+    margin: 5px;
+    padding: 15px;
+    font-size: 16px;
+    background-color: #d7acac;
+    border-radius: 30px;
+    font-family: silk;
+    border-style: none;
+    box-shadow: 3px 3px 3px rgb(58, 58, 58);
+}
+
+.botao1 {
+    margin-left: 630px;
+}
+
+.botao2 {
+    width: 90px;
+}
+
+button:hover {
+    background-color: #d69999;
+    width: 100px;
+    height: 50px;
+  }
+
+  .botaovoltar,
+  .botaosim {
+    font-family:'silk';
+  }
+
+  a {
+   text-decoration: none; 
+   color: #aa422f;
+
+  }
