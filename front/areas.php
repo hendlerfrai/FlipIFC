@@ -11,46 +11,13 @@
     <title> FlipIFC </title>
 
 </head>
-
-<script language="javascript">
-    $(document).ready(function() {
-        $('.cienciasn').focus();
-    });
-    $(document).keydown(function () {
-        var tecla = event.keyCode;
-        console.log(tecla);
-        if (tecla == 13) {
-		$( "button" ).on( "click", function() {
-		  if ($( this ).prop('class') == "matematica") {
-	 	       window.location.href = "questaoM.php";
-		  }
-		  if ($( this ).prop('class') == "cienciasn") {
-	 	       window.location.href = "questaoCN.php";
-		  }
-          if ($( this ).prop('class') == "cienciash") {
-	 	       window.location.href = "questaoCH.php";
-		  }
-          if ($( this ).prop('class') == "linguaport") {
-	 	       window.location.href = "questaoLP.php";
-		  }
-		});
-		
-        }
-        
-        if (tecla == 37) {
-            $('.cienciasn').focus();
-        }
-    });
-</script>
- 
-
 <body>
 
     <h1>Áreas do Conhecimento</h1>
     <div class="container">
 
 
-        <button class="cienciash">
+         <button class="cienciash area-button" tabindex="0">
             <div class="button__line"></div>
             <div class="button__line"></div>
             <span class="button__text"> <a id="a1" href="questaoCH.php" target="_self"
@@ -59,7 +26,7 @@
             <div class="button__drow2"></div>
         </button>
 
-        <button class="cienciasn">
+        <button class="cienciasn area-button" tabindex="0">
             <div class="button__line"></div>
             <div class="button__line"></div>
             <span class="button__text"><a id="a2" href="questaoCN.php" target="_self"
@@ -68,7 +35,7 @@
             <div class="button__drow2"></div>
         </button>
 
-        <button class="linguaport">
+        <button class="linguaport area-button" tabindex="0">
             <div class="button__line"></div>
             <div class="button__line"></div>
             <span class="button__text"><a id="a3" href="questaoLP.php" target="_self"
@@ -77,7 +44,7 @@
             <div class="button__drow2"></div>
         </button>
 
-        <button class="matematica">
+        <button class="matematica area-button" tabindex="0">
             <div class="button__line"></div>
             <div class="button__line"></div>
             <span class="button__text"><a id="a4" href="questaoM.php" target="_self"
@@ -87,6 +54,33 @@
         </button>
 
     </div>
+    <script language="javascript">
+        $(document).ready(function() {
+    var buttons = $('.area-button');
+    var currentButtonIndex = 0;
+    
+    buttons.eq(currentButtonIndex).focus();
+
+    buttons.keydown(function(event) {
+        var tecla = event.keyCode;
+
+        if (tecla == 13) {
+            var targetUrl = $(this).find('a').attr('href');
+            window.location.href = targetUrl;
+        } else if (tecla == 40) { // Seta para baixo
+            currentButtonIndex = (currentButtonIndex + 2) % buttons.length;
+        } else if (tecla == 38) { // Seta para cima
+            currentButtonIndex = (currentButtonIndex - 2 + buttons.length) % buttons.length;
+        } else if (tecla == 37) { // Seta para esquerda
+            currentButtonIndex = (currentButtonIndex - 1 + buttons.length) % buttons.length;
+        } else if (tecla == 39) { // Seta para direita
+            currentButtonIndex = (currentButtonIndex + 1) % buttons.length;
+        }
+
+        buttons.eq(currentButtonIndex).focus();
+    });
+});
+    </script>
 </body>
 
 </html>

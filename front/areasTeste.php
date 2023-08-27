@@ -68,11 +68,11 @@
             var targetUrl = $(this).find('a').attr('href');
             window.location.href = targetUrl;
         } else if (tecla == 40) { // Seta para baixo
-            currentButtonIndex = (currentButtonIndex + 2) % buttons.length;
+            currentButtonIndex = (currentButtonIndex + 1) % buttons.length;
         } else if (tecla == 38) { // Seta para cima
-            currentButtonIndex = (currentButtonIndex - 2 + buttons.length) % buttons.length;
+            currentButtonIndex = (currentButtonIndex - 1 + buttons.length); 
         } else if (tecla == 37) { // Seta para esquerda
-            currentButtonIndex = (currentButtonIndex - 1 + buttons.length) % buttons.length;
+            currentButtonIndex = (currentButtonIndex - 1 + buttons.length);
         } else if (tecla == 39) { // Seta para direita
             currentButtonIndex = (currentButtonIndex + 1) % buttons.length;
         }
