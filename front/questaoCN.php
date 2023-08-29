@@ -77,19 +77,19 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
-    <script src="cronometro.js"></script>
+   <!-- <script src="cronometro.js"></script> -->
     <link rel="stylesheet" type="text/css" href="css/questoes.css">
 
     <title> pergunta </title>
 </head>
-<body style="position: relative">
+<body>
 <div class='parent'>
     <div class="magicpattern">
         <div class="contagem">
             <h1 id="timer"></h1>
         </div>
         <div>
-            <h1 id="titulo" style="padding-top: -30px"> ciências natureza </h1>
+            <h1 id="titulo" style="padding-top: -30px"> ciências da natureza </h1>
         </div>
 
         <div id="enunciado">
@@ -126,10 +126,36 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 </div>
 
 <script>
+    $(document).ready(function() {
+    $('altA').focus();
+});
+
+
+    document.addEventListener("DOMContentLoaded", function() {
+            var altA = document.querySelector("input[type='radio']");
+
+            // Verificar se o elemento foi encontrado
+            if (altA) {
+                altA.focus(); // Dar foco ao elemento
+                altA.select(); // Selecionar o conteúdo do elemento
+            }
+        });
+
     $(document).keydown(function(event) {
         var tecla = event.keyCode;
         if (tecla == 13) {
             $('form').submit();
+        }
+    });
+   
+    $(document).keydown(function () {
+        var tecla = event.keyCode;
+        console.log(tecla);
+        if (tecla == 13) {
+            alert("você pressionou enter");
+        }
+        if (tecla == 40) {
+            $('altb').focus();               
         }
     });
 </script>

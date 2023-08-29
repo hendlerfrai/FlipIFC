@@ -39,7 +39,6 @@ if ($acertos == $rs1->num_rows <= 1) {
 
 <!DOCTYPE html>
 <html lang="pt-br">
-<<<<<<< HEAD
 
 <head>
     <meta charset="UTF-8">
@@ -69,20 +68,3 @@ if ($acertos == $rs1->num_rows <= 1) {
 </body>
 
 </html>
-=======
-<head>
-
-    <title>Resultado</title>
-</head>
-<body>
-    <div class="mensagem-container">
-        <h2><?php echo $mensagem; ?></h2>
-        <h3><?php echo $mensagem2?></h3>
-        <button><?php echo $botao; ?></button>
-        <button>
-          <a href="index.php" target="_self"> Voltar a tela e início </a> 
-        </button>
-    </div>
-</body>
-</html>
->>>>>>> db01d6b224da5ab859cd2eafceab59f6386cd93a
