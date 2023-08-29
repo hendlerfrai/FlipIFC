@@ -27,7 +27,7 @@
 
 .parent {
   width: 100%;
-  height: 110vh;
+  height: 140vh;
   background: transparent;
   overflow: hidden
 }
@@ -57,11 +57,12 @@ h1#titulo {
 
 div#enunciado {
   text-align: justify;
-  padding-top: 65px;
+  padding-top: 15px;
   font-family: 'letters';
   font-size: 20px;
   width: 900px;
   padding-left: 300px;
+  margin-bottom: -30px;
 }
 
 #alta,
@@ -94,12 +95,19 @@ input[type="radio"] {
   height: 0;
 }
 
-input[type="radio"]:checked + label {
+input[type="radio"]:checked + label,
+input[type="radio"]:checked + label + .quest {
+    background-color: #cc8989;
+    color: black;
+    width: 250px;
+}
+
+/* Aplica o estilo tanto ao <label> quanto à <div> quando o <input> estiver selecionado */
+input[type="radio"]:checked + div {
   background-color: #cc8989;
   color: black;
   width: 250px;
 }
-
 
 .container {
   text-align: center;
@@ -169,4 +177,10 @@ body {
   margin-left: -1px;
   margin-right: -1px;
   margin-bottom: -22px;
+}
+
+/* Estilo para a classe .focused */
+.quest.focused {
+  background-color: #cc8989;
+  color: black;
 }
