@@ -35,24 +35,40 @@
     </div>
 
     <script>
+        //selecionar o primeiro automatico --------------------------------
          document.addEventListener("DOMContentLoaded", function() {
-            // Selecionar o primeiro input type "text"
             var valor1 = document.querySelector("input[type='text']");
 
-            // Verificar se o elemento foi encontrado
             if (valor1) {
                 valor1.focus(); // Dar foco ao elemento
                 valor1.select(); // Selecionar o conteúdo do elemento
             }
         });
-
+            // apagar tudo no delete -----------------------------------------------
+        function deleteInputsAndFocusFirst() {
+            const inputs = document.querySelectorAll("input[type='text']");
+            inputs.forEach((input, index) => {
+                input.value = '';
+                if (index === 0) {
+                    input.focus();
+                }
+            });
+        }
+        document.addEventListener("keydown", function (event) {
+            var tecla = event.keyCode || event.which;
+            if (tecla === 8) { 
+                deleteInputsAndFocusFirst();
+            }
+        });
+       
+        // enter ----------------------------------------------------------------
     $(document).keydown(function () {
         var tecla = event.keyCode;
         if (tecla == 13) {
             window.location.href = 'areas.php'
         }
     })   ; 
-
+        // passar automatico
     function moveToNext(input, nextInputName) {
             const maxLength = parseInt(input.getAttribute("maxlength"));
             const currentLength = input.value.length;
@@ -63,6 +79,7 @@
                 }
             }
         }
+
        
 </script>
 </body>
