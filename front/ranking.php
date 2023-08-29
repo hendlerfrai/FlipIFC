@@ -6,18 +6,9 @@ $resultado = mysqli_query($conn, $sql);
 
 $stmt = "SELECT *, SUM(resultado.resultado) AS acertos FROM `resultado` 
             INNER JOIN cadastro ON cadastro.codUser = `resultado`.codUser 
-            WHERE /*
-            DATE(data_hora)>='2023-07-23' AND
-            DATE(data_hora)<='2023-07-29' AND */
-        
-<<<<<<< HEAD
-=======
-=======
             WHERE 
-            DATE(data_hora)>='2023-07-23' AND
-            DATE(data_hora)<='2023-07-29' AND 
->>>>>>> 0b1f174ce1ca5f4d1d4bca8d5b322d08d00b800f
->>>>>>> db01d6b224da5ab859cd2eafceab59f6386cd93a
+            DATE(data_hora)>='2023-08-22' AND
+            DATE(data_hora)<='2023-08-29' AND 
             resultado=1 
             GROUP BY resultado.codUser 
             DESC";
@@ -57,11 +48,11 @@ if (mysqli_num_rows($resultado) > 0) {
         
         $pos++;
         // Consulta para obter o nome do aluno com base no codUser
-/*        $query = "SELECT nomeAluno FROM cadastro WHERE codUser = '$codUser'";
+       $query = "SELECT nomeAluno FROM cadastro";
         $result = mysqli_query($conn, $query);
-        $aluno = mysqli_fetch_assoc($result);*/
+        $aluno = mysqli_fetch_assoc($result);
         echo '<tr>';
-        echo "<td>$pos</td>";
+        echo "<td class='pos'>$pos</td>";
         echo "<td>". $row['nomeAluno']."</td>";
         echo "<td>". $row['acertos']."</td>";
     echo '</tr>';

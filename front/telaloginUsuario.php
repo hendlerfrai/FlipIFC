@@ -35,12 +35,23 @@
     </div>
 
     <script>
+         document.addEventListener("DOMContentLoaded", function() {
+            // Selecionar o primeiro input type "text"
+            var valor1 = document.querySelector("input[type='text']");
+
+            // Verificar se o elemento foi encontrado
+            if (valor1) {
+                valor1.focus(); // Dar foco ao elemento
+                valor1.select(); // Selecionar o conteúdo do elemento
+            }
+        });
+
     $(document).keydown(function () {
         var tecla = event.keyCode;
         if (tecla == 13) {
             window.location.href = 'areas.php'
         }
-    })    
+    })   ; 
 
     function moveToNext(input, nextInputName) {
             const maxLength = parseInt(input.getAttribute("maxlength"));
@@ -52,6 +63,7 @@
                 }
             }
         }
+       
 </script>
 </body>
 

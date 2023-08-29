@@ -59,7 +59,11 @@ $conn->close();
 ?>
 
 <!DOCTYPE html>
+<<<<<<< HEAD
 <html lang="en">
+=======
+<html lang="pt-br">
+>>>>>>> 1f725247d5dd262117016ea4ac9e73b61fa9a273
 
 <head>
     <meta charset="UTF-8">
@@ -104,6 +108,7 @@ $conn->close();
 
 <body>
 
+<<<<<<< HEAD
     <header class="header navbar-fixed">
         <nav class="navbar navbar-expand-lg navbar-blue p-1 m-2">
             <div class="container">
@@ -323,3 +328,6 @@ $conn->close();
         </div>
     </div>
 </div>
+=======
+</html>
+>>>>>>> 1f725247d5dd262117016ea4ac9e73b61fa9a273
