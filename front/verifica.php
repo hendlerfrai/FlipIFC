@@ -13,7 +13,7 @@ if ($result->num_rows > 0) {
     unset($_SESSION['codUser']);
     echo '<script type="text/javascript">';
     echo 'alert("Usuário não encontrado. Tente novamente");';
-    echo 'window.location.href = "login.php";';
+    echo 'window.location.href = "telaloginUsuario.php";';
     echo '</script>';
 }
 

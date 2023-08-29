@@ -5,7 +5,7 @@ $username = "root"; //nome d o usuario
 //$password = "password"; //senha
 $dbname = "meubanco"; */
 
-$conn = mysqli_connect('localhost', 'root', '', 'meubanco') ; 
+$conn = mysqli_connect('localhost', 'root', '', 'flipifc') ; 
 
 /* banco raissa 
 $conn = mysqli_connect('localhost', 'root', '', 'flipifc') ;
