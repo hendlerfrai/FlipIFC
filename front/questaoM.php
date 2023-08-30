@@ -77,7 +77,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
-  <script src="cronometro.js"></script> 
+    <script src="cronometro.js"></script>
     <link rel="stylesheet" type="text/css" href="css/questoes.css">
 
     <title> pergunta </title>
@@ -98,89 +98,42 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             </div>
 
 
-            <div class="container">
-                <form method="POST" action="questaoCN.php">
-                    <div id="alta" class="quest">
-                        <input type="radio" value="A" name="alternativa" id="altA">
-                        <label for="altA"><?php echo strip_tags($rt['altA']); ?> </label>
-                    </div>
-                    <div id="altb" class="quest">
-                        <input type="radio" value="B" name="alternativa" id="altB">
-                        <label for="altB"><?php echo strip_tags($rt['altB']); ?> </label>
-                    </div>
-                    <div id="altc" class="quest">
-                        <input type="radio" value="C" name="alternativa" id="altC">
-                        <label for="altC"><?php echo strip_tags($rt['altC']); ?> </label>
-                    </div>
-                    <div id="altd" class="quest">
-                        <input type="radio" value="D" name="alternativa" id="altD">
-                        <label for="altD"><?php echo strip_tags($rt['altD']); ?></label>
-                    </div>
-                    <div id="alte" class="quest">
-                        <input type="radio" value="E" name="alternativa" id="altE">
-                        <label for="altE"><?php echo strip_tags($rt['altE']); ?> </label>
-                    </div>
-                    <button type="submit"> Enviar </button>
-                </form>
+    <div class="container">
+        <form method="POST" action="questaoM.php">
+            <div id="alta">
+                <input type="radio" value="A" name="alternativa" id="altA">
+                <label for="altA"><?php echo strip_tags($rt['altA']); ?> </label>
             </div>
-        </div>
+            <div id="altb">
+                <input type="radio" value="B" name="alternativa" id="altB">
+                <label for="altB"><?php echo strip_tags($rt['altB']); ?> </label>
+            </div>
+            <div id="altc">
+                <input type="radio" value="C" name="alternativa" id="altC">
+                <label for="altC"><?php echo strip_tags($rt['altC']); ?> </label>
+            </div>
+            <div id="altd">
+                <input type="radio" value="D" name="alternativa" id="altD">
+                <label for="altD"><?php echo strip_tags($rt['altD']); ?></label>
+            </div>
+            <div id="alte">
+                <input type="radio" value="E" name="alternativa" id="altE">
+                <label for="altE"><?php echo strip_tags($rt['altE']); ?> </label>
+            </div>
+            <button type="submit"> Enviar </button>
+        </form>
     </div>
+   </div>
+</div>
 
-    <script>
-        $(document).ready(function() {
-    $('.quest input[type="radio"]').keydown(function(event) {
+<script>
+    $(document).keydown(function(event) {
         var tecla = event.keyCode;
-        if (tecla == 38) { // Seta para cima
-            $(this).parent().prev().find('input[type="radio"]').focus();
-        } else if (tecla == 40) { // Seta para baixo
-            $(this).parent().next().find('input[type="radio"]').focus();
+        if (tecla == 13) {
+            $('form').submit();
         }
     });
-
-    $('.quest input[type="radio"]').focus(function() {
-        $(this).parent('.quest').addClass('focused'); // Adiciona a classe CSS quando focado
-    });
-
-    $('.quest input[type="radio"]').blur(function() {
-        $(this).parent('.quest').removeClass('focused'); // Remove a classe CSS quando perder o foco
-    });
-
-    $('.quest input[type="radio"]').change(function() {
-        $('.quest').removeClass('selected'); // Remove a classe de seleção de todas as alternativas
-        $(this).parent('.quest').addClass('selected'); // Adiciona a classe de seleção na alternativa atual
-    });
-});
-
-        $(document).ready(function() {
-            $('.quest input[type="radio"]').keydown(function(event) {
-                var tecla = event.keyCode;
-                if (tecla == 38) { // Seta para cima
-                    $(this).parent().prev().find('input[type="radio"]').focus();
-                } else if (tecla == 40) { // Seta para baixo
-                    $(this).parent().next().find('input[type="radio"]').focus();
-                }
-            });
-        });
-        $(document).ready(function() {
-            $('#altA').prop('checked', true);
-            $('#alta').focus(); // Foca na div da alternativa A
-
-            $('.quest input[type="radio"]').focus(function() {
-                $(this).parent('.quest').addClass('focused'); // Adiciona a classe CSS quando focado
-            });
-
-            $('.quest input[type="radio"]').blur(function() {
-                $(this).parent('.quest').removeClass('focused'); // Remove a classe CSS quando perder o foco
-            });
-        });
-
-        $(document).keydown(function(event) {
-            var tecla = event.keyCode;
-            if (tecla == 13) {
-                $('form').submit();
-            }
-        });
-    </script>
+</script>
 </body>
 
 </html>

@@ -101,86 +101,130 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <div class="container">
                 <form method="POST" action="questaoCN.php">
                     <div id="alta" class="quest">
-                        <input type="radio" value="A" name="alternativa" id="altA">
-                        <label for="altA"><?php echo strip_tags($rt['altA']); ?> </label>
+                        <input type="radio" value="A" name="alternativa" id="altA" checked>
+                        <button for="altA"><?php echo strip_tags($rt['altA']); ?> </button>
                     </div>
                     <div id="altb" class="quest">
                         <input type="radio" value="B" name="alternativa" id="altB">
-                        <label for="altB"><?php echo strip_tags($rt['altB']); ?> </label>
+                        <button for="altB"><?php echo strip_tags($rt['altB']); ?> </button>
                     </div>
                     <div id="altc" class="quest">
                         <input type="radio" value="C" name="alternativa" id="altC">
-                        <label for="altC"><?php echo strip_tags($rt['altC']); ?> </label>
+                        <button for="altC"><?php echo strip_tags($rt['altC']); ?> </button>
                     </div>
                     <div id="altd" class="quest">
                         <input type="radio" value="D" name="alternativa" id="altD">
-                        <label for="altD"><?php echo strip_tags($rt['altD']); ?></label>
+                        <button for="altD"><?php echo strip_tags($rt['altD']); ?></button>
                     </div>
                     <div id="alte" class="quest">
                         <input type="radio" value="E" name="alternativa" id="altE">
-                        <label for="altE"><?php echo strip_tags($rt['altE']); ?> </label>
+                        <button for="altE"><?php echo strip_tags($rt['altE']); ?> </button>
                     </div>
-                    <button type="submit"> Enviar </button>
+                    <button class= "enter" type="submit"> Enviar </button>
                 </form>
             </div>
         </div>
     </div>
 
-    <script>
-        $(document).ready(function() {
-    $('.quest input[type="radio"]').keydown(function(event) {
-        var tecla = event.keyCode;
-        if (tecla == 38) { // Seta para cima
-            $(this).parent().prev().find('input[type="radio"]').focus();
-        } else if (tecla == 40) { // Seta para baixo
-            $(this).parent().next().find('input[type="radio"]').focus();
+    <script>          
+    function selectRadio(divId) {
+        document.getElementById(divId).querySelector('input[type="radio"]').checked = true;
+    }
+
+    function handleArrowKey(event) {
+        const currentDiv = document.querySelector('.selected');
+        if (currentDiv) {
+            const divId = currentDiv.id;
+            if (event.key === 'ArrowUp') {
+                const prevDiv = currentDiv.previousElementSibling;
+                if (prevDiv) {
+                    currentDiv.classList.remove('selected');
+                    prevDiv.classList.add('selected');
+                    selectRadio(prevDiv.id);
+                }
+            } else if (event.key === 'ArrowDown') {
+                const nextDiv = currentDiv.nextElementSibling;
+                if (nextDiv) {
+                    currentDiv.classList.remove('selected');
+                    nextDiv.classList.add('selected');
+                    selectRadio(nextDiv.id);
+                }
+            }
+        } else {
+            const firstDiv = document.querySelector('.quest');
+            if (firstDiv) {
+                firstDiv.classList.add('selected');
+                selectRadio(firstDiv.id);
+            }
+        }
+    }
+    const questDivs = document.querySelectorAll('.quest');
+    questDivs.forEach(div => {
+        div.addEventListener('click', () => {
+            questDivs.forEach(div => div.classList.remove('selected'));
+            div.classList.add('selected');
+            selectRadio(div.id);
+        });
+    });
+
+    document.addEventListener('keydown', handleArrowKey);
+
+    $(document).keydown(function(event) {
+        var tecla = event.key;
+        if (tecla === "Enter") {
+            $('form').submit();
         }
     });
 
-    $('.quest input[type="radio"]').focus(function() {
-        $(this).parent('.quest').addClass('focused'); // Adiciona a classe CSS quando focado
-    });
 
-    $('.quest input[type="radio"]').blur(function() {
-        $(this).parent('.quest').removeClass('focused'); // Remove a classe CSS quando perder o foco
-    });
+          /* codigo antigo, so p deixar salvo
+                $(document).ready(function() {
+    $('.quest input[type="radio"]').keydown(function(event)) {
+        var tecla = event.key;
 
-    $('.quest input[type="radio"]').change(function() {
-        $('.quest').removeClass('selected'); // Remove a classe de seleção de todas as alternativas
-        $(this).parent('.quest').addClass('selected'); // Adiciona a classe de seleção na alternativa atual
-    });
-});
+        if (tecla === "ArrowUp" || tecla === "ArrowDown") {
+            event.preventDefault();
+            var $divAtual = $(this).parent('.quest');
+            var $radioAtual = $(this);
+            var $opcoes = $('.quest input[type="radio"]'); // Todas as opções
 
-        $(document).ready(function() {
-            $('.quest input[type="radio"]').keydown(function(event) {
-                var tecla = event.keyCode;
-                if (tecla == 38) { // Seta para cima
-                    $(this).parent().prev().find('input[type="radio"]').focus();
-                } else if (tecla == 40) { // Seta para baixo
-                    $(this).parent().next().find('input[type="radio"]').focus();
-                }
-            });
-        });
-        $(document).ready(function() {
-            $('#altA').prop('checked', true);
-            $('#alta').focus(); // Foca na div da alternativa A
+            var currentIndex = $opcoes.index($radioAtual);
+            var newIndex = currentIndex;
 
-            $('.quest input[type="radio"]').focus(function() {
-                $(this).parent('.quest').addClass('focused'); // Adiciona a classe CSS quando focado
-            });
-
-            $('.quest input[type="radio"]').blur(function() {
-                $(this).parent('.quest').removeClass('focused'); // Remove a classe CSS quando perder o foco
-            });
-        });
-
-        $(document).keydown(function(event) {
-            var tecla = event.keyCode;
-            if (tecla == 13) {
-                $('form').submit();
+            if (tecla === "ArrowDown") {
+                newIndex = (currentIndex + 1) % $opcoes.length;
+            } else if (tecla === "ArrowUp") {
+                newIndex = (currentIndex - 1 + $opcoes.length) % $opcoes.length;
             }
-        });
-    </script>
+
+            $opcoes.eq(newIndex).prop('checked', true);
+            $opcoes.eq(newIndex).focus();
+        }
+    }
+    });
+    
+
+    $('#alta, #altb, #altc, #altd, #alte').keydown(function(event) {
+        var tecla = event.key;
+        
+        if (tecla === "ArrowUp" || tecla === "ArrowDown") {
+            event.preventDefault();
+            var $opcoes = $('#alta, #altb, #altc, #altd, #alte');
+            var currentIndex = $opcoes.index(this);
+            var newIndex = currentIndex;
+            
+            if (tecla === "ArrowDown") {
+                newIndex = (currentIndex + 1) % $opcoes.length;
+            } else if (tecla === "ArrowUp") {
+                newIndex = (currentIndex - 1 + $opcoes.length) % $opcoes.length;
+            }
+            
+            $opcoes.eq(newIndex).focus();
+        }
+    }); */
+
+</script>
+
 </body>
 
 </html>
