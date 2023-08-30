@@ -18,7 +18,7 @@
   position: relative;
   text-align: center;
   color: black;
-  top: 4.5em;
+  top: 8.5em;
   font-weight: bold;
 }
 
@@ -39,7 +39,7 @@
   background-color: rgb(235, 235, 235);
   box-shadow: inset 3px 3px 6px #d1d1d1,
     inset -3px -3px 6px #ffffff;
-  top: 6.5em;
+  top: 7.5em;
   left: 1.5em;
   padding-left: 15px;
   transition: .4s ease-in-out;

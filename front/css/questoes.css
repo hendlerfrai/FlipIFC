@@ -106,7 +106,6 @@ input[type="radio"] {
   width: 0;
   height: 0;
 }
-
 input[type="radio"]:checked + button, /* aqui no 'button' era 'label' */
 input[type="radio"]:checked + button,
 .quest.focused {
@@ -172,7 +171,7 @@ label {
 }
 
 #timer {
-  padding-top: 30px;
+  padding-top: 50px;
   text-align: center;
   font-family: dogica;
   color: #00135c;
@@ -187,8 +186,9 @@ body {
   margin-bottom: -22px;
 }
 
-/* Estilo para a classe .focused */
 .quest.focused {
-  background-color: #cc8989;
-  color: black;
+  border: 2px solid #ccc; /* Adicione o estilo que desejar quando a alternativa estiver em foco */
+}
+.selected {
+  background-color: #f0f0f0; /* Adicione o estilo que desejar para a alternativa selecionada */
 }

@@ -16,7 +16,7 @@ h1 {
   position: absolute;
   text-align: center;
   left: 37%;
-  padding-top: 220px;
+  padding-top: 320px;
 
   color: #00135c;
 
@@ -55,22 +55,22 @@ div.botao {
 
 .cienciasn {
   left: 510px;
-  top: 320px;
+  top: 420px;
 }
 
 .cienciash {
   left: 240px;
-  top: 320px;
+  top: 420px;
 }
 
 .matematica {
   left: 1010px;
-  top: 320px;
+  top: 420px;
 }
 
 .linguaport {
   left: 770px;
-  top: 320px;
+  top: 420px;
 }
 
 .button__text {

@@ -13,7 +13,7 @@
 
 <body>
 
-    <div class="container d-flex justify-content-center mt-5">
+    <div style="margin-top: -70px; margin-left: 550px">
         <div class="row">
             <div class="col-sm-4">
                 <form method="POST" action="loginBack.php" class="form" style="margin-top: 90%;">
