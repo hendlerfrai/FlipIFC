@@ -77,7 +77,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
-     <script src="cronometro.js"></script> 
+  <!--   <script src="cronometro.js"></script> -->
     <link rel="stylesheet" type="text/css" href="css/questoes.css">
 
     <title> pergunta </title>
@@ -127,6 +127,30 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     </div>
 
     <script>
+        $(document).ready(function() {
+    $('.quest input[type="radio"]').keydown(function(event) {
+        var tecla = event.keyCode;
+        if (tecla == 38) { // Seta para cima
+            $(this).parent().prev().find('input[type="radio"]').focus();
+        } else if (tecla == 40) { // Seta para baixo
+            $(this).parent().next().find('input[type="radio"]').focus();
+        }
+    });
+
+    $('.quest input[type="radio"]').focus(function() {
+        $(this).parent('.quest').addClass('focused'); // Adiciona a classe CSS quando focado
+    });
+
+    $('.quest input[type="radio"]').blur(function() {
+        $(this).parent('.quest').removeClass('focused'); // Remove a classe CSS quando perder o foco
+    });
+
+    $('.quest input[type="radio"]').change(function() {
+        $('.quest').removeClass('selected'); // Remove a classe de seleção de todas as alternativas
+        $(this).parent('.quest').addClass('selected'); // Adiciona a classe de seleção na alternativa atual
+    });
+});
+
         $(document).ready(function() {
             $('.quest input[type="radio"]').keydown(function(event) {
                 var tecla = event.keyCode;

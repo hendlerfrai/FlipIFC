@@ -83,9 +83,15 @@ div#enunciado {
   background-color: #dac1c1;
   border-radius: 30px;
   box-shadow: 3px 3px 3px rgb(58, 58, 58);
+  overflow: hidden;
+  /* Para esconder bordas extras se o conteúdo for maior que a div */
+  word-wrap: break-word;
+  /* Quebra as palavras quando atingem a borda da div */
+  white-space: normal;
+  /* Evita que o texto saia para fora da div */
 
 
-  
+
 }
 
 input[type="radio"] {
@@ -95,15 +101,8 @@ input[type="radio"] {
   height: 0;
 }
 
-input[type="radio"]:checked + label,
-input[type="radio"]:checked + label + .quest {
-    background-color: #cc8989;
-    color: black;
-    width: 250px;
-}
-
-/* Aplica o estilo tanto ao <label> quanto à <div> quando o <input> estiver selecionado */
-input[type="radio"]:checked + div {
+input[type="radio"]:checked+label,
+input[type="radio"]:checked+ label + div.quest {
   background-color: #cc8989;
   color: black;
   width: 250px;
@@ -179,8 +178,11 @@ body {
   margin-bottom: -22px;
 }
 
-/* Estilo para a classe .focused */
-.quest.focused {
-  background-color: #cc8989;
-  color: black;
-}
+
+    .quest.focused {
+        border: 2px solid #ccc; /* Adicione o estilo que desejar quando a alternativa estiver em foco */
+    }
+    .selected {
+        background-color: #f0f0f0; /* Adicione o estilo que desejar para a alternativa selecionada */
+    }
+
