@@ -59,7 +59,6 @@ $userId = $rowUserId['iduser'];
     }
 }
 //problemas no $rs1->num_rows
-//problemas no $rs1->num_rows
 ?>
 
 <!DOCTYPE html>
