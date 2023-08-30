@@ -4,7 +4,7 @@ require('verifica.php');
 
 $dataAtual = date("Y-m-d");
 $data_hora = date("Y-m-d H:i:s");
-$area = 2;
+$area = 4;
 
 $sql = "SELECT * FROM questao WHERE codArea = 4 ORDER BY RAND() LIMIT 1";
 $rs = mysqli_query($conn, $sql);
@@ -77,7 +77,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
-    <script src="cronometro.js"></script>
+    <!-- <script src="cronometro.js"></script> -->
     <link rel="stylesheet" type="text/css" href="css/questoes.css">
 
     <title> pergunta </title>
@@ -98,42 +98,88 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             </div>
 
 
-    <div class="container">
-        <form method="POST" action="questaoM.php">
-            <div id="alta">
-                <input type="radio" value="A" name="alternativa" id="altA">
-                <label for="altA"><?php echo strip_tags($rt['altA']); ?> </label>
+            <div class="container">
+                <form method="POST" action="questaoCN.php">
+                    <div id="alta" class="quest">
+                        <input type="radio" value="A" name="alternativa" id="altA" checked>
+                        <button for="altA"><?php echo strip_tags($rt['altA']); ?> </button>
+                    </div>
+                    <div id="altb" class="quest">
+                        <input type="radio" value="B" name="alternativa" id="altB">
+                        <button for="altB"><?php echo strip_tags($rt['altB']); ?> </button>
+                    </div>
+                    <div id="altc" class="quest">
+                        <input type="radio" value="C" name="alternativa" id="altC">
+                        <button for="altC"><?php echo strip_tags($rt['altC']); ?> </button>
+                    </div>
+                    <div id="altd" class="quest">
+                        <input type="radio" value="D" name="alternativa" id="altD">
+                        <button for="altD"><?php echo strip_tags($rt['altD']); ?></button>
+                    </div>
+                    <div id="alte" class="quest">
+                        <input type="radio" value="E" name="alternativa" id="altE">
+                        <button for="altE"><?php echo strip_tags($rt['altE']); ?> </button>
+                    </div>
+                    <button class= "enter" type="submit"> Enviar </button>
+                </form>
             </div>
-            <div id="altb">
-                <input type="radio" value="B" name="alternativa" id="altB">
-                <label for="altB"><?php echo strip_tags($rt['altB']); ?> </label>
-            </div>
-            <div id="altc">
-                <input type="radio" value="C" name="alternativa" id="altC">
-                <label for="altC"><?php echo strip_tags($rt['altC']); ?> </label>
-            </div>
-            <div id="altd">
-                <input type="radio" value="D" name="alternativa" id="altD">
-                <label for="altD"><?php echo strip_tags($rt['altD']); ?></label>
-            </div>
-            <div id="alte">
-                <input type="radio" value="E" name="alternativa" id="altE">
-                <label for="altE"><?php echo strip_tags($rt['altE']); ?> </label>
-            </div>
-            <button type="submit"> Enviar </button>
-        </form>
+        </div>
     </div>
-   </div>
-</div>
 
-<script>
+    <script>
+          
+    function selectRadio(divId) {
+        document.getElementById(divId).querySelector('input[type="radio"]').checked = true;
+    }
+
+    function handleArrowKey(event) {
+        const currentDiv = document.querySelector('.selected');
+        if (currentDiv) {
+            const divId = currentDiv.id;
+            if (event.key === 'ArrowUp') {
+                const prevDiv = currentDiv.previousElementSibling;
+                if (prevDiv) {
+                    currentDiv.classList.remove('selected');
+                    prevDiv.classList.add('selected');
+                    selectRadio(prevDiv.id);
+                }
+            } else if (event.key === 'ArrowDown') {
+                const nextDiv = currentDiv.nextElementSibling;
+                if (nextDiv) {
+                    currentDiv.classList.remove('selected');
+                    nextDiv.classList.add('selected');
+                    selectRadio(nextDiv.id);
+                }
+            }
+        } else {
+            const firstDiv = document.querySelector('.quest');
+            if (firstDiv) {
+                firstDiv.classList.add('selected');
+                selectRadio(firstDiv.id);
+            }
+        }
+    }
+    const questDivs = document.querySelectorAll('.quest');
+    questDivs.forEach(div => {
+        div.addEventListener('click', () => {
+            questDivs.forEach(div => div.classList.remove('selected'));
+            div.classList.add('selected');
+            selectRadio(div.id);
+        });
+    });
+
+    document.addEventListener('keydown', handleArrowKey);
+
     $(document).keydown(function(event) {
-        var tecla = event.keyCode;
-        if (tecla == 13) {
+        var tecla = event.key;
+        if (tecla === "Enter") {
             $('form').submit();
         }
     });
+
+
 </script>
+
 </body>
 
 </html>

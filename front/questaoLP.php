@@ -4,7 +4,7 @@ require('verifica.php');
 
 $dataAtual = date("Y-m-d");
 $data_hora = date("Y-m-d H:i:s");
-$area = 2;
+$area = 3;
 
 $sql = "SELECT * FROM questao WHERE codArea = 2 ORDER BY RAND() LIMIT 1";
 $rs = mysqli_query($conn, $sql);

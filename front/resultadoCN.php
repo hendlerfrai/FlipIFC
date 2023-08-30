@@ -14,7 +14,7 @@ require('verifica.php');
             // se o usuario acertou a primeira tentativa ----------------------------------
 if ($acertos == $rs1->num_rows <= 1) { // se o acerto for igual a tentativa 1 ($rs1->num_rows)
     $mensagem = "Parabéns! Você acertou! Pronto para a próxima pergunta?";
-    $botao = '<a href="questaoCN.php" class="btn-next">Próxima Pergunta</a>';
+    $botao = '<a href="questaoCN.php" class="btn-next">Continuar</a>';
     echo 'teste1';
 
             // se o usuario acertou a segunda tentativa ----------------------------------
@@ -28,7 +28,7 @@ if ($acertos == $rs1->num_rows <= 1) { // se o acerto for igual a tentativa 1 ($
 } elseif ($erros == $rs1->num_rows <= 1) { // se o erro for igual a tentativa 1 ($rs1->num_rows)
     $altCorretaCompleta = isset($_SESSION['altCorretaCompleta']) ? $_SESSION['altCorretaCompleta'] : "alternativa desconhecida";
     $mensagem = "Você errou :( A resposta correta era: " . $altCorretaCompleta;
-    $botao = '<a href="questaoCN.php" class="btn-next">Próxima Pergunta</a>';
+    $botao = '<a href="questaoCN.php" class="btn-next">Continuar</a>';
     echo 'teste3';
 
     if ($result->num_rows > 0) {
@@ -83,9 +83,8 @@ $userId = $rowUserId['iduser'];
         <button class="botao1"> 
             <span class="botaoproximo"> <?php echo "<a>$botao</a>" ?></span>
         </button>
-        <button class="botao1" style="text-decoration: none; color: #aa422f;"></button>
         <button class="botao2">
-            <a href="index.php" target="_self"> Voltar a tela e início </a>
+            <a href="index.php" target="_self"> Voltar </a>
         </button>
     <div class="mensagem-container">
         <h1><?php echo $mensagem; ?></h1>
