@@ -31,12 +31,34 @@ if ($acertos == $rs1->num_rows <= 1) { // se o acerto for igual a tentativa 1 ($
     $botao = '<a href="questaoCN.php" class="btn-next">Próxima Pergunta</a>';
     echo 'teste3';
 
-            // se o usuario errou a segunda tentativa ----------------------------------
-} elseif ($erros == $rs1->num_rows >= 2 ) { // se o erro for igual a tentativa 2 ($rs1->num_rows)
-    $altCorretaCompleta = isset($_SESSION['altCorretaCompleta']) ? $_SESSION['altCorretaCompleta'] : "alternativa desconhecida";
-    $mensagem = "Você errou :( A resposta correta era: " . $altCorretaCompleta . ". Suas tentativas diárias terminaram, descanse e tente novamente amanhã ;) Deseja acessar o ranking?";
-    $botao = '<a href="ranking.php" class="btn-next">Acessar Ranking</a>';
+    if ($result->num_rows > 0) {
+        $row = $result->fetch_assoc();
+        $respostaCorreta = $row['resultado'];
+
+        if ($selectedOption === null) {
+            echo "<script>
+                    alert('Selecione uma opção!');
+                    window.history.back();
+                  </script>";
+        } else {
+            if ($selectedOption == $respostaCorreta) {
+                $mensagem = "Resposta correta!";
+$userId = $rowUserId['iduser'];
+                $query = "UPDATE usuario SET acertos = acertos + 1 WHERE iduser = $userId";
+            } else {
+                $mensagem = "Você errou. A resposta correta é " . $respostaCorreta ."° alternativa " ;
+                $query = "UPDATE usuario SET erros = erros + 1 WHERE iduser = $userId";
+            }
+            if ($conn->query($query) === TRUE) {
+                echo "Pontuação atualizada com sucesso.";
+            } else {
+                echo "Erro ao atualizar pontuação: " . $conn->error;
+            }
+            
+        }
+    }
 }
+//problemas no $rs1->num_rows
 //problemas no $rs1->num_rows
 ?>
 
@@ -45,6 +67,7 @@ if ($acertos == $rs1->num_rows <= 1) { // se o acerto for igual a tentativa 1 ($
 
 <head>
     <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
@@ -65,7 +88,28 @@ if ($acertos == $rs1->num_rows <= 1) { // se o acerto for igual a tentativa 1 ($
         <button class="botao2">
             <a href="index.php" target="_self"> Voltar a tela e início </a>
         </button>
+    <div class="mensagem-container">
+        <h1><?php echo $mensagem; ?></h1>
+        <!-- <h3><?php echo $mensagem2 ?></h3> -->
+        <button class="botao1" style="text-decoration: none; color: #aa422f;" tabindex="0">
+            <span class="botaoproximo" style="text-decoration: none; color: #aa422f;"> <?php echo "<a>$botao</a>" ?></span>
+        </button>
+        <button class="botao2">
+            <a href="index.php" target="_self"> Voltar </a>
+        </button>
     </div>
 </body>
 
+    <script type="text/javascript">
+        document.addEventListener("DOMContentLoaded", function() {
+            var buttonToFocus = document.querySelector(".botao1 a");
+            buttonToFocus.focus();
+        });
+    </script>
+</body>
+
+</html>
+
+
+</html>
 </html>
