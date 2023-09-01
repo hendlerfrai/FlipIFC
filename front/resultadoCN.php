@@ -30,11 +30,6 @@ $query = "SELECT nomeAluno, codUser FROM cadastro WHERE codUser = '$codUser'";
 $result = mysqli_query($conn, $query);
 $aluno = mysqli_fetch_array($result);
 
-$score = 0;
-$acertos = 0;
-$erros = 0;
-$numTentativas = 0; // Defina o número de tentativas de acordo com a lógica do seu sistema
-
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $pontuacao = $_POST['alternativa'];
     $idQ = $_POST['codQuestao'];

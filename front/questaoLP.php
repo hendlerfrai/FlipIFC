@@ -3,6 +3,7 @@ include('conexao.php');
 require('verifica.php');
 
 $sql = "SELECT * FROM questao WHERE codArea = 3 ORDER BY RAND() LIMIT 1";
+
 $rs = mysqli_query($conn, $sql);
 $rt = mysqli_fetch_assoc($rs);
 
@@ -32,7 +33,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+
    <script src="cronometro.js"></script>
+
     <link rel="stylesheet" type="text/css" href="css/questoes.css">
 
     <title> pergunta </title>
@@ -131,6 +134,54 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $('form').submit();
         }
     });
+
+
+          /* codigo antigo, so p deixar salvo
+                $(document).ready(function() {
+    $('.quest input[type="radio"]').keydown(function(event)) {
+        var tecla = event.key;
+
+        if (tecla === "ArrowUp" || tecla === "ArrowDown") {
+            event.preventDefault();
+            var $divAtual = $(this).parent('.quest');
+            var $radioAtual = $(this);
+            var $opcoes = $('.quest input[type="radio"]'); // Todas as opções
+
+            var currentIndex = $opcoes.index($radioAtual);
+            var newIndex = currentIndex;
+
+            if (tecla === "ArrowDown") {
+                newIndex = (currentIndex + 1) % $opcoes.length;
+            } else if (tecla === "ArrowUp") {
+                newIndex = (currentIndex - 1 + $opcoes.length) % $opcoes.length;
+            }
+
+            $opcoes.eq(newIndex).prop('checked', true);
+            $opcoes.eq(newIndex).focus();
+        }
+    }
+    });
+    
+
+    $('#alta, #altb, #altc, #altd, #alte').keydown(function(event) {
+        var tecla = event.key;
+        
+        if (tecla === "ArrowUp" || tecla === "ArrowDown") {
+            event.preventDefault();
+            var $opcoes = $('#alta, #altb, #altc, #altd, #alte');
+            var currentIndex = $opcoes.index(this);
+            var newIndex = currentIndex;
+            
+            if (tecla === "ArrowDown") {
+                newIndex = (currentIndex + 1) % $opcoes.length;
+            } else if (tecla === "ArrowUp") {
+                newIndex = (currentIndex - 1 + $opcoes.length) % $opcoes.length;
+            }
+            
+            $opcoes.eq(newIndex).focus();
+        }
+    }); */
+
 </script>
 
 </body>
