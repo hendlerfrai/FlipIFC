@@ -2,10 +2,6 @@
 include('conexao.php');
 require('verifica.php');
 
-$dataAtual = date("Y-m-d");
-$data_hora = date("Y-m-d H:i:s");
-$area = 1;
-
 $sql = "SELECT * FROM questao WHERE codArea = 1 ORDER BY RAND() LIMIT 1";
 $rs = mysqli_query($conn, $sql);
 $rt = mysqli_fetch_assoc($rs);
@@ -14,59 +10,18 @@ $query = "SELECT nomeAluno, codUser FROM cadastro WHERE codUser = '$codUser'";
 $result = mysqli_query($conn, $query);
 $aluno = mysqli_fetch_array($result);
 
-$score = 0;
-$acertos = 0;
-$erros = 0;
-
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $pontuacao = $_POST['alternativa'];
     $idQ = $rt['codQuestao'];
 
+    // Faz a verificação da resposta aqui
     $stmt = $conn->prepare("SELECT resposta FROM questao WHERE codQuestao = ?");
     $stmt->bind_param("s", $idQ);
     $stmt->execute();
     $stmt->bind_result($altCorreta);
     $stmt->fetch();
     $stmt->close();
-
-    if ($pontuacao == $altCorreta) { // ACERTOU
-        $score += 10;
-        $acertos += 1;
-        $erros += 0;
-
-        if ($acertos == 1) {
-            $_SESSION['acertos'] = 1;
-        } elseif ($acertos == 2) {
-            $_SESSION['acertos'] = 2;
-        }
-
-        $stmt = "INSERT INTO resultado (codUser, codQuestao, resultado, data_hora, codArea) VALUES ($codUser, $idQ, 1, '$dataAtual', '$area');";
-        $result = mysqli_query($conn, $stmt);
-    } else { // ERROU
-        $score += 0;
-        $acertos += 0;
-        $erros += 1;
-
-        if ($erros == 1) {
-            $_SESSION['erros'] = 1;
-            $_SESSION['altCorretaCompleta'] = $rt['alt' . $altCorreta]; // Armazena a alternativa completa
-
-            $stmt = "INSERT INTO resultado (codUser, codQuestao, resultado, data_hora, codArea) VALUES ($codUser, $idQ, 0, '$dataAtual', '$area');";
-            $result = mysqli_query($conn, $stmt);
-        } elseif ($erros == 2) {
-            $_SESSION['erros'] = 2;
-            $_SESSION['altCorretaCompleta'] = $rt['alt' . $altCorreta]; // Armazena a alternativa completa
-
-            $stmt = "INSERT INTO resultado (codUser, codQuestao, resultado, data_hora, codArea) VALUES ($codUser, $idQ, 0, '$dataAtual', '$area');";
-            $result = mysqli_query($conn, $stmt);
-        }
-    }
-
-    header('Location: resultadoCN.php'); // Redirecionamento para a página de resultado
-    exit();
 }
-
-
 ?>
 
 <!DOCTYPE html>
@@ -77,7 +32,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
-    <!-- <script src="cronometro.js"></script> -->
+   <script src="cronometro.js"></script>
     <link rel="stylesheet" type="text/css" href="css/questoes.css">
 
     <title> pergunta </title>
@@ -99,7 +54,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 
             <div class="container">
-                <form method="POST" action="questaoCN.php">
+                <form method="POST" action="resultadoCH.php">
+                <input type="hidden" name="codQuestao" value="<?php echo $rt['codQuestao']; ?>" />
                     <div id="alta" class="quest">
                         <input type="radio" value="A" name="alternativa" id="altA" checked>
                         <button for="altA"><?php echo strip_tags($rt['altA']); ?> </button>
@@ -126,8 +82,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         </div>
     </div>
 
-    <script>
-          
+    <script>          
     function selectRadio(divId) {
         document.getElementById(divId).querySelector('input[type="radio"]').checked = true;
     }
@@ -176,6 +131,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $('form').submit();
         }
     });
+
 </script>
 
 </body>
