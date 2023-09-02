@@ -20,14 +20,14 @@
                     <p class="heading">Digite seu código:</p>
                     </svg>
                     <div class="box">
-                        <input class="input" type="text" maxlength="1" name="valor1" oninput="moveToNext(this, 'valor2')">
-                        <input class="input" type="text" maxlength="1" name="valor2" oninput="moveToNext(this, 'valor3')">
-                        <input class="input" type="text" maxlength="1" name="valor3" oninput="moveToNext(this, 'valor4')">
-                        <input class="input" type="text" maxlength="1" name="valor4" oninput="moveToNext(this, 'valor5')">
-                        <input class="input" type="text" maxlength="1" name="valor5">
+                        <input class="input" type="password" maxlength="1" name="valor1" oninput="moveToNext(this, 'valor2')">
+                        <input class="input" type="password" maxlength="1" name="valor2" oninput="moveToNext(this, 'valor3')">
+                        <input class="input" type="password" maxlength="1" name="valor3" oninput="moveToNext(this, 'valor4')">
+                        <input class="input" type="password" maxlength="1" name="valor4" oninput="moveToNext(this, 'valor5')">
+                        <input class="input" type="password" maxlength="1" name="valor5">
                     </div>
                     <button class="btn1">
-                        <a href="areas.php" target="_self" style="text-decoration: none; color: black;"> Enviar </a>
+                        <a href="areas.php" target="_self" style="password-decoration: none; color: black;"> Enviar </a>
                     </button>
                 </form>
             </div>
@@ -37,7 +37,7 @@
     <script>
         //selecionar o primeiro automatico --------------------------------
          document.addEventListener("DOMContentLoaded", function() {
-            var valor1 = document.querySelector("input[type='text']");
+            var valor1 = document.querySelector("input[type='password']");
 
             if (valor1) {
                 valor1.focus(); // Dar foco ao elemento
@@ -46,7 +46,7 @@
         });
             // apagar tudo no delete -----------------------------------------------
         function deleteInputsAndFocusFirst() {
-            const inputs = document.querySelectorAll("input[type='text']");
+            const inputs = document.querySelectorAll("input[type='password']");
             inputs.forEach((input, index) => {
                 input.value = '';
                 if (index === 0) {
