@@ -99,7 +99,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <!-- Primeira tentativa -->
             <?php if ($pontuacao == $altCorreta) { ?>
                 <h1>Parabéns, você acertou! Pronto para a próxima questão?</h1>
-                <button class="botao1-button" type="submit" >
+                <button class="botao1-button" type="submit" style="margin-left: -150px">
                     <span class="botaoproximo">  <a href="questaoM.php">Próxima Questão</a> </span>
                  </button>
             <?php } else { ?>

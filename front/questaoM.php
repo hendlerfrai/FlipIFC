@@ -45,7 +45,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <h1 id="timer"></h1>
             </div>
             <div>
-                <h1 id="titulo" style="padding-top: -30px"> ciências da natureza </h1>
+                <h1 id="titulo" style="padding-top: -30px"> matemática </h1>
             </div>
 
             <div id="enunciado">
