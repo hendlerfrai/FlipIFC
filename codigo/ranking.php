@@ -63,7 +63,7 @@ $result = mysqli_query($conn, $query);
 </tbody>
 
     </table>
-    <button class="btn" id="send">
+    <button class="btn" id="send" style="text-decoration: none">
      <a href="index.php" target="_self" >voltar a tela inicial</a>
      </button>
     </div>
