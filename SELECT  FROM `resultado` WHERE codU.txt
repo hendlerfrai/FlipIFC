@@ -1,2 +1,0 @@
-SELECT * FROM `resultado` WHERE codUser=58 AND DATE(data_hora)>='2023-07-23' AND DATE(data_hora)<='2023-07-29' AND resultado=1;
-
