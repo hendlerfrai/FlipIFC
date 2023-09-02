@@ -1,2 +1,0 @@
-INSERT INTO resultado (id, codUser, codQuestao, resultado, data_hora)
-VALUES ('','','','','');
