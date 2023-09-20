@@ -16,7 +16,6 @@
     <h1>Áreas do Conhecimento</h1>
     <div class="container">
 
-
          <button class="cienciash area-button" tabindex="0">
             <div class="button__line"></div>
             <div class="button__line"></div>

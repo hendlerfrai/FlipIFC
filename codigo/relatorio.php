@@ -1,5 +1,9 @@
 <?php
-require 'caminho/para/phpmailer/PHPMailerAutoload.php';
+require 'PHPMailer/_lib/class.phpmailer.php';
+//require 'PHPMailer/_lib/phpmailer-fe.php';
+require('conexao.php');
+
+$sql = "SELECT * FROM cadastroProf";
 
 // Função para enviar o e-mail
 function enviarEmail($assunto, $mensagem) {
@@ -7,17 +11,19 @@ function enviarEmail($assunto, $mensagem) {
 
     // Configurações do servidor de e-mail (substitua pelos dados do seu servidor)
     $mail->isSMTP();
-    $mail->Host = 'seu_host_smtp';
+    $mail->Host = 'smtp.gmail.com';
     $mail->SMTPAuth = true;
-    $mail->Username = 'seu_email';
-    $mail->Password = 'sua_senha';
+    $mail->Username = 'email';
+    $mail->Password = 'senha';
     $mail->SMTPSecure = 'tls';
     $mail->Port = 587;
 
     // Configurações do e-mail
-    $mail->setFrom('seu_email', 'Seu Nome');
-    $mail->addAddress('email_professor_1', 'Nome Professor 1');
-    $mail->addAddress('email_professor_2', 'Nome Professor 2'); // Adicione mais endereços, se necessário
+    $mail->setFrom('email', 'Equipe FlipIFC');
+    
+    $mail->addAddress('destinatario');
+
+ // Adicione mais endereços, se necessário
     $mail->isHTML(true);
 
     // Assunto e corpo do e-mail
@@ -49,7 +55,6 @@ function obterNomeDaAreaPeloCodigo($codigo) {
 // Função para gerar o relatório semanal com as áreas e enviar por e-mail
 function gerarRelatorioSemanal($semana) {
         // Conexão com o banco de dados (substitua pelos dados do seu servidor)
-       function gerarRelatorioSemanal($semana) {
 
         include('conexao.php');
 
@@ -57,10 +62,7 @@ function gerarRelatorioSemanal($semana) {
     $sql = "SELECT codArea, SUM(resultado) AS acertos, COUNT(*) AS total_questoes FROM resultado WHERE WEEK(data_hora) = WEEK('$semana') GROUP BY codArea";
     $result = $conn->query($sql);
 
-        // Consulta para obter o relatório semanal
-        $sql = "SELECT codArea, SUM(resultado) AS acertos, COUNT(*) AS total_questoes FROM resultado WHERE WEEK(data_hora) = WEEK('$semana') GROUP BY codArea";
-        $result = $conn->query($sql);
-
+ 
     // Montar o conteúdo do e-mail com as áreas e suas respectivas pontuações
     $assunto = "Relatório Semanal - " . date('Y-m-d', strtotime($semana));
     $mensagem = "<h2>Relatório Semanal - " . date('Y-m-d', strtotime($semana)) . "</h2>";
@@ -94,13 +96,14 @@ function gerarRelatorioSemanal($semana) {
     $mensagem .= "</table>";
 
     // Enviar o e-mail
-    $resultado = enviarEmail($assunto, $mensagem);
+    //$resultado = enviarEmail($assunto, $mensagem);
 
     // Exibir o resultado do envio (pode ser útil para debug, você pode remover ou tratar de outra forma)
-    echo $resultado;
+    echo $mensagem;
 }
-}
+
 // Exemplo de uso - gerar relatório para a semana atual e enviar por e-mail
-$semanaAtual = date('Y-m-d');
+//$semanaAtual = date('Y-m-d');
+$semanaAtual = date('2023-09-13');
 gerarRelatorioSemanal($semanaAtual);
 ?>

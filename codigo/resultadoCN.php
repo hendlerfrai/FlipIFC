@@ -23,6 +23,7 @@ require('verifica.php');
 $dataAtual = date("Y-m-d");
 $data_hora = date("Y-m-d H:i:s");
 $area = 2;
+$erros = 0;
 
 $codUser = $_SESSION['codUser'];
 

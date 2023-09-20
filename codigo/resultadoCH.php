@@ -23,6 +23,8 @@ require('verifica.php');
 $dataAtual = date("Y-m-d");
 $data_hora = date("Y-m-d H:i:s");
 $area = 1;
+$erros = 0;
+
 
 $codUser = $_SESSION['codUser'];
 
@@ -98,7 +100,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <?php if ($numTentativas == 0) { ?>
             <!-- Primeira tentativa -->
             <?php if ($pontuacao == $altCorreta) { ?>
+<<<<<<< HEAD
                 <h1 style= "padding: 20px; margin-top: 350px;" >Parabéns, você acertou! Pronto para a próxima questão?</h1>
+=======
+                <h1>Parabéns, você acertou! Pronto para a próxima questão?</h1>
+>>>>>>> 1f9fe772bfc545abbd23f07c31c5a018445592e1
                 <button class="botao1-button" type="submit">
                     <span class="botaoproximo">  <a href="questaoCH.php">Próxima Questão</a> </span>
                  </button>
