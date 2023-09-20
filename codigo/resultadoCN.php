@@ -120,7 +120,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <h2>Voce assinalou a alternativa: <?php echo getAlternativaCompleta($pontuacao, ${"alt" . $pontuacao}); ?></h2>
                 <h2> A alternativa correta era: <?php echo getAlternativaCompleta($altCorreta, ${"alt" . $altCorreta}); ?></h2>
                 <h3> Suas tentativas acabaram. </h3>
-                <button class="botao1-button" type="submit" 
+                <button class="botao1-button" type="submit"> 
                     <span class="botaoproximo"> <a href="ranking.php">Ver Ranking</a></span>
                  </button>
                  <button class="botao2-button" type="submit" >

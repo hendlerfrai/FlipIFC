@@ -43,6 +43,8 @@ $result = mysqli_query($conn, $query);
     <table class="table">
     <thead>
             <th>Posição</th>
+            <th> </th>
+            <th> </th>
             <th>Nome do Aluno</th>
             <th>Total de Acertos</th>
 </thead>
@@ -53,7 +55,10 @@ $result = mysqli_query($conn, $query);
             $nomeAluno = $row['nomeAluno'];
             $totalAcertos = $row['total_acertos'];
             echo "<tr>";
-            echo "<td>{$posicao}</td>";
+            echo "<td class='pos'>{$posicao}</td>";
+            echo "<td></td>";
+            echo "<td></td>";
+
             echo "<td>{$nomeAluno}</td>";
             echo "<td>{$totalAcertos}</td>";
             echo "</tr>";
@@ -68,5 +73,14 @@ $result = mysqli_query($conn, $query);
      </button>
     </div>
     </div>
+    <script language="javascript">
+        $(document).ready(function() {
+    var buttons = $('.btn');
+    var currentButtonIndex = 0;
+    
+    buttons.eq(currentButtonIndex).focus();
+   
+});
+    </script>
 </body>
 </html>

@@ -36,7 +36,7 @@ body {
 
 h1 {
     text-align: center;
-    margin-left: 400px;
+    margin-left: 410px;
     padding-top: 165px;
 
     color: #00135C;
@@ -44,7 +44,7 @@ h1 {
     font-family: 'dogica';
     font-style: normal;
     font-weight: normal;
-    font-size: 18px;
+    font-size: 28px;
     line-height: 30px;
     width: 700px;
 
@@ -53,7 +53,7 @@ h1 {
 
 h2 {
     text-align: center;
-    margin-left: 400px;
+    margin-left: 410px;
     padding-top: 10px;
     background-color: #ced2dccc;
 
@@ -62,7 +62,7 @@ h2 {
     font-family: 'letters';
     font-style: normal;
     font-weight: normal;
-    font-size: 25px;
+    font-size: 28px;
     line-height: 30px;
     width: 700px;
 
@@ -71,7 +71,7 @@ h2 {
 
 h3 {
     text-align: center;
-    margin-left: 400px;
+    margin-left: 410px;
     padding-top: 10px;
     background-color: #ced2dcbe;
 
@@ -80,7 +80,7 @@ h3 {
     font-family: 'letters';
     font-style: normal;
     font-weight: normal;
-    font-size: 25px;
+    font-size: 28px;
     line-height: 30px;
     width: 700px;
 
@@ -89,7 +89,7 @@ h3 {
 
 p {
     text-align: center;
-    margin-left: 400px;
+    margin-left: 410px;
     padding-top: 365px;
 
     color: #00135C;
@@ -97,7 +97,7 @@ p {
     font-family: 'dogica';
     font-style: normal;
     font-weight: normal;
-    font-size: 18px;
+    font-size: 25px;
     line-height: 30px;
     width: 700px;
 
@@ -124,7 +124,7 @@ p {
     font-family: silk;
     border-style: none;
     box-shadow: 3px 3px 3px rgb(58, 58, 58);
-    margin-left: 640px;
+    margin-left: 646px;
 }
 .botao2-button {
     margin: 5px;

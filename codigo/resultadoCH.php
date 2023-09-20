@@ -98,22 +98,22 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <?php if ($numTentativas == 0) { ?>
             <!-- Primeira tentativa -->
             <?php if ($pontuacao == $altCorreta) { ?>
-                <h1>Parabéns, você acertou! Pronto para a próxima questão?</h1>
-                <button class="botao1-button" type="submi">
+                <h1 style= "padding: 20px; margin-top: 350px;" >Parabéns, você acertou! Pronto para a próxima questão?</h1>
+                <button class="botao1-button" type="submit">
                     <span class="botaoproximo">  <a href="questaoCH.php">Próxima Questão</a> </span>
                  </button>
             <?php } else { ?>
-                <h1>Você errou :( </h1>
-                <h2>Voce assinalou a alternativa: <?php echo getAlternativaCompleta($pontuacao, ${"alt" . $pontuacao}); ?></h2>
-                <h2> A alternativa correta era: <?php echo getAlternativaCompleta($altCorreta, ${"alt" . $altCorreta}); ?></h2>
+                <h1 style= "padding: 20px; margin-top: 200px;">Você errou :( </h1>
+                <h2 style= "padding: 10px;" >Você assinalou a alternativa: <?php echo getAlternativaCompleta($pontuacao, ${"alt" . $pontuacao}); ?></h2>
+                <h2 style= "padding: 10px;"> A alternativa correta era: <?php echo getAlternativaCompleta($altCorreta, ${"alt" . $altCorreta}); ?></h2>
                 <button class="botao1-button" type="submit">
                     <span class="botaoproximo"> <a href="questaoCH.php">Tentar Novamente</a></span>
                  </button>
-            <?php } ?>
+        <?php } ?>
         <?php } elseif ($numTentativas == 1) { ?>
             <!-- Segunda tentativa -->
             <?php if ($pontuacao == $altCorreta) { ?>
-                <h1>Você acertou! Suas tentativas acabaram.</h1>
+                <h1 style= "padding: 20px; margin-top: 300px;" >Você acertou! Suas tentativas acabaram.</h1>
                 <button class="botao1-button" type="submit">
                     <span class="botaoproximo" > <a href="ranking.php">Ver Ranking</a></span>
                  </button>
@@ -121,10 +121,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     <a href="index.php">Logout</a>
                 </button>
             <?php } else { ?>
-               <h1>Você errou :( </h1>
-                <h2>Voce assinalou a alternativa: <?php echo getAlternativaCompleta($pontuacao, ${"alt" . $pontuacao}); ?></h2>
-                <h2> A alternativa correta era: <?php echo getAlternativaCompleta($altCorreta, ${"alt" . $altCorreta}); ?></h2>
-                <h3> Suas tentativas acabaram. </h3>
+               <h1 style= "padding: 20px; margin-top: 200px;"> Você errou :( </h1>
+                <h2 style= "padding: 10px;">Você assinalou a alternativa: <?php echo getAlternativaCompleta($pontuacao, ${"alt" . $pontuacao}); ?></h2>
+                <h2 style= "padding: 10px;"> A alternativa correta era: <?php echo getAlternativaCompleta($altCorreta, ${"alt" . $altCorreta}); ?></h2>
+                <h3 style= "padding: 10px;"> Suas tentativas acabaram. </h3>
                 <button class="botao1-button" type="submit">
                     <span class="botaoproximo"> <a href="ranking.php">Ver Ranking</a></span>
                  </button>
