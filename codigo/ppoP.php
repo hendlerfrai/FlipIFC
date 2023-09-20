@@ -25,13 +25,33 @@
         </button>
         </div>
 
-    <script>
+    <script>$(document).ready(function() {
+        var botao1 = $('.botao1'); // Primeiro botão
+        var botao2 = $('.botao2'); // Segundo botão
+
+        var buttons = botao1.add(botao2); // Combina os botões em uma única seleção
+
+        var currentButtonIndex = 0;
+
+        buttons.eq(currentButtonIndex).focus();
+
         $(document).keydown(function(event) {
             var tecla = event.keyCode;
-            if (tecla == 13) {
-                window.location.href = 'ranking.php'
+
+            if (tecla == 13) { // Tecla Enter
+                var targetUrl = buttons.eq(currentButtonIndex).find('a').attr('href');
+                window.location.href = targetUrl;
+            } else if (tecla == 37) { 
+                currentButtonIndex = (currentButtonIndex + 1) % buttons.length;
+            } else if (tecla == 39) { 
+                currentButtonIndex = (currentButtonIndex - 1 + buttons.length) % buttons.length;
             }
+
+            buttons.blur(); // Remove o foco de todos os botões
+            buttons.eq(currentButtonIndex).focus(); // Aplica o foco ao botão atual
         });
+    });
+</script>
     </script>
 </body>
 </html>

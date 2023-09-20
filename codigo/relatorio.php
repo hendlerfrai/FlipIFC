@@ -3,7 +3,6 @@ require 'PHPMailer/_lib/class.phpmailer.php';
 //require 'PHPMailer/_lib/phpmailer-fe.php';
 require('conexao.php');
 
-$sql = "SELECT * FROM cadastroProf";
 
 // Função para enviar o e-mail
 function enviarEmail($assunto, $mensagem) {
@@ -13,15 +12,16 @@ function enviarEmail($assunto, $mensagem) {
     $mail->isSMTP();
     $mail->Host = 'smtp.gmail.com';
     $mail->SMTPAuth = true;
-    $mail->Username = 'email';
-    $mail->Password = 'senha';
+    $mail->Username = 'projetoflipifc@gmail.com';
+    $mail->Password = 'flipifc123';
     $mail->SMTPSecure = 'tls';
     $mail->Port = 587;
 
     // Configurações do e-mail
-    $mail->setFrom('email', 'Equipe FlipIFC');
+    $mail->From = 'projetoflipifc@gmail.com';
+    $mail->FromName = 'Equipe FlipIFC';
     
-    $mail->addAddress('destinatario');
+    $mail->addAddress('luizascrs@gmail.com');
 
  // Adicione mais endereços, se necessário
     $mail->isHTML(true);
@@ -96,7 +96,7 @@ function gerarRelatorioSemanal($semana) {
     $mensagem .= "</table>";
 
     // Enviar o e-mail
-    //$resultado = enviarEmail($assunto, $mensagem);
+   // $resultado = enviarEmail($assunto, $mensagem);
 
     // Exibir o resultado do envio (pode ser útil para debug, você pode remover ou tratar de outra forma)
     echo $mensagem;
