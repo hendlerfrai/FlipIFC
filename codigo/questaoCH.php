@@ -2,6 +2,9 @@
 include('conexao.php');
 require('verifica.php');
 
+$dataAtual = date("Y-m-d");
+$data_hora = date("Y-m-d H:i:s");
+
 $sql = "SELECT * FROM questao WHERE codArea = 1 ORDER BY RAND() LIMIT 1";
 $rs = mysqli_query($conn, $sql);
 $rt = mysqli_fetch_assoc($rs);
@@ -22,6 +25,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $stmt->fetch();
     $stmt->close();
 }
+
+$sql1 = "SELECT * FROM `resultado` WHERE data_hora='$dataAtual' AND codUser=$codUser";
+$rs1 = $conn->query($sql1);
+if ($rs1->num_rows >= 2) {
+header('Location: ppoP.php');
+}
 ?>
 
 <!DOCTYPE html>
@@ -32,7 +41,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
-    <!-- <script src="cronometro.js"></script> -->
+    <script src="cronometro.js"></script>
     <link rel="stylesheet" type="text/css" href="css/questoes.css">
 
     <title> pergunta </title>
