@@ -12,14 +12,13 @@ function enviarEmail($assunto, $mensagem) {
     $mail->isSMTP();
     $mail->Host = 'smtp.gmail.com';
     $mail->SMTPAuth = true;
-    $mail->Username = 'projetoflipifc@gmail.com';
-    $mail->Password = 'flipifc123';
+    $mail->Username = '@gmail.com';
+    $mail->Password = '';
     $mail->SMTPSecure = 'tls';
     $mail->Port = 587;
 
     // Configurações do e-mail
-    $mail->From = 'projetoflipifc@gmail.com';
-    $mail->FromName = 'Equipe FlipIFC';
+    $mail-> setFrom('@gmail.com', 'Equipe FlipIFC');
     
     $mail->addAddress('luizascrs@gmail.com');
 
@@ -36,7 +35,6 @@ function enviarEmail($assunto, $mensagem) {
         return "E-mail enviado com sucesso!";
     }
 }
-
 // Função para obter o nome da área pelo código
 function obterNomeDaAreaPeloCodigo($codigo) {
     include('conexao.php');
@@ -96,10 +94,10 @@ function gerarRelatorioSemanal($semana) {
     $mensagem .= "</table>";
 
     // Enviar o e-mail
-   // $resultado = enviarEmail($assunto, $mensagem);
+    $resultado = enviarEmail($assunto, $mensagem);
 
     // Exibir o resultado do envio (pode ser útil para debug, você pode remover ou tratar de outra forma)
-    echo $mensagem;
+    echo $resultado;
 }
 
 // Exemplo de uso - gerar relatório para a semana atual e enviar por e-mail
