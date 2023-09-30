@@ -1,41 +1,10 @@
 <?php
-require 'PHPMailer/_lib/class.phpmailer.php';
-//require 'PHPMailer/_lib/phpmailer-fe.php';
-require('conexao.php');
 
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\SMTP;
+use PHPMailer\PHPMailer\Exception;
+require '../vendor/autoload.php';
 
-// Função para enviar o e-mail
-function enviarEmail($assunto, $mensagem) {
-    $mail = new PHPMailer;
-
-    // Configurações do servidor de e-mail (substitua pelos dados do seu servidor)
-    $mail->isSMTP();
-    $mail->Host = 'smtp.gmail.com';
-    $mail->SMTPAuth = true;
-    $mail->Username = '@gmail.com';
-    $mail->Password = '';
-    $mail->SMTPSecure = 'tls';
-    $mail->Port = 587;
-
-    // Configurações do e-mail
-    $mail-> setFrom('@gmail.com', 'Equipe FlipIFC');
-    
-    $mail->addAddress('luizascrs@gmail.com');
-
- // Adicione mais endereços, se necessário
-    $mail->isHTML(true);
-
-    // Assunto e corpo do e-mail
-    $mail->Subject = $assunto;
-    $mail->Body = $mensagem;
-
-    if (!$mail->send()) {
-        return "Erro ao enviar o e-mail: " . $mail->ErrorInfo;
-    } else {
-        return "E-mail enviado com sucesso!";
-    }
-}
-// Função para obter o nome da área pelo código
 function obterNomeDaAreaPeloCodigo($codigo) {
     include('conexao.php');
 
@@ -50,22 +19,15 @@ function obterNomeDaAreaPeloCodigo($codigo) {
     }
 }
 
-// Função para gerar o relatório semanal com as áreas e enviar por e-mail
 function gerarRelatorioSemanal($semana) {
-        // Conexão com o banco de dados (substitua pelos dados do seu servidor)
+include('conexao.php');
 
-        include('conexao.php');
-
-    // Consulta para obter o relatório semanal
     $sql = "SELECT codArea, SUM(resultado) AS acertos, COUNT(*) AS total_questoes FROM resultado WHERE WEEK(data_hora) = WEEK('$semana') GROUP BY codArea";
     $result = $conn->query($sql);
-
  
-    // Montar o conteúdo do e-mail com as áreas e suas respectivas pontuações
     $assunto = "Relatório Semanal - " . date('Y-m-d', strtotime($semana));
     $mensagem = "<h2>Relatório Semanal - " . date('Y-m-d', strtotime($semana)) . "</h2>";
 
-    // Montar um array associativo para agrupar as pontuações por área
     $pontuacoesPorArea = array();
     while ($row = $result->fetch_assoc()) {
         $codArea = $row['codArea'];
@@ -73,17 +35,14 @@ function gerarRelatorioSemanal($semana) {
         $acertos = $row['acertos'];
         $total_questoes = $row['total_questoes'];
 
-        // Verificar se a área já existe no array, se não, criá-la
         if (!isset($pontuacoesPorArea[$area])) {
             $pontuacoesPorArea[$area] = array('acertos' => 0, 'total_questoes' => 0);
         }
 
-        // Adicionar as pontuações da questão à área correspondente
         $pontuacoesPorArea[$area]['acertos'] += $acertos;
         $pontuacoesPorArea[$area]['total_questoes'] += $total_questoes;
     }
 
-    // Montar a tabela com as áreas e suas respectivas pontuações
     $mensagem .= "<table>";
     $mensagem .= "<tr><th>Área</th><th>Acertos</th><th>Total de Questões</th></tr>";
     foreach ($pontuacoesPorArea as $area => $pontuacoes) {
@@ -93,15 +52,162 @@ function gerarRelatorioSemanal($semana) {
     }
     $mensagem .= "</table>";
 
-    // Enviar o e-mail
-    $resultado = enviarEmail($assunto, $mensagem);
+    $mail = new PHPMailer(true);
 
-    // Exibir o resultado do envio (pode ser útil para debug, você pode remover ou tratar de outra forma)
-    echo $resultado;
+    try {
+        $mail->SMTPDebug = SMTP::DEBUG_SERVER;
+        $mail->isSMTP();
+        $mail->Host = 'smtp.gmail.com';
+        $mail->SMTPAuth = true;
+        $mail->Port = 587;
+        $mail->Username = 'projetoflipifc@gmail.com';
+        $mail->Password = 'ewmk vfsc qidr rzcx';
+
+        $mail->setFrom('flipifc@ifc.com', 'Equipe FlipIFC');
+        $mail->addAddress('hendlerf.raissa@gmail.com');
+
+        $assunto = "Relatório Semanal - " . date('Y-m-d', strtotime($semana));
+        $mail->Subject = $assunto;
+        $mail->Body = $mensagem;
+
+        $mail->send();
+        return "E-mail enviado com sucesso!";
+    } catch (Exception $e) {
+        return "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
+    }
+    
 }
 
-// Exemplo de uso - gerar relatório para a semana atual e enviar por e-mail
-//$semanaAtual = date('Y-m-d');
-$semanaAtual = date('2023-09-13');
-gerarRelatorioSemanal($semanaAtual);
+$resultado = gerarRelatorioSemanal('2023-09-25');
+echo $resultado;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* codigo com grafico em pdf
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\SMTP;
+use PHPMailer\PHPMailer\Exception;
+require '../vendor/autoload.php';
+require '../tcpdf/tcpdf.php'; // Importe a biblioteca TCPDF
+
+function obterNomeDaAreaPeloCodigo($codigo) {
+    include('conexao.php');
+
+    $sql = "SELECT nome_area FROM area WHERE codArea = $codigo";
+    $result = $conn->query($sql);
+
+    if ($result->num_rows > 0) {
+        $row = $result->fetch_assoc();
+        return $row['nome_area'];
+    } else {
+        return "Área não encontrada";
+    }
+}
+
+function gerarRelatorioSemanal($semana) {
+    include('conexao.php');
+
+    $sql = "SELECT codArea, SUM(resultado) AS acertos, COUNT(*) AS total_questoes FROM resultado WHERE WEEK(data_hora) = WEEK('$semana') GROUP BY codArea";
+    $result = $conn->query($sql);
+
+    $assunto = "Relatório Semanal - " . date('Y-m-d', strtotime($semana));
+    $mensagem = "<h2>Relatório Semanal - " . date('Y-m-d', strtotime($semana)) . "</h2>";
+
+    $pontuacoesPorArea = array();
+    while ($row = $result->fetch_assoc()) {
+        $codArea = $row['codArea'];
+        $area = obterNomeDaAreaPeloCodigo($codArea);
+        $acertos = $row['acertos'];
+        $total_questoes = $row['total_questoes'];
+
+        if (!isset($pontuacoesPorArea[$area])) {
+            $pontuacoesPorArea[$area] = array('acertos' => 0, 'total_questoes' => 0);
+        }
+
+        $pontuacoesPorArea[$area]['acertos'] += $acertos;
+        $pontuacoesPorArea[$area]['total_questoes'] += $total_questoes;
+    }
+
+    // Crie um array de dados para o gráfico
+    $data = array();
+    $labels = array();
+
+    foreach ($pontuacoesPorArea as $area => $pontuacoes) {
+        $acertos = $pontuacoes['acertos'];
+        $total_questoes = $pontuacoes['total_questoes'];
+        $labels[] = $area;
+        $data[] = $acertos;
+    }
+
+    // Configurar o PDF usando TCPDF
+    $pdf = new TCPDF();
+    $pdf->SetMargins(20, 20, 20); // Margens
+    $pdf->AddPage();
+
+    // Adicionar cabeçalho
+    $pdf->SetFont('helvetica', 'B', 12);
+    $pdf->Cell(0, 10, 'Relatório Semanal', 0, 1, 'C');
+    $pdf->Cell(0, 10, 'Data: ' . date('Y-m-d', strtotime($semana)), 0, 1, 'C');
+
+    // Adicionar tabela HTML ao PDF
+    $pdf->writeHTML($mensagem, true, false, true, false, '');
+
+    // Adicionar rodapé
+    $pdf->SetY(-15);
+    $pdf->SetFont('helvetica', 'I', 8);
+    $pdf->Cell(0, 10, 'Página ' . $pdf->getAliasNumPage() . ' de ' . $pdf->getAliasNbPages(), 0, 0, 'C');
+
+    // Salvar o PDF em um arquivo
+    $pdf->Output('relatorio.pdf', 'F');
+
+    // Resto do código para enviar o e-mail com o PDF anexado
+    $mail = new PHPMailer(true);
+
+    try {
+        $mail->SMTPDebug = SMTP::DEBUG_SERVER;
+        $mail->isSMTP();
+        $mail->Host = 'smtp.gmail.com';
+        $mail->SMTPAuth = true;
+        $mail->Port = 587;
+        $mail->Username = 'projetoflipifc@gmail.com';
+        $mail->Password = 'ewmk vfsc qidr rzcx';
+
+        $mail->setFrom('flipifc@ifc.com', 'Equipe FlipIFC');
+        $mail->addAddress('raissa.hendler.felisberto@gmail.com');
+
+        $assunto = "Relatório Semanal - " . date('Y-m-d', strtotime($semana));
+        $mail->Subject = $assunto;
+        $mail->Body = $mensagem;
+
+        // Anexar o PDF ao e-mail
+        $pdfPath = 'relatorio.pdf';
+        $mail->addAttachment($pdfPath);
+
+        $mail->send();
+        return "E-mail enviado com sucesso!";
+    } catch (Exception $e) {
+        return "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
+    }
+}
+
+$resultado = gerarRelatorioSemanal('2023-09-25');
+echo $resultado;
+*/
 ?>
