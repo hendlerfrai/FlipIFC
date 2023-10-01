@@ -2,6 +2,7 @@
 include('conexao.php');
 require('verifica.php');
 
+$_SESSION['escolhaAnterior'] = "questaoLP";
 $sql = "SELECT * FROM questao WHERE codArea = 3 ORDER BY RAND() LIMIT 1";
 
 $rs = mysqli_query($conn, $sql);

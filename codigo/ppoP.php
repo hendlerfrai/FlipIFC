@@ -26,10 +26,10 @@
         </div>
 
     <script>$(document).ready(function() {
-        var botao1 = $('.botao1'); // Primeiro botão
-        var botao2 = $('.botao2'); // Segundo botão
+        var botao1 = $('.botao1'); 
+        var botao2 = $('.botao2');
 
-        var buttons = botao1.add(botao2); // Combina os botões em uma única seleção
+        var buttons = botao1.add(botao2); 
 
         var currentButtonIndex = 0;
 
@@ -47,8 +47,8 @@
                 currentButtonIndex = (currentButtonIndex - 1 + buttons.length) % buttons.length;
             }
 
-            buttons.blur(); // Remove o foco de todos os botões
-            buttons.eq(currentButtonIndex).focus(); // Aplica o foco ao botão atual
+            buttons.blur();
+            buttons.eq(currentButtonIndex).focus(); 
         });
     });
 </script>

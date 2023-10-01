@@ -1,0 +1,149 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Fontes personalizadas */
+@font-face {
+  font-family: "dogica";
+  src: url("dogicapixelbold.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "silk";
+  src: url("slkscr.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "letters";
+  src: url("Letters for Learners.ttf") format("truetype");
+}
+
+/* Cores */
+:root {
+  --primary-color: #a0b6e8;
+  --secondary-color: #a5a4ff;
+  --background-color: #a0b6e855;
+  --text-color: #00135c;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: #e4e0d7;
+  opacity: 0.8;
+  background-image: repeating-radial-gradient(
+      circle at 0 0,
+      transparent 0,
+      #e4e0d7 10px
+    ),
+    repeating-linear-gradient(#a0b6e855, #a0b6e8);
+  min-height: 100vh; /* 100% da altura da janela do navegador */
+}
+h1 {
+  text-align: center;
+  margin: 0 auto;
+  padding: 30px 0;
+  color: var(--text-color);
+  font-family: "dogica", sans-serif;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 2rem;
+  line-height: 1.5;
+  text-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
+  animation: pulseText 1s infinite alternate;
+}
+
+/* Animação de pulsar para o texto */
+@keyframes pulseText {
+  0% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(1.05);
+  }
+}
+
+/* Contador */
+.countdown {
+  text-align: center;
+  color: #cf3e6f;
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+  width: 25%;
+  margin: 0 auto;
+  animation: pulseCountdown 1.5s infinite alternate;
+}
+
+#countdown-timer {
+  padding-top: 20px;
+  text-align: center;
+  font-family: "dogica";
+  color: #cf3e6f;
+  font-size: 2rem;
+  text-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+/* Animação de pulsar para o contador */
+@keyframes pulseCountdown {
+  0% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(1.05);
+  }
+}
+
+/* Contador */
+.countdown {
+  text-align: center;
+  background-color: #fff;
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+  width: 25%;
+  margin: 0 auto;
+}
+
+#countdown-timer {
+  padding-top: 20px;
+  text-align: center;
+  font-family: "dogica";
+  color: #cf3e6f;
+  font-size: 2rem;
+  text-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+/* Imagens de ícones de jogos */
+.icon {
+  max-width: 50px;
+  height: auto;
+}
+
+/* Estilos para informações do jogo */
+.game-info {
+  color: #d71b1b;
+  padding: 20px;
+  text-align: center;
+  font-family: "silk", sans-serif;
+  font-size: 1.2rem;
+  margin-top: 20px;
+  text-transform: uppercase;
+  text-align: center; /* Centraliza o conteúdo horizontalmente */
+  margin-top: 20px;
+}
+
+.game-info h2 {
+  color: #00135c;
+  font-family: "dogica", sans-serif;
+  font-size: 1rem; /* Tamanho menor para o subtítulo */
+}

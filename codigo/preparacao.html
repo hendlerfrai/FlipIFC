@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" type="text/css" href="css/preparacao.css" />
+    <title>Preparação</title>
+  </head>
+  <body>
+    <h1>Prepare-se</h1>
+    <div class="game-info">
+      <h2>O jogo já vai começar!</h2>
+    </div>
+    <div class="countdown">
+      <div id="countdown-timer">6</div>
+    </div>
+    <script>
+      function updateCountdown() {
+        var countdownElement = document.getElementById("countdown-timer");
+        var countdownValue = parseInt(countdownElement.innerText);
+
+        if (countdownValue === 1) {
+          var targetUrl = sessionStorage.getItem("selectedAreaUrl");
+          if (targetUrl) {
+            window.location.href = targetUrl;
+          }
+        } else {
+          countdownValue--;
+          countdownElement.innerText = countdownValue;
+          setTimeout(updateCountdown, 1000);
+        }
+      }
+
+      document.addEventListener("DOMContentLoaded", function () {
+        updateCountdown();
+      });
+    </script>
+  </body>
+</html>

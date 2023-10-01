@@ -54,10 +54,10 @@
 
     </div>
     <script language="javascript">
-        $(document).ready(function() {
+     $(document).ready(function() {
     var buttons = $('.area-button');
     var currentButtonIndex = 0;
-    
+
     buttons.eq(currentButtonIndex).focus();
 
     buttons.keydown(function(event) {
@@ -65,7 +65,12 @@
 
         if (tecla == 13) {
             var targetUrl = $(this).find('a').attr('href');
-            window.location.href = targetUrl;
+
+            // Armazenar a URL da área selecionada na sessão
+            sessionStorage.setItem('selectedAreaUrl', targetUrl);
+
+            // Redirecionar para a tela de preparação
+            window.location.href = 'preparacao.html';
         } else if (tecla == 40) { // Seta para baixo
             currentButtonIndex = (currentButtonIndex + 2) % buttons.length;
         } else if (tecla == 38) { // Seta para cima
@@ -79,6 +84,7 @@
         buttons.eq(currentButtonIndex).focus();
     });
 });
+
     </script>
 </body>
 
