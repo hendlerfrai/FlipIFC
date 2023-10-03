@@ -8,17 +8,24 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" />
     <link rel="stylesheet" type="text/css" href="css/loginUser.css">
 
-    <title> FlipIFC </title>
+    <title>FlipIFC</title>
 </head>
 
 <body>
-
     <div style="margin-top: -70px; margin-left: 550px">
         <div class="row">
+        <div id="mensagem-erro">
+                        <?php
+                        session_start();
+                        if (isset($_SESSION['mensagemErro'])) {
+                            echo $_SESSION['mensagemErro'];
+                        }
+                        ?>
+                    </div>
             <div class="col-sm-4">
+                
                 <form method="POST" action="loginBack.php" class="form" style="margin-top: 90%;">
                     <p class="heading">Digite seu código:</p>
-                    </svg>
                     <div class="box">
                         <input class="input" type="password" maxlength="1" name="valor1" oninput="moveToNext(this, 'valor2')">
                         <input class="input" type="password" maxlength="1" name="valor2" oninput="moveToNext(this, 'valor3')">
@@ -26,9 +33,7 @@
                         <input class="input" type="password" maxlength="1" name="valor4" oninput="moveToNext(this, 'valor5')">
                         <input class="input" type="password" maxlength="1" name="valor5">
                     </div>
-                    <button class="btn1">
-                        <a href="areas.php" target="_self" style="password-decoration: none; color: black;"> Enviar </a>
-                    </button>
+                    <button type="submit" class="btn1">Enviar</button>
                 </form>
             </div>
         </div>
