@@ -137,6 +137,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <?php } else { ?>
             <!-- Mais de duas tentativas -->
             <p>Você atingiu o limite de tentativas para hoje. Aguarde até amanhã.</p>
+            
         <?php } ?>
     </div>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
