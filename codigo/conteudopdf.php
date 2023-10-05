@@ -121,7 +121,7 @@ function gerarRelatorioSemanal($segunda, $domingo) {
     $mensagem .= "</table>";
     ?>
 
-<!--  <div class="footer">Instituto Federal Catarinense Campus Avançado Sombrio<br>Av. Pref. Francisco Lumertz Júnior, 931 - Januária, Sombrio - SC, 88960-000<br>Contato: projetoflipifc@gmail.com</div> -->
+<div style="position: absolute; bottom: 0; text-align: center; padding: 10px; background-color: #d2dde9; width: 100%;">Instituto Federal Catarinense Campus Avançado Sombrio<br>Av. Pref. Francisco Lumertz Júnior, 931 - Januária, Sombrio - SC, 88960-000<br>Contato: projetoflipifc@gmail.com</div>
 
 <?php
     echo $mensagem;
