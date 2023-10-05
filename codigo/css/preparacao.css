@@ -75,9 +75,9 @@ h1 {
 /* Contador */
 .countdown {
   text-align: center;
-  color: #cf3e6f;
+  color: #c3cbe0;
   border-radius: 10px;
-  padding: 20px;
+  padding: 5px;
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
   width: 25%;
   margin: 0 auto;

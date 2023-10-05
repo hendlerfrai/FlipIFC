@@ -74,7 +74,6 @@ $resultContagem = $conn->query($sqlContagem);
 $row = $resultContagem->fetch_row();
 $numAparicoes = $row[0];
 
-echo $numAparicoes;
 ?>
 <div>
     <h1 id="titulo">
