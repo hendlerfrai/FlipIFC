@@ -10,7 +10,7 @@
 }
 
 body {
-    background-color: white; /* Correção: remova as aspas em 'white' */
+    background-color: white;
     margin: 0;
     padding: 0;
     position: relative;
@@ -25,11 +25,11 @@ table {
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     border-radius: 10px;
     overflow: hidden;
-    background-color: #fff; /* Cor de fundo da tabela */
+    background-color: #fff;
 }
 
 th, td {
-    font-family: 'customFont', sans-serif; /* Use a fonte personalizada aqui */
+    font-family: 'customFont', sans-serif; 
     padding: 12px 15px;
     text-align: center;
     border-bottom: 1px solid #ddd;
