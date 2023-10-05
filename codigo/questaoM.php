@@ -2,9 +2,26 @@
 include('conexao.php');
 require('verifica.php');
 
-$_SESSION['escolhaAnterior'] = "questaoM";
+// Certifique-se de que a variável de sessão 'codUser' esteja definida
+if (!isset($_SESSION['codUser'])) {
+    echo "Erro: Sessão não iniciada.";
+    exit();
+}
+
+$_SESSION['escolhaAnterior'] = "questaoLP";
+$dataAtual = date("Y-m-d");
+$data_hora = date("Y-m-d H:i:s");
+
+$codUser = $_SESSION['codUser'];
 
 $sql = "SELECT * FROM questao WHERE codArea = 4 ORDER BY RAND() LIMIT 1";
+
+$aparicao = 0; 
+
+$sqlAparicao = "SELECT * FROM `acabou` WHERE codUser = $codUser AND DATE(data_hora) = '$dataAtual'";
+$rsAparicao = $conn->query($sqlAparicao);
+$aparicao = $rsAparicao->num_rows;
+
 $rs = mysqli_query($conn, $sql);
 $rt = mysqli_fetch_assoc($rs);
 
@@ -23,6 +40,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $stmt->bind_result($altCorreta);
     $stmt->fetch();
     $stmt->close();
+}
+
+$sql1 = "SELECT * FROM `resultado` WHERE data_hora='$dataAtual' AND codUser=$codUser";
+$rs1 = $conn->query($sql1);
+if ($rs1->num_rows >= 2 || $aparicao >= 2) {
+    header('Location: ppoP.php');
+    exit; // Certifique-se de sair após o redirecionamento
 }
 ?>
 

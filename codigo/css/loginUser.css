@@ -6,7 +6,9 @@
   border-radius: 15px;
   background-color: rgb(216, 216, 216);
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-  transition: .4s ease-in-out;
+  transition: 0.4s ease-in-out;
+  position: relative;
+  z-index: 1;
 }
 
 .form:hover {
@@ -37,23 +39,20 @@
   border: none;
   outline: none;
   background-color: rgb(235, 235, 235);
-  box-shadow: inset 3px 3px 6px #d1d1d1,
-    inset -3px -3px 6px #ffffff;
+  box-shadow: inset 3px 3px 6px #d1d1d1, inset -3px -3px 6px #ffffff;
   top: 7.5em;
   left: 1.5em;
   padding-left: 15px;
-  transition: .4s ease-in-out;
+  transition: 0.4s ease-in-out;
 }
 
 .input:hover {
-  box-shadow: inset 0px 0px 0px #d1d1d1,
-    inset 0px 0px 0px #ffffff;
+  box-shadow: inset 0px 0px 0px #d1d1d1, inset 0px 0px 0px #ffffff;
   background-color: lightgrey;
 }
 
 .input:focus {
-  box-shadow: inset 0px 0px 0px #d1d1d1,
-    inset 0px 0px 0px #ffffff;
+  box-shadow: inset 0px 0px 0px #d1d1d1, inset 0px 0px 0px #ffffff;
   background-color: lightgrey;
 }
 
@@ -66,17 +65,34 @@
   border-radius: 5px;
   border: none;
   outline: none;
-  transition: .4s ease-in-out;
-  box-shadow: 1px 1px 3px #b5b5b5,
-    -1px -1px 3px #ffffff;
+  transition: 0.4s ease-in-out;
+  box-shadow: 1px 1px 3px #b5b5b5, -1px -1px 3px #ffffff;
 }
 
 .btn1:active {
-  box-shadow: inset 3px 3px 6px #b5b5b5,
-    inset -3px -3px 6px #ffffff;
+  box-shadow: inset 3px 3px 6px #b5b5b5, inset -3px -3px 6px #ffffff;
 }
 
 body {
-  background: radial-gradient(circle at 50% 50%,#e4e0d7, #cf3e6f, #5a54c5);
+  background: radial-gradient(circle at 50% 50%, #e4e0d7, #cf3e6f, #5a54c5);
   background-size: cover;
+}
+
+#mensagem-erro {
+  background-color: #ffcccc;
+  color: #cc0000;
+  padding: 10px;
+  border: 1px solid #cc0000;
+  border-radius: 5px;
+  margin-top: 150px;
+  text-align: center;
+  font-weight: bold;
+  max-width: 300px; /* Ajuste a largura máxima da mensagem de erro conforme necessário */
+  margin-left: auto;
+  margin-right: auto;
+  position: absolute; /* Defina a posição como absoluta para posicionar acima do formulário */
+  top: -40px; /* Ajuste a posição vertical conforme necessário para que fique acima do formulário */
+  left: 0;
+  right: 0;
+  z-index: 2; /* Defina uma camada de sobreposição superior para a mensagem de erro */
 }

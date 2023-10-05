@@ -4,61 +4,78 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
     <link rel="stylesheet" type="text/css" href="css/ppoProgresso.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
     <title>FlipIFC</title>
 </head>
 <body>
 <?php
+
 include('conexao.php');
 require('verifica.php');
 
 if (!isset($_SESSION['codUser'])) {
-    echo "erro"; 
+    echo "Erro: Sessão não iniciada.";
     exit();
 }
 
 $escolhaAnterior = $_SESSION['escolhaAnterior'];
+$codUser = $_SESSION['codUser'];
 
-$mensagem = ""; 
-if (isset($_SESSION['codUser'])) {
-    $codUser = $_SESSION['codUser'];
+$aparicao = 0;
+$dataAtual = date('Y-m-d'); 
 
-    $dataAtual = date('Y-m-d'); 
+// Verifique se já existe um registro na tabela 'acabou' para o usuário e data atual
+$sqlAparicao = "SELECT * FROM `acabou` WHERE codUser = $codUser AND DATE(data_hora) = '$dataAtual'";
+$rsAparicao = $conn->query($sqlAparicao);
+$aparicao = $rsAparicao->num_rows;
 
-    $sqlTentativas = "SELECT * FROM `resultado` WHERE codUser = $codUser AND DATE(data_hora) = '$dataAtual'";
-    $rsTentativas = $conn->query($sqlTentativas);
-    $numTentativas = $rsTentativas->num_rows;
+// Verifique se já existe um registro na tabela 'resultado' para o usuário e data atual
+$sqlTentativas = "SELECT * FROM `resultado` WHERE codUser = $codUser AND DATE(data_hora) = '$dataAtual'";
+$rsTentativas = $conn->query($sqlTentativas);
+$numTentativas = $rsTentativas->num_rows;
 
-    if ($numTentativas == 0) {
-        $mensagem = "Deseja ir para a próxima questão?"; 
-        switch ($escolhaAnterior) {
-            case "questaoCN":
-                $urlBotaoSim = "questaoCN.php"; 
-                break;
-            case "questaoLP":
-                $urlBotaoSim = "questaoLP.php"; 
-                break;
-            case "questaoM":
-                $urlBotaoSim = "questaoM.php"; 
-                break;
-            case "questaoCH":
-                $urlBotaoSim = "questaoCH.php"; 
-                break;
-            default:
-                $urlBotaoSim = "questaoCH.php"; 
-                break;
-        }
-    } elseif ($numTentativas == 1) {
-        $mensagem = "Deseja acessar o ranking?";
-        $urlBotaoSim = "ranking.php"; 
-    } 
+$mensagem = "";
+
+if ($numTentativas == 0 && $aparicao == 0) {
+    $mensagem = "Deseja ir para a próxima questão?"; 
+    switch ($escolhaAnterior) {
+        case "questaoCN":
+            $urlBotaoSim = "questaoCN.php"; 
+            break;
+        case "questaoLP":
+            $urlBotaoSim = "questaoLP.php"; 
+            break;
+        case "questaoM":
+            $urlBotaoSim = "questaoM.php"; 
+            break;
+        case "questaoCH":
+            $urlBotaoSim = "questaoCH.php"; 
+            break;
+        default:
+            $urlBotaoSim = "questaoCH.php"; 
+            break;
+    }
 } else {
-    echo "erro";
-    exit();
+    $mensagem = "Deseja acessar o ranking?";
+    $urlBotaoSim = "ranking.php"; // Defina a URL apropriada aqui
 }
-?>
 
+$aparicao += 1; // Incrementa a aparição em 1
+
+// Insere a nova aparição na tabela 'acabou'
+$sqlInserirAparicao = "INSERT INTO `acabou` (codUser, data_hora, aparicao) VALUES ('$codUser', NOW(), $aparicao)";
+$conn->query($sqlInserirAparicao);
+
+// Conta o número real de aparições na tabela 'acabou'
+$sqlContagem = "SELECT COUNT(*) FROM `acabou` WHERE codUser = $codUser";
+$resultContagem = $conn->query($sqlContagem);
+$row = $resultContagem->fetch_row();
+$numAparicoes = $row[0];
+
+echo $numAparicoes;
+?>
 <div>
     <h1 id="titulo">
         O tempo acabou :(
