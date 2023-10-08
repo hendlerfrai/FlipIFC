@@ -103,14 +103,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <?php if ($pontuacao == $altCorreta) { ?>
                 <h1>Parabéns, você acertou! Pronto para a próxima questão?</h1>
                 <button class="botao1" type="submit" >
-                    <span class="botaoproximo">  <a href="questaoCN.php">Próxima Questão</a> </span>
+                    <span class="botaoproximo">  <a href="questaoLP.php">Próxima Questão</a> </span>
                  </button>
             <?php } else { ?>
                 <h1>Você errou :( </h1>
                 <h2>Voce assinalou a alternativa: <?php echo getAlternativaCompleta($pontuacao, ${"alt" . $pontuacao}); ?></h2>
                 <h2> A alternativa correta era: <?php echo getAlternativaCompleta($altCorreta, ${"alt" . $altCorreta}); ?></h2>
                 <button class="botao1" type="submit" >
-                    <span class="botaoproximo"> <a href="questaoCN.php">Tentar Novamente</a></span>
+                    <span class="botaoproximo"> <a href="questaoLP.php">Tentar Novamente</a></span>
                  </button>
             <?php } ?>
         <?php } elseif ($numTentativas == 1) { ?>
