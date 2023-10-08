@@ -10,6 +10,8 @@ $query = "SELECT cadastro.nomeAluno, SUM(resultado.resultado) AS total_acertos
           ORDER BY total_acertos DESC
           LIMIT 10";
 $result = mysqli_query($conn, $query);
+header("refresh:120;url=index.php");
+
 ?>
 
 <!DOCTYPE html>
@@ -64,6 +66,7 @@ $result = mysqli_query($conn, $query);
             echo "</tr>";
             $posicao++;
         }
+        
         ?>
 </tbody>
 
@@ -82,5 +85,6 @@ $result = mysqli_query($conn, $query);
    
 });
     </script>
+    
 </body>
 </html>

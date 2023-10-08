@@ -87,5 +87,7 @@
 
     </script>
 </body>
-
+<?php
+header("refresh:120;url=index.php");
+?>
 </html>

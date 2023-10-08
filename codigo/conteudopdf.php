@@ -212,59 +212,74 @@
     </style>
 </head>
 <body>
-    <?php
-    require('conexao.php');
+<?php
+require('conexao.php'); 
+?>
+    <div class="header">
+        <div class="F1"></div>
+        <div class="F2"></div>
+        <div class="F3"></div>
+        <div class="L"></div>
+        <div class="I1"></div>
+        <div class="I2"></div>
+        <div class="P1"></div>
+        <div class="P2"></div>
+        <div class="P3"></div>
+        <h1> IFC </h1>
+    </div>
 
-    function obterNomeDaAreaPeloCodigo($codigo) {
-        global $conn;
+<?php
+function obterNomeDaAreaPeloCodigo($codigo) {
+    global $conn;
 
-        $sql = "SELECT nome_area FROM area WHERE codArea = $codigo";
-        $result = $conn->query($sql);
+    $sql = "SELECT nome_area FROM area WHERE codArea = $codigo";
+    $result = $conn->query($sql);
 
-        if ($result->num_rows > 0) {
-            $row = $result->fetch_assoc();
-            return $row['nome_area'];
-        } else {
-            return "Área não encontrada";
-        }
+    if ($result->num_rows > 0) {
+        $row = $result->fetch_assoc();
+        return $row['nome_area'];
+    } else {
+        return "Área não encontrada";
     }
+}
 
-    $today = new DateTime();
-    $lastWeekStart = clone $today;
-    $lastWeekStart->modify('-2 week')->modify('Monday');
-    $lastWeekEnd = clone $lastWeekStart;
-    $lastWeekEnd->modify('+6 days')->setTime(23, 59, 59);
+function obterNomeDaTurmaPeloCodigo($codigo) {
+    global $conn;
 
-    gerarRelatorioSemanal($lastWeekStart->format('Y-m-d'), $lastWeekEnd->format('Y-m-d'));
+    $sql = "SELECT nome_turma FROM turma WHERE codTurma = $codigo"; 
+    $result = $conn->query($sql);
 
-    function gerarRelatorioSemanal($segunda, $domingo) {
-        global $conn;
+    if ($result->num_rows > 0) {
+        $row = $result->fetch_assoc();
+        return $row['nome_turma'];
+    } else {
+        return "Turma não encontrada";
+    }
+}
 
-        $sql = "SELECT codArea, SUM(resultado) AS acertos, COUNT(*) AS total_questoes FROM resultado WHERE data_hora >= '$segunda' AND data_hora <= '$domingo' GROUP BY codArea";
+function gerarRelatorioTurma($codTurma) {
+    global $conn;
+
+    $nomeTurma = obterNomeDaTurmaPeloCodigo($codTurma);
+    
+        $sql_alunos = "SELECT * FROM cadastro WHERE codTurma = $codTurma";
+        $result_alunos = $conn->query($sql_alunos);
+
+        $today = new DateTime();
+        $lastWeekStart = clone $today;
+        $lastWeekStart->modify('-2 week')->modify('Monday');
+        $lastWeekEnd = clone $lastWeekStart;
+        $lastWeekEnd->modify('+6 days')->setTime(23, 59, 59);
+
+        $start_date = $lastWeekStart->format('Y-m-d');
+        $end_date = $lastWeekEnd->format('Y-m-d');
+    
+        $sql = "SELECT codArea, SUM(resultado) AS acertos, COUNT(*) AS total_questoes FROM resultado WHERE data_hora BETWEEN '$start_date' AND '$end_date' AND codUser IN (SELECT codUser FROM cadastro WHERE codTurma = $codTurma) GROUP BY codArea";
         $result = $conn->query($sql);
-
-        $assunto = "Relatório Semanal - $segunda até $domingo";
-        ?>
-
-        <div class="header">
-    <div class="F1"></div>
-    <div class="F2"></div>
-    <div class="F3"></div>
-
-    <div class="L"></div>
-
-    <div class="I1"></div>
-    <div class="I2"></div>
-
-    <div class="P1"></div>
-    <div class="P2"></div>
-    <div class="P3"></div>
-
-    <h1> IFC </h1>
-        </div>
-
-        <?php
-        $mensagem = "<h2>Relatório Semanal - $segunda até $domingo</h2>";
+    
+        $assunto = "Relatório Semanal - $start_date até $end_date";
+        
+        $mensagem = "<h2>Relatório Semanal - $start_date até $end_date - $nomeTurma</h2>";
 
         $pontuacoesPorArea = array();
         while ($row = $result->fetch_assoc()) {
@@ -272,11 +287,11 @@
             $area = obterNomeDaAreaPeloCodigo($codArea);
             $acertos = $row['acertos'];
             $total_questoes = $row['total_questoes'];
-
+    
             if (!isset($pontuacoesPorArea[$area])) {
                 $pontuacoesPorArea[$area] = array('acertos' => 0, 'total_questoes' => 0);
             }
-
+    
             $pontuacoesPorArea[$area]['acertos'] += $acertos;
             $pontuacoesPorArea[$area]['total_questoes'] += $total_questoes;
         }
@@ -290,12 +305,16 @@
         }
         $mensagem .= "</table>";
         echo '</div>';
-        ?>
-
-        <div style="position: absolute; bottom: 0; text-align: center; padding: 10px; background-color: #d2dde9; width: 97.5%;">Instituto Federal Catarinense Campus Avançado Sombrio<br>Av. Pref. Francisco Lumertz Júnior, 931 - Januária, Sombrio - SC, 88960-000<br>Contato: projetoflipifc@gmail.com</div>
-        <?php
         echo $mensagem;
     }
-    ?>
+    
+gerarRelatorioTurma(1);
+gerarRelatorioTurma(2);
+gerarRelatorioTurma(3);
+
+?>
+
+<footer style="position: absolute; bottom: 0; text-align: center; padding: 10px; background-color: #d2dde9; width: 97.5%;">Instituto Federal Catarinense Campus Avançado Sombrio<br>Av. Pref. Francisco Lumertz Júnior, 931 - Januária, Sombrio - SC, 88960-000<br>Contato: projetoflipifc@gmail.com</footer>
+
 </body>
 </html>

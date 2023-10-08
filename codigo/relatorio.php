@@ -20,7 +20,7 @@ try {
 
     // Remetente e destinatário
     $mail->setFrom('flipifc@ifc.com', 'Equipe FlipIFC');
-    $mail->addAddress('projetoflipifc@gmail.com');
+    $mail->addAddress('luizascrs@gmail.com');
 
     $dataInicioSemana = date('Y-m-d', strtotime('last monday', strtotime('this week')));
     $dataFimSemana = date('Y-m-d', strtotime('last sunday', strtotime('this week')));

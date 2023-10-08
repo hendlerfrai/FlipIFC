@@ -59,5 +59,8 @@
     });
 });
 </script>
+<?php
+header("refresh:120;url=index.php");
+?>
 </body>
 </html>

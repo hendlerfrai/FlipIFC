@@ -11,6 +11,7 @@
 </head>
 <body>
 <?php
+header("refresh:120;url=index.php");
 
 include('conexao.php');
 require('verifica.php');

@@ -1,4 +1,6 @@
 <?php
+header("refresh:120;url=index.php");
+
 function getAlternativaCompleta($alternativa, $questao) {
     switch ($alternativa) {
         case 'A':

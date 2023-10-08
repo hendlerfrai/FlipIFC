@@ -1,3 +1,6 @@
+<?php
+header("refresh:120;url=index.php");
+?>
 <!DOCTYPE html>
 <html lang="pt-br">
 

@@ -30,4 +30,5 @@ if (!empty($valor1) && !empty($valor2) && !empty($valor3) && !empty($valor4) && 
     header("Location: telaloginUsuario.php");
     exit();
 }
+
 ?>

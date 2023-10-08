@@ -4,7 +4,101 @@
         <?php
         include "conexao.php";
         ?>
+<style>
+    /* Reset de estilos para remover margens e preenchimentos padrão */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 
+/* Defina uma fonte de backup em caso de falha no carregamento da fonte principal */
+body {
+    font-family: 'Poppins', sans-serif;
+}
+
+/* Estilo para o título principal */
+h1 {
+    font-size: 36px;
+    text-align: center;
+    margin-top: 20px;
+    color: #333;
+}
+
+/* Estilo para o formulário de criação de conta */
+.formulario {
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f5f5f5;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+.formulario h3 {
+    font-size: 24px;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.formulario label {
+    display: block;
+    margin-bottom: 10px;
+    color: #555;
+}
+
+.formulario input[type="text"],
+.formulario select {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.formulario select {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-image: url('https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css');
+    background-repeat: no-repeat;
+    background-position: right center;
+    background-size: 16px;
+}
+
+/* Estilo para o botão de cadastro */
+#jogo input[type="submit"] {
+    background-color: #007BFF;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#jogo input[type="submit"]:hover {
+    background-color: #0056b3;
+}
+
+/* Estilo para o botão "já tenho uma conta" */
+.login button {
+    background-color: transparent;
+    border: none;
+    padding: 10px;
+    margin-top: 20px;
+    cursor: pointer;
+}
+
+.login a {
+    text-decoration: none;
+    color: #007BFF;
+}
+
+.login button:hover a {
+    text-decoration: underline;
+}
+
+</style>
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
