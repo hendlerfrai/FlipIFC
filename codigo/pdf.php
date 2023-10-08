@@ -12,6 +12,16 @@ $html = "
     <html>
     <head>
         <meta charset='UTF-8'>
+        <style>
+        .header {
+            background-color: #fff;
+            width: 70%;
+            transform: scale(0.7); /* Adicione essa linha para diminuir todos os elementos em 20% */
+            transform-origin: top left;
+            margin-left: 350px;
+            margin-bottom: -600px;
+        }
+        </style>
     </head>
     <body>
         " . $html ."

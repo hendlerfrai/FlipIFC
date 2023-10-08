@@ -75,8 +75,8 @@ h1 {
   width: 90px;
 }
 
-button:hover {
-  background-color: #d69999;
+.button-hover {
+  background-color: #b66b6b;
   width: 100px;
   height: 50px;
 }

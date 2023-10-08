@@ -100,79 +100,79 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <?php if ($numTentativas == 0) { ?>
             <!-- Primeira tentativa -->
             <?php if ($pontuacao == $altCorreta) { ?>
-
                 <h1>Parabéns, você acertou! Pronto para a próxima questão?</h1>
-                <button class="botao1-button" type="submit">
-                    <span class="botaoproximo">  <a href="questaoCH.php">Próxima Questão</a> </span>
+                <button class="botao1" type="submit" >
+                    <span class="botaoproximo">  <a href="questaoCN.php">Próxima Questão</a> </span>
                  </button>
             <?php } else { ?>
-                <h1 style= "padding: 20px; margin-top: 200px;">Você errou :( </h1>
-                <h2 style= "padding: 10px;" >Você assinalou a alternativa: <?php echo getAlternativaCompleta($pontuacao, ${"alt" . $pontuacao}); ?></h2>
-                <h2 style= "padding: 10px;"> A alternativa correta era: <?php echo getAlternativaCompleta($altCorreta, ${"alt" . $altCorreta}); ?></h2>
-                <button class="botao1-button" type="submit">
-                    <span class="botaoproximo"> <a href="questaoCH.php">Tentar Novamente</a></span>
+                <h1>Você errou :( </h1>
+                <h2>Voce assinalou a alternativa: <?php echo getAlternativaCompleta($pontuacao, ${"alt" . $pontuacao}); ?></h2>
+                <h2> A alternativa correta era: <?php echo getAlternativaCompleta($altCorreta, ${"alt" . $altCorreta}); ?></h2>
+                <button class="botao1" type="submit" >
+                    <span class="botaoproximo"> <a href="questaoCN.php">Tentar Novamente</a></span>
                  </button>
-        <?php } ?>
+            <?php } ?>
         <?php } elseif ($numTentativas == 1) { ?>
             <!-- Segunda tentativa -->
             <?php if ($pontuacao == $altCorreta) { ?>
-                <h1 style= "padding: 20px; margin-top: 300px;" >Você acertou! Suas tentativas acabaram.</h1>
-                <button class="botao1-button" type="submit">
+                <h1>Você acertou! Suas tentativas acabaram.</h1>
+                <button class="botao1" type="submit" >
                     <span class="botaoproximo" > <a href="ranking.php">Ver Ranking</a></span>
                  </button>
-                 <button class="botao2-button" type="submit">
+                 <button class="botao2" type="submit" >
                     <a href="index.php">Logout</a>
                 </button>
             <?php } else { ?>
-               <h1 style= "padding: 20px; margin-top: 200px;"> Você errou :( </h1>
-                <h2 style= "padding: 10px;">Você assinalou a alternativa: <?php echo getAlternativaCompleta($pontuacao, ${"alt" . $pontuacao}); ?></h2>
-                <h2 style= "padding: 10px;"> A alternativa correta era: <?php echo getAlternativaCompleta($altCorreta, ${"alt" . $altCorreta}); ?></h2>
-                <h3 style= "padding: 10px;"> Suas tentativas acabaram. </h3>
-                <button class="botao1-button" type="submit">
+               <h1>Você errou :( </h1>
+                <h2>Voce assinalou a alternativa: <?php echo getAlternativaCompleta($pontuacao, ${"alt" . $pontuacao}); ?></h2>
+                <h2> A alternativa correta era: <?php echo getAlternativaCompleta($altCorreta, ${"alt" . $altCorreta}); ?></h2>
+                <h3> Suas tentativas acabaram. </h3>
+                <button class="botao1" type="submit"> 
                     <span class="botaoproximo"> <a href="ranking.php">Ver Ranking</a></span>
                  </button>
-                 <button class="botao2-button" type="submit">
+                 <button class="botao2" type="submit" >
                     <a href="index.php">Logout</a>
                  </button>
             <?php } ?>
         <?php } else { ?>
+            <!-- Mais de duas tentativas -->
             <p>Você atingiu o limite de tentativas para hoje. Aguarde até amanhã.</p>
         <?php } ?>
     </div>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
     $(document).ready(function() {
-        var botao1 = $('.botao1-button'); // Primeiro botão
-        var botao2 = $('.botao2-button'); // Segundo botão
+    var botao1 = $('.botao1'); // Primeiro botão
+    var botao2 = $('.botao2'); // Segundo botão
+    var buttons = botao1.add(botao2); 
+    var currentButtonIndex = 0;
 
-        var buttons = botao1.add(botao2); // Combina os botões em uma única seleção
-
-        var currentButtonIndex = 0;
-
-        buttons.eq(currentButtonIndex).focus();
-
-        $(document).keydown(function(event) {
-            var tecla = event.keyCode;
-
-            if (tecla == 13) { // Tecla Enter
-                var targetUrl = buttons.eq(currentButtonIndex).find('a').attr('href');
-                window.location.href = targetUrl;
-            } else if (tecla == 37) { 
-                currentButtonIndex = (currentButtonIndex + 1) % buttons.length;
-            } else if (tecla == 39) { 
-                currentButtonIndex = (currentButtonIndex - 1 + buttons.length) % buttons.length;
-            }
-
-            buttons.blur(); // Remove o foco de todos os botões
-            buttons.eq(currentButtonIndex).focus(); // Aplica o foco ao botão atual
-        });
+    buttons.on('focus', function() {
+        $(this).addClass('button-hover');
     });
+
+    buttons.on('blur', function() {
+        $(this).removeClass('button-hover');
+    });
+
+    $(document).keydown(function(event) {
+        var tecla = event.keyCode;
+
+        if (tecla == 13) { // Tecla Enter
+            var targetUrl = buttons.eq(currentButtonIndex).find('a').attr('href');
+            window.location.href = targetUrl;
+        } else if (tecla == 37) { 
+            currentButtonIndex = (currentButtonIndex + 1) % buttons.length;
+        } else if (tecla == 39) { 
+            currentButtonIndex = (currentButtonIndex - 1 + buttons.length) % buttons.length;
+        }
+
+        buttons.blur();
+        buttons.eq(currentButtonIndex).focus(); 
+    });
+});
+
 </script>
 
 </body>
 </html>
-
-
-
-
-

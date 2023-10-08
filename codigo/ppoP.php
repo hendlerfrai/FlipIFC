@@ -25,33 +25,39 @@
         </button>
         </div>
 
-    <script>$(document).ready(function() {
-        var botao1 = $('.botao1'); 
-        var botao2 = $('.botao2');
+    <script>
+    $(document).ready(function() {
+    var botao1 = $('.botao1'); 
+    var botao2 = $('.botao2');
+    var buttons = botao1.add(botao2); 
+    var currentButtonIndex = 0;
 
-        var buttons = botao1.add(botao2); 
+    buttons.eq(currentButtonIndex).focus();
 
-        var currentButtonIndex = 0;
-
-        buttons.eq(currentButtonIndex).focus();
-
-        $(document).keydown(function(event) {
-            var tecla = event.keyCode;
-
-            if (tecla == 13) { // Tecla Enter
-                var targetUrl = buttons.eq(currentButtonIndex).find('a').attr('href');
-                window.location.href = targetUrl;
-            } else if (tecla == 37) { 
-                currentButtonIndex = (currentButtonIndex + 1) % buttons.length;
-            } else if (tecla == 39) { 
-                currentButtonIndex = (currentButtonIndex - 1 + buttons.length) % buttons.length;
-            }
-
-            buttons.blur();
-            buttons.eq(currentButtonIndex).focus(); 
-        });
+    buttons.on('focus', function() {
+        $(this).addClass('button-hover');
     });
+
+    buttons.on('blur', function() {
+        $(this).removeClass('button-hover');
+    });
+
+    $(document).keydown(function(event) {
+        var tecla = event.keyCode;
+
+        if (tecla == 13) { // Tecla Enter
+            var targetUrl = buttons.eq(currentButtonIndex).find('a').attr('href');
+            window.location.href = targetUrl;
+        } else if (tecla == 37) { 
+            currentButtonIndex = (currentButtonIndex + 1) % buttons.length;
+        } else if (tecla == 39) { 
+            currentButtonIndex = (currentButtonIndex - 1 + buttons.length) % buttons.length;
+        }
+
+        buttons.blur();
+        buttons.eq(currentButtonIndex).focus(); 
+    });
+});
 </script>
-    </script>
 </body>
 </html>

@@ -14,14 +14,14 @@
 <body>
     <div style="margin-top: -70px; margin-left: 550px">
         <div class="row">
-        <div id="mensagem-erro">
-                        <?php
-                        session_start();
-                        if (isset($_SESSION['mensagemErro'])) {
-                            echo $_SESSION['mensagemErro'];
-                        }
-                        ?>
-                    </div>
+        <?php
+            session_start();
+            if (isset($_SESSION['mensagemErro'])) {
+            echo "<div id='mensagem-erro'>";
+            echo $_SESSION['mensagemErro'];
+            unset ($_SESSION['mensagemErro']);
+            echo "</div>";         
+        }?>
             <div class="col-sm-4">
                 
                 <form method="POST" action="loginBack.php" class="form" style="margin-top: 90%;">
