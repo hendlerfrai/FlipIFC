@@ -2,7 +2,6 @@
 include('conexao.php');
 require('verifica.php');
 
-// Certifique-se de que a variável de sessão 'codUser' esteja definida
 if (!isset($_SESSION['codUser'])) {
     echo "Erro: Sessão não iniciada.";
     exit();
@@ -14,16 +13,20 @@ $data_hora = date("Y-m-d H:i:s");
 
 $codUser = $_SESSION['codUser'];
 
-$sql = "SELECT * FROM questao WHERE codArea = 3 ORDER BY RAND() LIMIT 1";
-
-$aparicao = 0; 
-
 $sqlAparicao = "SELECT * FROM `acabou` WHERE codUser = $codUser AND DATE(data_hora) = '$dataAtual'";
 $rsAparicao = $conn->query($sqlAparicao);
 $aparicao = $rsAparicao->num_rows;
 
-$rs = mysqli_query($conn, $sql);
-$rt = mysqli_fetch_assoc($rs);
+do {
+    $sql = "SELECT * FROM questao WHERE codArea = 3 ORDER BY RAND() LIMIT 1";
+    $rs = mysqli_query($conn, $sql);
+    $rt = mysqli_fetch_assoc($rs);
+    $idQ = $rt['codQuestao'];
+
+    $sqlCheck = "SELECT 1 FROM resultado WHERE codUser = $codUser AND codQuestao = $idQ";
+    $rsCheck = mysqli_query($conn, $sqlCheck);
+    $questaoJaRespondida = mysqli_num_rows($rsCheck) > 0;
+} while ($questaoJaRespondida);
 
 $query = "SELECT nomeAluno, codUser FROM cadastro WHERE codUser = '$codUser'";
 $result = mysqli_query($conn, $query);
@@ -31,9 +34,7 @@ $aluno = mysqli_fetch_array($result);
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $pontuacao = $_POST['alternativa'];
-    $idQ = $rt['codQuestao'];
 
-    // Faz a verificação da resposta aqui
     $stmt = $conn->prepare("SELECT resposta FROM questao WHERE codQuestao = ?");
     $stmt->bind_param("s", $idQ);
     $stmt->execute();
@@ -46,10 +47,9 @@ $sql1 = "SELECT * FROM `resultado` WHERE data_hora='$dataAtual' AND codUser=$cod
 $rs1 = $conn->query($sql1);
 if ($rs1->num_rows >= 2 || $aparicao >= 2) {
     header('Location: ppoP.php');
-    exit; // Certifique-se de sair após o redirecionamento
+    exit; 
 }
 ?>
-
 
 <!DOCTYPE html>
 <html lang="pt-br">
