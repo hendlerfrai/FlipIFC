@@ -8,7 +8,7 @@ if (!isset($_SESSION['codUser'])) {
     exit();
 }
 
-$_SESSION['escolhaAnterior'] = "questaoLP";
+$_SESSION['escolhaAnterior'] = "questaoCH";
 $dataAtual = date("Y-m-d");
 $data_hora = date("Y-m-d H:i:s");
 
