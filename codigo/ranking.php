@@ -2,13 +2,16 @@
 include('conexao.php');
 require('verifica.php');
 
-$query = "SELECT cadastro.nomeAluno, SUM(resultado.resultado) AS total_acertos
+$query = "SELECT cadastro.nomeAluno, escola.nomeEscola, SUM(resultado.resultado) AS total_acertos, COUNT(resultado.id) AS total_jogos
           FROM cadastro
           LEFT JOIN resultado ON cadastro.codUser = resultado.codUser
-          GROUP BY cadastro.codUser, cadastro.nomeAluno
+          LEFT JOIN escola ON cadastro.codEscola = escola.codEscola
+          GROUP BY cadastro.codUser, cadastro.nomeAluno, escola.nomeEscola
           HAVING total_acertos >= 0
-          ORDER BY total_acertos DESC
+          ORDER BY total_acertos DESC, total_jogos ASC
           LIMIT 10";
+
+
 $result = mysqli_query($conn, $query);
 header("refresh:120;url=index.php");
 
@@ -48,6 +51,7 @@ header("refresh:120;url=index.php");
             <th> </th>
             <th> </th>
             <th>Nome do Aluno</th>
+            <th>Campus</th>
             <th>Total de Acertos</th>
 </thead>
 <tbody>
@@ -55,6 +59,7 @@ header("refresh:120;url=index.php");
         $posicao = 1;
         while ($row = mysqli_fetch_assoc($result)) {
             $nomeAluno = $row['nomeAluno'];
+            $nomeEscola = $row['nomeEscola'];
             $totalAcertos = $row['total_acertos'];
             echo "<tr>";
             echo "<td class='pos'>{$posicao}</td>";
@@ -62,6 +67,7 @@ header("refresh:120;url=index.php");
             echo "<td></td>";
 
             echo "<td>{$nomeAluno}</td>";
+            echo "<td>{$nomeEscola}</td>";
             echo "<td>{$totalAcertos}</td>";
             echo "</tr>";
             $posicao++;
